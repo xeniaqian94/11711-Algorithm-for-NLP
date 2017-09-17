@@ -104,7 +104,8 @@ public class longIntOpenHashMap {
 	// return false;
 	// }
 
-	public int putHelp(long k, int v, long[] keyArray, int[] valueArray) { // internally modify the hastable during												// rehash()
+	public int putHelp(long k, int v, long[] keyArray, int[] valueArray) { // internally modify the hastable during //
+																			// rehash()
 		int initialPos = getInitialPos(k, keyArray); // given a key get an position?
 		int pos = getFinalPos(k, keyArray, initialPos);
 		long curr = keyArray[pos];
@@ -118,10 +119,12 @@ public class longIntOpenHashMap {
 		return pos;
 	}
 
-	public boolean insertOrAdd(long k) { // externally modify the hashtable, if k is not in the hashmap, insert it,
-											// otherwise add it. Return value is whether the key exists or not
+	public int insertOrAdd(long k) { // externally modify the hashtable, if k is not in the hashmap, insert it,
+										// otherwise add it. Return value is whether the key exists or not
 		if (size / (double) keys.length > MAX_LOAD_FACTOR) {
 			rehash();
+			// System.out.println("rehashed after this:");
+			// this.printStatus();
 		}
 		int initialPos = getInitialPos(k, keys); // given a key get an position?
 		int pos = getFinalPos(k, keys, initialPos);
@@ -131,9 +134,8 @@ public class longIntOpenHashMap {
 		if (curr == EMPTY_KEY_PLACEHOLDER) {
 			size++;
 			keys[pos] = k;
-			return true;
 		}
-		return false;
+		return pos;
 
 	}
 
@@ -167,7 +169,7 @@ public class longIntOpenHashMap {
 	 * @return
 	 */
 	public int getInitialPos(long k, long[] keyArray) {
-		
+
 		int hash = hash6432shift(k);
 		int pos = hash % keyArray.length;
 		if (pos < 0)
@@ -181,8 +183,12 @@ public class longIntOpenHashMap {
 	}
 
 	public int fromKeyGetValue(long k) { // get value from key
-		int pos = find(k);
+		int pos = fromKeyGetPos(k);
 		return values[pos];
+	}
+
+	public int fromKeyGetPos(long k) {
+		return find(k);
 	}
 
 	public long getKeyFromIndex(int pos) {
@@ -212,10 +218,12 @@ public class longIntOpenHashMap {
 	}
 
 	public void printStatus() {
-		// for (int i =0;i<keys.length;i++)
-		// System.out.println(keys[i]+" "+values[i]);
 		System.out.println(this.getClass() + " current hashmap size " + keys.length + " current ocuupied size " + size);
 		System.out.println("current load factor " + (size * 1.0 / (double) keys.length));
+
+		System.out.println("this is " + this.getClass());
+		for (int i = 0; i < keys.length; i++)
+			System.out.println(i + "\t" + keys[i] + " " + values[i]);
 
 	}
 

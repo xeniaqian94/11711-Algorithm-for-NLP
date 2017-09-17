@@ -1,6 +1,7 @@
 package edu.berkeley.nlp.assignments.assign1.student;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,11 +29,14 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 	long total = 0;
 
 	long[] wordCounter = new long[10];
+	int[] Xunigram = new int[10];
+	int[] unigramX = new int[10];
+	int[] XunigramX = new int[10];
 
 	int twentyBitMask = 0xFFFFF;
 
 	public KneserNeyLanguageModel(Iterable<List<String>> sentenceCollection) {
-		System.out.println("Building KneserNeyLanguageModel . . .");
+		System.out.println("Building KneserNeyLanguageModel . . . isPrint " + isPrint);
 		int sent = 0; // sentence counter
 		for (List<String> sentence : sentenceCollection) {
 			sent++;
@@ -42,97 +46,181 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 			stoppedSentence.add(0, NgramLanguageModel.START);
 			stoppedSentence.add(STOP);
 			// for (String word : stoppedSentence) {
-			String word = null;
-			String prev_word = null;
-			int prev_index = -1;
-			int prev2_index = -1;
+			String w3_word = null;
+			String w2_word = null;
+			int w2_index = -1;
+			int w1_index = -1;
 			if (isPrint)
 				bigramIndexer.printStatus();
 			for (int i = 0; i < stoppedSentence.size(); i++) {
-				word = stoppedSentence.get(i);
+				w3_word = stoppedSentence.get(i);
 				// store unigram fertility
 
-				int index = EnglishWordIndexer.getIndexer().addAndGetIndex(word);
+				// this get the index of this word, to only query an index please use indexOf
+				int w3_index = EnglishWordIndexer.getIndexer().addAndGetIndex(w3_word);
 
 				if (isPrint)
-					System.out.println("unigram " + word + " " + index + " " + wordCounter.length);
+					System.out.println("unigram " + w3_word + " " + w3_index + " " + wordCounter.length);
 
-				if (index >= wordCounter.length)
+				if (w3_index >= wordCounter.length) {
 					wordCounter = CollectionUtils.copyOf(wordCounter, wordCounter.length * 2);
-				wordCounter[index]++;
+					Xunigram = CollectionUtils.copyOf(Xunigram, Xunigram.length * 2);
+					unigramX = CollectionUtils.copyOf(unigramX, unigramX.length * 2);
+					XunigramX = CollectionUtils.copyOf(XunigramX, XunigramX.length * 2);
+				}
+				wordCounter[w3_index]++;
 
 				if (i > 0) {
-					long bigram_key = ((((long) prev_index) & twentyBitMask) << 20) | (((long) index) & twentyBitMask);
-					if (isPrint)
-						System.out.println("bigram inserted " + bigram_key + " " + index + " " + wordCounter.length);
-					bigramIndexer.insertOrAdd(bigram_key);
-					// bigramIndexer.printStatus();
+					// we have saved w2_index
+					long bigram_key = ((((long) w2_index) & twentyBitMask) << 20) | (((long) w3_index) & twentyBitMask);
+					int thisBigramKeyPos = bigramIndexer.insertOrAdd(bigram_key);
+					if (isPrint) {
+						System.out.println("current trigram index: w1_index " + w1_index + " w2_index " + w2_index
+								+ " w3_index " + w3_index);
+						System.out
+								.println("bigram inserted key: " + bigram_key + " bigram_position " + thisBigramKeyPos);
+					}
+					if (bigramIndexer.getValues()[thisBigramKeyPos] == 1) { // it's a new bigram
+						Xunigram[w3_index]++;
+						unigramX[w2_index]++;
+						if (isPrint) {
+							printNonZeroUnigramFertility(Xunigram, "Xunigram");
+							printNonZeroUnigramFertility(unigramX, "unigramX");
+							scanner.nextLine();
+						}
+					}
 
 					if (i > 1) {
-						long trigram_key = ((((long) prev2_index) & twentyBitMask) << 40)
-								| ((((long) prev_index) & twentyBitMask) << 20) | (((long) index) & twentyBitMask);
+						// we have saved w1_index
+						long trigram_key = ((((long) w1_index) & twentyBitMask) << 40)
+								| ((((long) w2_index) & twentyBitMask) << 20) | (((long) w3_index) & twentyBitMask);
 						if (isPrint)
-							System.out.println("trigram " + trigram_key + " " + index + " " + wordCounter.length);
-						trigramIndexer.insertOrAdd(trigram_key);
+							System.out.println("trigram " + trigram_key + " " + w3_index);
+						int thisTrigramKeyPos = trigramIndexer.insertOrAdd(trigram_key);
+						if (trigramIndexer.getValues()[thisTrigramKeyPos] == 1) {
+							XunigramX[w2_index]++;
+							long bigram_w1w2X = ((((long) w1_index) & twentyBitMask) << 20)
+									| (((long) w2_index) & twentyBitMask);
+							long bigram_Xw2w3 = ((((long) w2_index) & twentyBitMask) << 20)
+									| (((long) w3_index) & twentyBitMask);
+							bigramIndexer.updateBigramFertility(bigram_w1w2X, thisBigramKeyPos);
+							if (isPrint) {
+								System.out.println("printing bigram table status");
+								bigramIndexer.printStatus();
+								scanner.nextLine();
+							}
+						}
 					}
 				}
 				if (i > 0)
-					prev2_index = prev_index;
-				prev_index = index;
+					w1_index = w2_index;
+				w2_index = w3_index;
 
 			}
 		}
-		if (isPrint)
-			System.out.println("Done building EmpiricalUnigramLanguageModel.");
-		wordCounter = CollectionUtils.copyOf(wordCounter, EnglishWordIndexer.getIndexer().size());
+		wordCounter = CollectionUtils.copyOf(wordCounter, EnglishWordIndexer.getIndexer().size()); // shrink size to
+																									// what's needed
+
+		Xunigram = CollectionUtils.copyOf(Xunigram, EnglishWordIndexer.getIndexer().size());
+		unigramX = CollectionUtils.copyOf(unigramX, EnglishWordIndexer.getIndexer().size());
+		XunigramX = CollectionUtils.copyOf(XunigramX, EnglishWordIndexer.getIndexer().size());
+
 		total = CollectionUtils.sum(wordCounter);
 
 		// wordCounter.toString();
 		System.out.println("index of shell " + EnglishWordIndexer.getIndexer().indexOf("shell"));
 		System.out.println("unigram table size" + EnglishWordIndexer.getIndexer().size() + " word count length "
 				+ wordCounter.length + " however total is " + total);
-		bigramIndexer.printStatus();
-		trigramIndexer.printStatus();
-
-		// if (isPrint) {
-		// System.out.println("print bigramIndexer table");
-		// bigramIndexer.printStatus();
-		// System.out.println("print trigramIndexer table");
-		// trigramIndexer.printStatus();
-		// }
+		if (isPrint) {
+			System.out.println("bookkeeping after training finished");
+			bigramIndexer.printStatus();
+			trigramIndexer.printStatus();
+			System.out.println(EnglishWordIndexer.getIndexer().size());
+			System.out.println("unigram wordCounter table " + String.join(" ", Arrays.toString(wordCounter)));
+			System.out.println("unigram Xunigram table " + String.join(" ", Arrays.toString(Xunigram)));
+			System.out.println("unigram unigramX table " + String.join(" ", Arrays.toString(unigramX)));
+			System.out.println("unigram XunigramX table " + String.join(" ", Arrays.toString(XunigramX)));
+		}
 
 		System.gc();
 
+	}
+
+	private void printNonZeroUnigramFertility(int[] array, String title) {
+		// TODO Auto-generated method stub
+		String s = title + " ";
+		for (int i = 0; i < array.length; i++)
+			if (array[i] > 0)
+				s += String.valueOf(i) + ":" + String.valueOf(array[i]) + " ";
+		System.out.println(s);
 	}
 
 	public int getOrder() {
 		return 3;
 	}
 
+	
 	public double getNgramLogProbability(int[] ngram, int from, int to) {
+
+		int w3_index = ngram[to - 1];
+		// System.out.println("sanity check if w3 is unseen " + wordCounter.length + " "
+		// + w3_index + " "
+		// + (w3_index >= wordCounter.length));
+		if (w3_index < 0 | (w3_index >= wordCounter.length)) { // if w3 is unseen in the context{
+			// System.out.println(Math.log(1e-40));
+			return Math.log(1e-50);
+		}
+		double prob_w3 = Xunigram[w3_index] * 1.0 / bigramIndexer.size();
+		// System.out.println("prob_w3 " + prob_w3);
 		if (to - from != 1) { // higher order ones
+			int w2_index = ngram[to - 2];
+			// System.out.println("w2_index is " + w2_index);
+			if (w2_index >= wordCounter.length | w2_index >= XunigramX.length) {
+				// System.out.println("w2 does not exist/invalid, backoff to P(w3)");
+				return Math.log(prob_w3); // backoff to unigram prob
+			}
+			double denominator = XunigramX[w2_index];
+			if (denominator <= 0)
+				return Math.log(prob_w3);
+			long bigram_key = (((w2_index) & twentyBitMask) << 20) | (w3_index & twentyBitMask);
+			double alpha_w2 = d * unigramX[w2_index] / denominator;
+
+			// System.out.println("alpha_w2 " + alpha_w2);
+
+			double prob_w3_given_w2 = Math
+					.max(bigramIndexer.getXbigram_Value(bigramIndexer.fromKeyGetPos(bigram_key)) - d, 0) * 1.0
+					/ XunigramX[w2_index] + alpha_w2 * prob_w3;
+			// System.out.println("prob_w3_given_w2 " + prob_w3_given_w2);
 			if (to - from == 3) {
-				long bigram_key = ((((long) ngram[from + 1]) & twentyBitMask) << 20)
-						| (((long) ngram[from]) & twentyBitMask);
-				long trigram_key = ((((long) ngram[from + 2]) & twentyBitMask) << 40)
-						| ((((long) ngram[from + 1]) & twentyBitMask) << 20) | (((long) ngram[from]) & twentyBitMask);
-				double alpha;
-				double bigramProbability;
-				// return
-				// Math.log(Math.max(trigramIndexer.fromKeyGetValue(trigram_key)-d,0)/bigramIndexer.fromKeyGetValue(bigram_key)+alpha*bigramProbability);
+				int w1_index = ngram[from];
+				if (w1_index >= wordCounter.length)
+					return Math.log(prob_w3_given_w2);
+				long trigram_key = (((long) (w1_index) & twentyBitMask) << 40) | ((w2_index) & twentyBitMask) << 20
+						| (w3_index) & twentyBitMask;
+				long bigram_key_w1w2 = (w1_index & twentyBitMask) << 20 | (w2_index & twentyBitMask);
+				int bigram_key_w1w2_Pos = bigramIndexer.fromKeyGetPos(bigram_key_w1w2);
+				int count_w1w2 = bigramIndexer.fromPosGetValue(bigram_key_w1w2_Pos);
+				if (count_w1w2 <= 0)
+					return Math.log(prob_w3_given_w2); // backoff to bigram prob
+				double alpha_w1w2 = d * bigramIndexer.getbigramX_Value(bigram_key_w1w2_Pos) / count_w1w2;
+				// System.out.println("alpha_w1w2 " + alpha_w1w2);
+				// System.out.println(w1_index + " " + w2_index + " " + w3_index + " " +
+				// trigram_key + " "
+				// + trigramIndexer.fromKeyGetValue(trigram_key) + " "
+				// + Math.max(trigramIndexer.fromKeyGetValue(trigram_key) - d, 0));
+				double prob_w3_given_w1w2 = Math.max(trigramIndexer.fromKeyGetValue(trigram_key) - d, 0) * 1.0
+						/ count_w1w2 + alpha_w1w2 * prob_w3_given_w2;
+				return Math.log(prob_w3_given_w1w2);
 			} else if (to - from == 2) {
+				return Math.log(prob_w3_given_w2);
 			}
 
-			System.out.println("WARNING: to - from > 1 for EmpiricalUnigramLanguageModel, but is okay for KN trigram");
-			return 0.0d;
 		}
-
-		int word = ngram[from];
-		return Math.log((word < 0 || word >= wordCounter.length) ? 1.0 : wordCounter[word] / (total + 1.0));
+		return Math.log(wordCounter[w3_index] / total);
 	}
 
 	public long getCount(int[] ngram) {
-		System.out.println("in here getting count for ngram " + ngram.toString());
+		// System.out.println("in here getting count for ngram " + ngram.toString());
 		if (ngram.length > 1) {
 
 			long key = 0;

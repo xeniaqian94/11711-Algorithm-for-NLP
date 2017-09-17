@@ -12,6 +12,7 @@ public class longIntOpenHashMapBigram extends longIntOpenHashMap {
 
 	private int[] bigramX_fertility;
 	private int[] Xbigram_fertility;
+	private boolean isPrintFertilityTable = true;
 
 	public longIntOpenHashMapBigram() {
 		this(10);
@@ -30,7 +31,7 @@ public class longIntOpenHashMapBigram extends longIntOpenHashMap {
 
 	@Override
 	public void rehash() {
-//		System.out.println("inside the bigram hash!");
+		// System.out.println("inside the bigram hash!");
 
 		long[] oldKeys = getKeys();
 		int[] oldValues = getValues();
@@ -59,6 +60,14 @@ public class longIntOpenHashMapBigram extends longIntOpenHashMap {
 		Xbigram_fertility = newXbigram_fertility;
 	}
 
+	public int getbigramX_Value(int pos) {
+		return bigramX_fertility[pos];
+	}
+
+	public int getXbigram_Value(int pos) {
+		return Xbigram_fertility[pos];
+	}
+
 	/**
 	 * @param k
 	 * @param v
@@ -69,6 +78,30 @@ public class longIntOpenHashMapBigram extends longIntOpenHashMap {
 		newbigramX_fertility[pos] = bigramX_fertility_val;
 		Xbigram_fertility[pos] = Xbigram_fertility_val;
 		return pos;
+	}
+
+	public void updateBigramFertility(long bigram_w1w2X, int bigram_w2w3_Pos) {
+		// TODO Auto-generated method stub
+		int bigram_w1w2_Pos = this.fromKeyGetPos(bigram_w1w2X);
+		bigramX_fertility[bigram_w1w2_Pos]++;
+		Xbigram_fertility[bigram_w2w3_Pos]++;
+	}
+
+	@Override
+	public void printStatus() {
+		if (isPrintFertilityTable) {
+			long[] this_key = this.getKeys();
+			int[] this_value = this.getValues();
+			System.out.println("this is "+this.getClass());
+			for (int i = 0; i < this_key.length; i++)
+				System.out.println(i + "\t" + this_key[i] + " " + this_value[i] + " " + bigramX_fertility[i] + " "
+						+ Xbigram_fertility[i]);
+		}
+	}
+
+	public int fromPosGetValue(int pos) {
+		// TODO Auto-generated method stub
+		return this.getValues()[pos];
 	}
 
 }

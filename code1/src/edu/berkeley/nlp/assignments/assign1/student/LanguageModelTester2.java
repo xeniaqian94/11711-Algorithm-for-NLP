@@ -42,6 +42,7 @@ import edu.berkeley.nlp.util.StringIndexer;
  */
 public class LanguageModelTester2 {
 	static String basePath = ".";
+	static boolean isPrint = true;
 
 	enum LmType {
 		STUB {
@@ -71,7 +72,7 @@ public class LanguageModelTester2 {
 		Map<String, String> argMap = CommandLineUtils.simpleCommandLineParser(args);
 
 		// Set up default parameters and settings
-		
+
 		LmType lmType = LmType.UNIGRAM;
 		// You can use this to make decoding runs run in less time, but remember that we
 		// will
@@ -128,10 +129,10 @@ public class LanguageModelTester2 {
 		if (lmType == LmType.TRIGRAM) {
 			spotCheckLanguageModel(languageModel, sanityCheck);
 		}
-		
+
 		MemoryUsageUtils.printMemoryUsage();
-		// evaluateLanguageModel(phraseTableFile, testFrench, testEnglish, weightsFile,
-		// languageModel, maxNumTest, printTranslations);
+		evaluateLanguageModel(phraseTableFile, testFrench, testEnglish, weightsFile, languageModel, maxNumTest,
+				printTranslations);
 	}
 
 	private static void spotCheckLanguageModel(NgramLanguageModel languageModel, boolean sanityCheck) {
@@ -143,17 +144,21 @@ public class LanguageModelTester2 {
 				spotCheckCount(languageModel, new String[] { "romanian", "independent", "society" }, 30L);
 				spotCheckCount(languageModel, new String[] { "XXXtotally", "XXXunseen", "XXXtrigram" }, 0L);
 			}
-//			spotCheckContextNormalizes(languageModel, new String[] { "in", "terms" });
-//			spotCheckContextNormalizes(languageModel, new String[] { "romanian", "independent" });
-//			spotCheckContextNormalizes(languageModel, new String[] { "the" });
-		}else {
+			spotCheckContextNormalizes(languageModel, new String[] { "in", "terms" });
+			spotCheckContextNormalizes(languageModel, new String[] { "romanian", "independent" });
+			spotCheckContextNormalizes(languageModel, new String[] { "the" });
+		} else {
 			if (!sanityCheck) {
 				spotCheckCount(languageModel, new String[] { "the" }, 4L);
-				spotCheckCount(languageModel, new String[] { "or","shell" }, 2L); // is this a trigram?
+				spotCheckCount(languageModel, new String[] { "or", "shell" }, 2L); // is this a trigram?
 				spotCheckCount(languageModel, new String[] { "shell", "or", "shell" }, 1L);
 				spotCheckCount(languageModel, new String[] { "XXXtotally", "XXXunseen", "XXXtrigram" }, 0L);
 			}
+			spotCheckContextNormalizes(languageModel, new String[] { "the" });
+			spotCheckContextNormalizes(languageModel, new String[] { "or", "shell" });
+			spotCheckContextNormalizes(languageModel, new String[] { "problem", "is" });
 		}
+
 		System.out.println("Spot checks completed");
 	}
 
@@ -180,8 +185,14 @@ public class LanguageModelTester2 {
 			// Don't include the START symbol since it is only observed in contexts
 			if (wordIdx != indexer.indexOf(NgramLanguageModel.START)) {
 				ngram[ngram.length - 1] = wordIdx;
-				totalLogProb = SloppyMath.logAdd(totalLogProb,
-						languageModel.getNgramLogProbability(ngram, 0, ngram.length));
+				double this_prob = languageModel.getNgramLogProbability(ngram, 0, ngram.length);
+				if (isPrint) {
+					String[] words = Arrays.stream(ngram).mapToObj(i -> indexer.get(i)).toArray(String[]::new);
+					// System.out.println(String.join(" ", Arrays.toString(ngram)) + " aka. " +
+					// String.join(" ", words)
+					// + " " + this_prob);
+				}
+				totalLogProb = SloppyMath.logAdd(totalLogProb, this_prob);
 			}
 		}
 		if (Math.abs(totalLogProb) > 0.001) {
