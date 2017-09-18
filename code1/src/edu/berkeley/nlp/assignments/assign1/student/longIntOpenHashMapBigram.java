@@ -12,7 +12,7 @@ public class longIntOpenHashMapBigram extends longIntOpenHashMap {
 
 	private int[] bigramX_fertility;
 	private int[] Xbigram_fertility;
-	private boolean isPrintFertilityTable = true;
+	private boolean isPrintFertilityTable = false;
 
 	public longIntOpenHashMapBigram() {
 		this(10);
@@ -89,13 +89,14 @@ public class longIntOpenHashMapBigram extends longIntOpenHashMap {
 
 	@Override
 	public void printStatus() {
+		super.printStatus();
 		if (isPrintFertilityTable) {
 			long[] this_key = this.getKeys();
 			int[] this_value = this.getValues();
 			System.out.println("this is "+this.getClass());
-			for (int i = 0; i < this_key.length; i++)
-				System.out.println(i + "\t" + this_key[i] + " " + this_value[i] + " " + bigramX_fertility[i] + " "
-						+ Xbigram_fertility[i]);
+//			for (int i = 0; i < this_key.length; i++)
+//				System.out.println(i + "\t" + this_key[i] + " " + this_value[i] + " " + bigramX_fertility[i] + " "
+//						+ Xbigram_fertility[i]);
 		}
 	}
 

@@ -15,11 +15,11 @@ public class LmFactory implements LanguageModelFactory
    * @param trainingData
    */
 	public NgramLanguageModel newLanguageModel(Iterable<List<String>> trainingData) {
-//		 System.out.println("here");
-
-//		 return null; // TODO Construct an exact LM implementation here.
 		return new KneserNeyLanguageModel(trainingData);
 
+	}
+	public NgramLanguageModel newLanguageModel(Iterable<List<String>> trainingData,int maxSent) {
+		return new KneserNeyLanguageModel(trainingData,maxSent);
 	}
 
 }

@@ -15,6 +15,11 @@ public class longIntOpenHashMap {
 	private int size = 0; // how many values have been put into the hashtable
 	private final double MAX_LOAD_FACTOR;
 	int EMPTY_KEY_PLACEHOLDER = -1;
+	
+	int num_access=0;
+	int num_collision=0;
+	
+	
 
 	public long[] getKeys() {
 		return keys;
@@ -81,29 +86,6 @@ public class longIntOpenHashMap {
 		setValues(newValues);
 	}
 
-	/**
-	 * @param k
-	 * @param v
-	 */
-	// public boolean putHelp(long k, int v, long[] keyArray, int[] valueArray) {
-	// int pos = getInitialPos(k, keyArray); // given a key get an position?
-	// long curr = keyArray[pos];
-	// while (curr != 0 && curr!=k) {
-	// pos++; //linear probing
-	// if (pos == keyArray.length)
-	// pos = 0;
-	// curr = keyArray[pos];
-	// }
-	//
-	// valueArray[pos] = v;
-	// if (curr == 0) {
-	// size++;
-	// keyArray[pos] = k;
-	// return true;
-	// }
-	// return false;
-	// }
-
 	public int putHelp(long k, int v, long[] keyArray, int[] valueArray) { // internally modify the hastable during //
 																			// rehash()
 		int initialPos = getInitialPos(k, keyArray); // given a key get an position?
@@ -145,6 +127,7 @@ public class longIntOpenHashMap {
 		int finalPos = initialPos;
 		while (curr != EMPTY_KEY_PLACEHOLDER && curr != k) {
 			finalPos++; // linear probing
+			num_collision++;
 			if (finalPos == thisKeyArray.length)
 				finalPos = 0;
 			curr = thisKeyArray[finalPos];
@@ -179,6 +162,7 @@ public class longIntOpenHashMap {
 		// Integer.MIN_VALUE
 		// if (hash < 0) hash = -hash;
 		// int pos = hash % keyArray.length;
+		num_access++;
 		return pos;
 	}
 
@@ -221,9 +205,9 @@ public class longIntOpenHashMap {
 		System.out.println(this.getClass() + " current hashmap size " + keys.length + " current ocuupied size " + size);
 		System.out.println("current load factor " + (size * 1.0 / (double) keys.length));
 
-		System.out.println("this is " + this.getClass());
-		for (int i = 0; i < keys.length; i++)
-			System.out.println(i + "\t" + keys[i] + " " + values[i]);
+//		System.out.println("this is " + this.getClass());
+//		for (int i = 0; i < keys.length; i++)
+//			System.out.println(i + "\t" + keys[i] + " " + values[i]);
 
 	}
 

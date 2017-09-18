@@ -9,7 +9,9 @@ import edu.berkeley.nlp.langmodel.EmpiricalUnigramLanguageModel;
 import edu.berkeley.nlp.langmodel.EnglishWordIndexer;
 import edu.berkeley.nlp.langmodel.LanguageModelFactory;
 import edu.berkeley.nlp.langmodel.NgramLanguageModel;
+import edu.berkeley.nlp.mt.BleuScore;
 import edu.berkeley.nlp.util.CollectionUtils;
+import edu.berkeley.nlp.util.StringIndexer;
 
 public class KneserNeyLanguageModel implements NgramLanguageModel {
 
@@ -18,7 +20,8 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 	String line;
 	boolean isPrint = false;
 	double d = 0.8d;
-
+	int totalSent = 0;
+	int maxSent = Integer.MAX_VALUE;
 	// intIndexer unigramIndexer=new intIndexer();
 
 	// longIndexer bigramIndexer = new longIndexer();
@@ -35,13 +38,22 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 
 	int twentyBitMask = 0xFFFFF;
 
-	public KneserNeyLanguageModel(Iterable<List<String>> sentenceCollection) {
+	public int getTotalSent() {
+		return totalSent;
+	}
+
+	public KneserNeyLanguageModel(Iterable<List<String>> sentenceCollection, int maxSent) {
+		this.maxSent = maxSent;
 		System.out.println("Building KneserNeyLanguageModel . . . isPrint " + isPrint);
+		long startTime = System.nanoTime();
+
 		int sent = 0; // sentence counter
 		for (List<String> sentence : sentenceCollection) {
 			sent++;
 			if (sent % 1000000 == 0)
 				System.out.println("On sentence " + sent);
+			if (sent > maxSent)
+				break;
 			List<String> stoppedSentence = new ArrayList<String>(sentence);
 			stoppedSentence.add(0, NgramLanguageModel.START);
 			stoppedSentence.add(STOP);
@@ -117,6 +129,7 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 				w2_index = w3_index;
 
 			}
+			totalSent = sent;
 		}
 		wordCounter = CollectionUtils.copyOf(wordCounter, EnglishWordIndexer.getIndexer().size()); // shrink size to
 																									// what's needed
@@ -127,14 +140,17 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 
 		total = CollectionUtils.sum(wordCounter);
 
+		System.out.println("Building took " + BleuScore.formatDouble((System.nanoTime() - startTime) / 1e9) + "s");
+
 		// wordCounter.toString();
 		System.out.println("index of shell " + EnglishWordIndexer.getIndexer().indexOf("shell"));
 		System.out.println("unigram table size" + EnglishWordIndexer.getIndexer().size() + " word count length "
 				+ wordCounter.length + " however total is " + total);
+		bigramIndexer.printStatus();
+		trigramIndexer.printStatus();
 		if (isPrint) {
 			System.out.println("bookkeeping after training finished");
-			bigramIndexer.printStatus();
-			trigramIndexer.printStatus();
+			
 			System.out.println(EnglishWordIndexer.getIndexer().size());
 			System.out.println("unigram wordCounter table " + String.join(" ", Arrays.toString(wordCounter)));
 			System.out.println("unigram Xunigram table " + String.join(" ", Arrays.toString(Xunigram)));
@@ -143,6 +159,10 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 		}
 
 		System.gc();
+	}
+
+	public KneserNeyLanguageModel(Iterable<List<String>> sentenceCollection) {
+		this(sentenceCollection, Integer.MAX_VALUE);
 
 	}
 
@@ -159,15 +179,17 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 		return 3;
 	}
 
-	
 	public double getNgramLogProbability(int[] ngram, int from, int to) {
+		
+//		StringIndexer indexer = EnglishWordIndexer.getIndexer();
+//		String[] words = Arrays.stream(ngram).mapToObj(i -> indexer.get(i)).toArray(String[]::new);
+//		System.out.println(String.join(" ", words));
 
 		int w3_index = ngram[to - 1];
 		// System.out.println("sanity check if w3 is unseen " + wordCounter.length + " "
 		// + w3_index + " "
 		// + (w3_index >= wordCounter.length));
 		if (w3_index < 0 | (w3_index >= wordCounter.length)) { // if w3 is unseen in the context{
-			// System.out.println(Math.log(1e-40));
 			return Math.log(1e-100);
 		}
 		double prob_w3 = Xunigram[w3_index] * 1.0 / bigramIndexer.size();
@@ -176,13 +198,13 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 			int w2_index = ngram[to - 2];
 			// System.out.println("w2_index is " + w2_index);
 			if (w2_index >= wordCounter.length | w2_index >= XunigramX.length) {
-				// System.out.println("w2 does not exist/invalid, backoff to P(w3)");
+//				System.out.println("w2 does not exist/invalid, backoff to P(w3) " + Math.log(prob_w3));
 				return Math.log(prob_w3); // backoff to unigram prob
 			}
 			double denominator = XunigramX[w2_index];
 			if (denominator <= 0)
 				return Math.log(prob_w3);
-			long bigram_key = (((long)((w2_index) & twentyBitMask)) << 20) | (w3_index & twentyBitMask);
+			long bigram_key = (((long) ((w2_index) & twentyBitMask)) << 20) | (w3_index & twentyBitMask);
 			double alpha_w2 = d * unigramX[w2_index] / denominator;
 
 			// System.out.println("alpha_w2 " + alpha_w2);
@@ -193,11 +215,14 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 			// System.out.println("prob_w3_given_w2 " + prob_w3_given_w2);
 			if (to - from == 3) {
 				int w1_index = ngram[from];
-				if (w1_index >= wordCounter.length)
+
+				if (w1_index >= wordCounter.length) {
+//					System.out.println("w1 not exist backoff to bigram ");
 					return Math.log(prob_w3_given_w2);
-				long trigram_key = (((long) (w1_index) & twentyBitMask) << 40) | (((long)(w2_index)) & twentyBitMask) << 20
-						| (w3_index) & twentyBitMask;
-				long bigram_key_w1w2 = (((long)w1_index) & twentyBitMask) << 20 | (w2_index & twentyBitMask);
+				}
+				long trigram_key = (((long) (w1_index) & twentyBitMask) << 40)
+						| (((long) (w2_index)) & twentyBitMask) << 20 | (w3_index) & twentyBitMask;
+				long bigram_key_w1w2 = (((long) w1_index) & twentyBitMask) << 20 | (w2_index & twentyBitMask);
 				int bigram_key_w1w2_Pos = bigramIndexer.fromKeyGetPos(bigram_key_w1w2);
 				int count_w1w2 = bigramIndexer.fromPosGetValue(bigram_key_w1w2_Pos);
 				if (count_w1w2 <= 0)

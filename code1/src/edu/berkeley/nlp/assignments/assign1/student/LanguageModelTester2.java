@@ -121,23 +121,74 @@ public class LanguageModelTester2 {
 		File weightsFile = new File(basePath, "weights.txt");
 		Iterable<List<String>> trainingSentenceCollection = SentenceCollection.Reader
 				.readSentenceCollection(trainingSentencesFile.getPath());
-
-		// Build the language model
 		LanguageModelFactory languageModelFactory = lmType.getFactory();
-		NgramLanguageModel languageModel = languageModelFactory.newLanguageModel(trainingSentenceCollection);
+		NgramLanguageModel languageModel;
 
-		if (lmType == LmType.TRIGRAM) {
-			spotCheckLanguageModel(languageModel, sanityCheck);
+		if (argMap.containsKey("-calculatePerplexity")) {
+			int sent = Integer.valueOf(argMap.get("-calculatePerplexity"));
+
+			languageModel = ((LmFactory) languageModelFactory).newLanguageModel(trainingSentenceCollection, sent);
+			final String englishData = (testEnglish).getPath();
+			Iterable<List<String>> englishSentences = SentenceCollection.Reader.readSentenceCollection(englishData);
+			perplexity(languageModel, englishSentences);
+			sent = (int) (((KneserNeyLanguageModel) languageModel).getTotalSent() * 0.9);
+
+		} else {
+			// Build the language model
+			languageModel = languageModelFactory.newLanguageModel(trainingSentenceCollection);
+
+			if (lmType == LmType.TRIGRAM) {
+				spotCheckLanguageModel(languageModel, sanityCheck);
+			}
+
+			MemoryUsageUtils.printMemoryUsage();
+
+			evaluateLanguageModel(phraseTableFile, testFrench, testEnglish, weightsFile, languageModel, maxNumTest,
+					printTranslations);
 		}
+	}
 
-		MemoryUsageUtils.printMemoryUsage();
-		evaluateLanguageModel(phraseTableFile, testFrench, testEnglish, weightsFile, languageModel, maxNumTest,
-				printTranslations);
+	private static int perplexity(NgramLanguageModel languageModel, Iterable<List<String>> englishSentences) {
+		// TODO Auto-generated method stub
+		int wordTotal = 0;
+		int sent = 0;
+		double sumLogP = 0.0d;
+		for (List<String> sentence : englishSentences) {
+			sent++;
+			if (sent % 1000 == 0)
+				System.out.println("Calculating perplexity on sentence " + sent);
+			List<String> stoppedSentence = new ArrayList<String>(sentence);
+			stoppedSentence.add(0, NgramLanguageModel.START);
+			stoppedSentence.add(NgramLanguageModel.STOP);
+
+			for (int i = 2; i < stoppedSentence.size(); i++) {
+
+				String[] context = new String[3];
+				context[0] = stoppedSentence.get(i - 2);
+				context[1] = stoppedSentence.get(i - 1);
+				context[2] = stoppedSentence.get(i);
+				int[] ngram = index(context);
+
+				double this_prob = languageModel.getNgramLogProbability(ngram, 0, ngram.length);
+				if (this_prob > -100) {
+					sumLogP += this_prob;
+					wordTotal++;
+				}
+//				else {
+//					System.out.println(
+//							this_prob + " comes from context " + context[0] + " " + context[1] + " " + context[2]);
+//				}
+			}
+		}
+		double perplexity = Math.exp(-1.0 * sumLogP / wordTotal);
+		System.out.println("perplexity for training size " + ((KneserNeyLanguageModel) languageModel).getTotalSent()
+				+ " " + perplexity);
+		return sent;
 	}
 
 	private static void spotCheckLanguageModel(NgramLanguageModel languageModel, boolean sanityCheck) {
 		System.out.println("Performing spot checks...");
-//		if (!basePath.contains("toy")) {
+		// if (!basePath.contains("toy")) {
 		{
 			if (!sanityCheck) {
 				spotCheckCount(languageModel, new String[] { "the" }, 19880264L);
@@ -145,25 +196,31 @@ public class LanguageModelTester2 {
 				spotCheckCount(languageModel, new String[] { "romanian", "independent", "society" }, 30L);
 				spotCheckCount(languageModel, new String[] { "XXXtotally", "XXXunseen", "XXXtrigram" }, 0L);
 			}
-//			spotCheckContextNormalizes(languageModel, new String[] { "in", "terms" });
+			// spotCheckContextNormalizes(languageModel, new String[] { "in", "terms" });
 			spotCheckContextNormalizes(languageModel, new String[] { "romanian", "independent" });
-//			spotCheckContextNormalizes(languageModel, new String[] { "prosecution", "office" });
-//			spotCheckContextNormalizes(languageModel, new String[] { "commerce", "control" });
-//			spotCheckContextNormalizes(languageModel, new String[] { "authenticated", "by" });
-//			spotCheckContextNormalizes(languageModel, new String[] { "final", "destination" });
-//			spotCheckContextNormalizes(languageModel, new String[] { "the" });
-		} 
-//		else {
-//			if (!sanityCheck) {
-//				spotCheckCount(languageModel, new String[] { "the" }, 4L);
-//				spotCheckCount(languageModel, new String[] { "or", "shell" }, 2L); // is this a trigram?
-//				spotCheckCount(languageModel, new String[] { "shell", "or", "shell" }, 1L);
-//				spotCheckCount(languageModel, new String[] { "XXXtotally", "XXXunseen", "XXXtrigram" }, 0L);
-//			}
-//			spotCheckContextNormalizes(languageModel, new String[] { "the" });
-//			spotCheckContextNormalizes(languageModel, new String[] { "or", "shell" });
-//			spotCheckContextNormalizes(languageModel, new String[] { "problem", "is" });
-//		}
+			// spotCheckContextNormalizes(languageModel, new String[] { "prosecution",
+			// "office" });
+			// spotCheckContextNormalizes(languageModel, new String[] { "commerce",
+			// "control" });
+			// spotCheckContextNormalizes(languageModel, new String[] { "authenticated",
+			// "by" });
+			// spotCheckContextNormalizes(languageModel, new String[] { "final",
+			// "destination" });
+			// spotCheckContextNormalizes(languageModel, new String[] { "the" });
+		}
+		// else {
+		// if (!sanityCheck) {
+		// spotCheckCount(languageModel, new String[] { "the" }, 4L);
+		// spotCheckCount(languageModel, new String[] { "or", "shell" }, 2L); // is this
+		// a trigram?
+		// spotCheckCount(languageModel, new String[] { "shell", "or", "shell" }, 1L);
+		// spotCheckCount(languageModel, new String[] { "XXXtotally", "XXXunseen",
+		// "XXXtrigram" }, 0L);
+		// }
+		// spotCheckContextNormalizes(languageModel, new String[] { "the" });
+		// spotCheckContextNormalizes(languageModel, new String[] { "or", "shell" });
+		// spotCheckContextNormalizes(languageModel, new String[] { "problem", "is" });
+		// }
 
 		System.out.println("Spot checks completed");
 	}
@@ -192,13 +249,14 @@ public class LanguageModelTester2 {
 			if (wordIdx != indexer.indexOf(NgramLanguageModel.START)) {
 				ngram[ngram.length - 1] = wordIdx;
 				double this_prob = languageModel.getNgramLogProbability(ngram, 0, ngram.length);
-				if (this_prob >-20 && isPrint) {
+				if (this_prob > -20 && isPrint) {
 					String[] words = Arrays.stream(ngram).mapToObj(i -> indexer.get(i)).toArray(String[]::new);
-					System.out.println(String.join(" ", Arrays.toString(ngram)) + " aka. " +String.join(" ", words)+ " " + this_prob);
-					
-				}	
+					System.out.println(String.join(" ", Arrays.toString(ngram)) + " aka. " + String.join(" ", words)
+							+ " " + this_prob);
+
+				}
 				totalLogProb = SloppyMath.logAdd(totalLogProb, this_prob);
-				
+
 			}
 		}
 		if (Math.abs(totalLogProb) > 0.001) {
