@@ -47,3 +47,464 @@ On sentence 1000000
 On sentence 2000000
 On sentence 3000000
 On sentence 4000000
+On sentence 5000000
+On sentence 6000000
+On sentence 7000000
+On sentence 8000000
+On sentence 9000000
+Building took 161.708s
+index of shell 125
+unigram table size495172 word count length 495172 however total is 281199874
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 11451105 current ocuupied size 8374230
+current load factor 0.7313032235753667
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 57971215 current ocuupied size 41627672
+current load factor 0.7180748583585836
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 9073252 68.99880781467482
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+On sentence 2000000
+On sentence 3000000
+On sentence 4000000
+On sentence 5000000
+On sentence 6000000
+On sentence 7000000
+Building took 114.760s
+index of shell 125
+unigram table size450897 word count length 450897 however total is 224400131
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 11451105 current ocuupied size 7331913
+current load factor 0.6402799555152101
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 57971215 current ocuupied size 34977528
+current load factor 0.6033602711276622
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 7258601 71.73558330036197
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+On sentence 2000000
+On sentence 3000000
+On sentence 4000000
+On sentence 5000000
+Building took 82.682s
+index of shell 125
+unigram table size405860 word count length 405860 however total is 178279920
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 11451105 current ocuupied size 6426303
+current load factor 0.5611950113111355
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 38647477 current ocuupied size 29525328
+current load factor 0.7639652130461194
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 5806881 73.13536370539138
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+On sentence 2000000
+On sentence 3000000
+On sentence 4000000
+Building took 72.174s
+index of shell 125
+unigram table size361680 word count length 361680 however total is 144139796
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 7634070 current ocuupied size 5693967
+current load factor 0.7458625608620304
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 38647477 current ocuupied size 25489672
+current load factor 0.6595429761171732
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 4645505 74.20030672374467
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+On sentence 2000000
+On sentence 3000000
+Building took 54.129s
+index of shell 125
+unigram table size324148 word count length 324148 however total is 115396921
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 7634070 current ocuupied size 4985976
+current load factor 0.6531215983086348
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 38647477 current ocuupied size 21532785
+current load factor 0.5571588799962285
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 3716404 78.79055568988913
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+On sentence 2000000
+Building took 43.586s
+index of shell 125
+unigram table size289348 word count length 289348 however total is 88981538
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 7634070 current ocuupied size 4218533
+current load factor 0.5525929157055148
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 25764985 current ocuupied size 17317611
+current load factor 0.6721374376891739
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 2973123 83.68322153804644
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+On sentence 2000000
+Building took 29.703s
+index of shell 125
+unigram table size263909 word count length 263909 however total is 71355274
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 5089380 current ocuupied size 3642124
+current load factor 0.7156321595164833
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 25764985 current ocuupied size 14221210
+current load factor 0.5519587921359163
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 2378498 92.03504288214593
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+Building took 27.988s
+index of shell 125
+unigram table size236272 word count length 236272 however total is 57934407
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 5089380 current ocuupied size 3156597
+current load factor 0.6202321304363203
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 17176657 current ocuupied size 11918269
+current load factor 0.6938642950138668
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 1902798 95.70711193318188
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+Building took 23.340s
+index of shell 125
+unigram table size216023 word count length 216023 however total is 47566919
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 5089380 current ocuupied size 2793037
+current load factor 0.5487971029870043
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 17176657 current ocuupied size 10262682
+current load factor 0.5974784266810474
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 1522239 99.78803659551238
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+Building took 18.001s
+index of shell 125
+unigram table size187612 word count length 187612 however total is 36732913
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 3392920 current ocuupied size 2336748
+current load factor 0.6887129670018745
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 11451105 current ocuupied size 8223636
+current load factor 0.718152178326895
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 1217791 108.9855113177217
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 14.115s
+index of shell 125
+unigram table size168369 word count length 168369 however total is 28957205
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 3392920 current ocuupied size 1931278
+current load factor 0.5692082336158825
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 11451105 current ocuupied size 6455093
+current load factor 0.5637091791578193
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 974233 121.54485727162432
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 11.175s
+index of shell 125
+unigram table size153917 word count length 153917 however total is 23059460
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 2261947 current ocuupied size 1671295
+current load factor 0.7388745182800481
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 7634070 current ocuupied size 5384602
+current load factor 0.705338305779224
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 779386 134.2235694989144
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 9.096s
+index of shell 125
+unigram table size133537 word count length 133537 however total is 18654074
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 2261947 current ocuupied size 1331240
+current load factor 0.5885372203681165
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 7634070 current ocuupied size 4098108
+current load factor 0.5368182371919565
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 623509 151.43556434697706
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 6.733s
+index of shell 125
+unigram table size110495 word count length 110495 however total is 14389183
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 1507965 current ocuupied size 1127639
+current load factor 0.747788575994801
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 5089380 current ocuupied size 3408653
+current load factor 0.6697580058867681
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 498807 151.60137040941004
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 5.643s
+index of shell 125
+unigram table size84088 word count length 84088 however total is 11750257
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 1507965 current ocuupied size 915858
+current load factor 0.6073469874963942
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 5089380 current ocuupied size 2752457
+current load factor 0.5408236366708715
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 399045 152.24405992042537
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 4.751s
+index of shell 125
+unigram table size67860 word count length 67860 however total is 9611371
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 1005310 current ocuupied size 771657
+current load factor 0.7675811441246978
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 3392920 current ocuupied size 2289651
+current load factor 0.6748320031123634
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 319236 166.42770172152035
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 3.897s
+index of shell 125
+unigram table size59706 word count length 59706 however total is 7850066
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 1005310 current ocuupied size 672803
+current load factor 0.6692492862898012
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 3392920 current ocuupied size 1942734
+current load factor 0.5725846763259965
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 255389 183.119079217241
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 3.138s
+index of shell 125
+unigram table size53227 word count length 53227 however total is 6239587
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 1005310 current ocuupied size 573467
+current load factor 0.5704379743561687
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 2261947 current ocuupied size 1595606
+current load factor 0.7054126378734781
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 204311 240.91592853694812
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 2.569s
+index of shell 125
+unigram table size48516 word count length 48516 however total is 4980906
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 670207 current ocuupied size 499057
+current load factor 0.7446311363504111
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 2261947 current ocuupied size 1335444
+current load factor 0.5903957961879743
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 163449 251.36589188277148
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 2.060s
+index of shell 125
+unigram table size43595 word count length 43595 however total is 3974597
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 670207 current ocuupied size 434717
+current load factor 0.648630945364641
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 1507965 current ocuupied size 1120288
+current load factor 0.7429137944183055
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 130759 256.19887455250665
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 1.693s
+index of shell 125
+unigram table size40203 word count length 40203 however total is 3175127
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 670207 current ocuupied size 382613
+current load factor 0.570887800336314
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 1507965 current ocuupied size 950427
+current load factor 0.6302712596114631
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 104607 254.64394609512593
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 1.416s
+index of shell 125
+unigram table size37124 word count length 37124 however total is 2549014
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 446805 current ocuupied size 335504
+current load factor 0.7508958046575128
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 1005310 current ocuupied size 800461
+current load factor 0.796233002755369
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 83685 253.81000182942034
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 1.266s
+index of shell 125
+unigram table size33742 word count length 33742 however total is 2069360
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 446805 current ocuupied size 300724
+current load factor 0.6730542406642719
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 1005310 current ocuupied size 699703
+current load factor 0.6960072017586615
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 66948 275.58461768162203
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 1.115s
+index of shell 125
+unigram table size31153 word count length 31153 however total is 1642458
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 446805 current ocuupied size 264803
+current load factor 0.5926589899396829
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 1005310 current ocuupied size 592870
+current load factor 0.5897384886253991
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 53559 274.9876876828065
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 0.945s
+index of shell 125
+unigram table size28875 word count length 28875 however total is 1349021
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 297870 current ocuupied size 237258
+current load factor 0.7965152583341726
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 670207 current ocuupied size 515894
+current load factor 0.7697532254960034
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 42847 270.5385212203336
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 0.792s
+index of shell 125
+unigram table size26766 word count length 26766 however total is 1098883
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 297870 current ocuupied size 209822
+current load factor 0.7044079632054252
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 670207 current ocuupied size 443120
+current load factor 0.6611688627543431
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 34277 267.56682592139066
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 0.717s
+index of shell 125
+unigram table size24823 word count length 24823 however total is 904317
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 297870 current ocuupied size 184723
+current load factor 0.6201463725786417
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 670207 current ocuupied size 378445
+current load factor 0.564668826198473
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 27422 266.57824339087705
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 0.619s
+index of shell 125
+unigram table size22408 word count length 22408 however total is 727615
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 297870 current ocuupied size 158895
+current load factor 0.5334374055796153
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 446805 current ocuupied size 316755
+current load factor 0.7089334273340719
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 21937 266.34635233005434
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 0.515s
+index of shell 125
+unigram table size20570 word count length 20570 however total is 566729
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 198580 current ocuupied size 137057
+current load factor 0.6901853157417666
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 446805 current ocuupied size 261076
+current load factor 0.5843175434473652
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 17550 265.4543020499732
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 0.456s
+index of shell 125
+unigram table size18782 word count length 18782 however total is 460260
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 198580 current ocuupied size 119076
+current load factor 0.5996374257226307
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 297870 current ocuupied size 219846
+current load factor 0.7380602276160741
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 14040 265.1718578406214
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 0.427s
+index of shell 125
+unigram table size16926 word count length 16926 however total is 371687
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 132387 current ocuupied size 102466
+current load factor 0.7739883825451139
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 297870 current ocuupied size 183823
+current load factor 0.6171249202672306
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 11232 261.2062941441661
