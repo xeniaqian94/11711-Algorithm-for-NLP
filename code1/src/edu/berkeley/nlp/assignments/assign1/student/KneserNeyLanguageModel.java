@@ -17,7 +17,7 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 	Scanner scanner = new Scanner(System.in);
 	String line;
 	boolean isPrint = false;
-	double d = 0.7d;
+	double d = 0.8d;
 
 	// intIndexer unigramIndexer=new intIndexer();
 
@@ -168,7 +168,7 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 		// + (w3_index >= wordCounter.length));
 		if (w3_index < 0 | (w3_index >= wordCounter.length)) { // if w3 is unseen in the context{
 			// System.out.println(Math.log(1e-40));
-			return Math.log(1e-50);
+			return Math.log(1e-100);
 		}
 		double prob_w3 = Xunigram[w3_index] * 1.0 / bigramIndexer.size();
 		// System.out.println("prob_w3 " + prob_w3);
@@ -182,7 +182,7 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 			double denominator = XunigramX[w2_index];
 			if (denominator <= 0)
 				return Math.log(prob_w3);
-			long bigram_key = (((w2_index) & twentyBitMask) << 20) | (w3_index & twentyBitMask);
+			long bigram_key = (((long)((w2_index) & twentyBitMask)) << 20) | (w3_index & twentyBitMask);
 			double alpha_w2 = d * unigramX[w2_index] / denominator;
 
 			// System.out.println("alpha_w2 " + alpha_w2);
@@ -195,9 +195,9 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 				int w1_index = ngram[from];
 				if (w1_index >= wordCounter.length)
 					return Math.log(prob_w3_given_w2);
-				long trigram_key = (((long) (w1_index) & twentyBitMask) << 40) | ((w2_index) & twentyBitMask) << 20
+				long trigram_key = (((long) (w1_index) & twentyBitMask) << 40) | (((long)(w2_index)) & twentyBitMask) << 20
 						| (w3_index) & twentyBitMask;
-				long bigram_key_w1w2 = (w1_index & twentyBitMask) << 20 | (w2_index & twentyBitMask);
+				long bigram_key_w1w2 = (((long)w1_index) & twentyBitMask) << 20 | (w2_index & twentyBitMask);
 				int bigram_key_w1w2_Pos = bigramIndexer.fromKeyGetPos(bigram_key_w1w2);
 				int count_w1w2 = bigramIndexer.fromPosGetValue(bigram_key_w1w2_Pos);
 				if (count_w1w2 <= 0)
