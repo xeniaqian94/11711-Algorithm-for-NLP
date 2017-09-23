@@ -28,6 +28,8 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 	// longIndexer trigramIndexer = new longIndexer();
 	longIntOpenHashMapBigram bigramIndexer;
 	longIntOpenHashMap trigramIndexer;
+	LRUCache lruCache = null;
+	int capacity = 100;
 
 	long total = 0;
 
@@ -72,7 +74,8 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 		}
 
 		this.maxSent = maxSent;
-		System.out.println("Building KneserNeyLanguageModel . . . isPrint " + isPrint+" isLinearProbing "+bigramIndexer.getLinearProbing()+" "+trigramIndexer.getLinearProbing());
+		System.out.println("Building KneserNeyLanguageModel . . . isPrint " + isPrint + " isLinearProbing "
+				+ bigramIndexer.getLinearProbing() + " " + trigramIndexer.getLinearProbing());
 		long startTime = System.nanoTime();
 
 		int sent = 0; // sentence counter
@@ -205,10 +208,22 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 
 	public double getNgramLogProbability(int[] ngram, int from, int to) {
 
-		// StringIndexer indexer = EnglishWordIndexer.getIndexer();
-		// String[] words = Arrays.stream(ngram).mapToObj(i ->
-		// indexer.get(i)).toArray(String[]::new);
-		// System.out.println(String.join(" ", words));
+		if (lruCache == null)
+			lruCache = new LRUCache(capacity);
+		else {
+			if ((to - from) == 3) {
+				int w3_index = ngram[to - 1];
+				int w2_index = ngram[to - 2];
+				int w1_index = ngram[from];
+
+				long trigram_key = (((long) (w1_index) & twentyBitMask) << 40)
+						| (((long) (w2_index)) & twentyBitMask) << 20 | (w3_index) & twentyBitMask;
+				double value = lruCache.get(trigram_key);
+				if (value > 0)
+					return Math.log(value);
+			}
+
+		}
 
 		int w3_index = ngram[to - 1];
 		// System.out.println("sanity check if w3 is unseen " + wordCounter.length + " "
@@ -261,6 +276,7 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 				// + Math.max(trigramIndexer.fromKeyGetValue(trigram_key) - d, 0));
 				double prob_w3_given_w1w2 = Math.max(trigramIndexer.fromKeyGetValue(trigram_key) - d, 0) * 1.0
 						/ count_w1w2 + alpha_w1w2 * prob_w3_given_w2;
+				lruCache.set(trigram_key, prob_w3_given_w2);
 				return Math.log(prob_w3_given_w1w2);
 			} else if (to - from == 2) {
 				return Math.log(prob_w3_given_w2);

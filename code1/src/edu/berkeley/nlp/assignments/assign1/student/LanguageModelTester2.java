@@ -44,6 +44,8 @@ public class LanguageModelTester2 {
 	static String basePath = ".";
 	static boolean isPrint = false;
 
+	static int LRUcapacity = 0;
+
 	enum LmType {
 		STUB {
 			@Override
@@ -152,6 +154,10 @@ public class LanguageModelTester2 {
 			}
 			if (argMap.containsKey("-quadraticProbing")) {
 				isLinearProbing = false;
+			}
+
+			if (argMap.containsKey("-capacity")) {
+				LRUcapacity = Integer.valueOf(argMap.get("-capacity"));
 			}
 			languageModel = ((LmFactory) languageModelFactory).newLanguageModel(trainingSentenceCollection, sent,
 					loadFactor, discountFactor, isLinearProbing);
