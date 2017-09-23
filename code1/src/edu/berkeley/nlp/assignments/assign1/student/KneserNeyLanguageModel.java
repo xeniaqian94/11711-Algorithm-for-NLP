@@ -42,13 +42,19 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 		return totalSent;
 	}
 
+	public KneserNeyLanguageModel(Iterable<List<String>> sentenceCollection, int maxSent, double loadFactor,
+			double discountFactor) {
+		this(sentenceCollection, maxSent, loadFactor, discountFactor, true);
+
+	}
+
 	public KneserNeyLanguageModel(Iterable<List<String>> sentenceCollection) {
-		this(sentenceCollection, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
+		this(sentenceCollection, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, true);
 
 	}
 
 	public KneserNeyLanguageModel(Iterable<List<String>> sentenceCollection, int maxSent, double loadFactor,
-			double discountFactor) {
+			double discountFactor, boolean isLinearProbing) {
 		if (discountFactor <= 1) {
 			d = discountFactor;
 		}
@@ -60,8 +66,13 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 			trigramIndexer = new longIntOpenHashMap();
 		}
 
+		if (isLinearProbing) {
+			bigramIndexer.setLinearProbing(false);
+			trigramIndexer.setLinearProbing(false);
+		}
+
 		this.maxSent = maxSent;
-		System.out.println("Building KneserNeyLanguageModel . . . isPrint " + isPrint);
+		System.out.println("Building KneserNeyLanguageModel . . . isPrint " + isPrint+" isLinearProbing "+bigramIndexer.getLinearProbing()+" "+trigramIndexer.getLinearProbing());
 		long startTime = System.nanoTime();
 
 		int sent = 0; // sentence counter

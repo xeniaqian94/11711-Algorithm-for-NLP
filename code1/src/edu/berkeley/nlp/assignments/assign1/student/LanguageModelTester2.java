@@ -129,7 +129,7 @@ public class LanguageModelTester2 {
 			int sent = Integer.valueOf(argMap.get("-calculatePerplexity"));
 
 			languageModel = ((LmFactory) languageModelFactory).newLanguageModel(trainingSentenceCollection, sent,
-					Double.MAX_VALUE, Double.MAX_VALUE);
+					Double.MAX_VALUE, Double.MAX_VALUE, true);
 			final String englishData = (testEnglish).getPath();
 			Iterable<List<String>> englishSentences = SentenceCollection.Reader.readSentenceCollection(englishData);
 			perplexity(languageModel, englishSentences);
@@ -141,6 +141,7 @@ public class LanguageModelTester2 {
 			double loadFactor = Double.MAX_VALUE;
 			double discountFactor = Double.MAX_VALUE;
 			int sent = Integer.MAX_VALUE;
+			boolean isLinearProbing = true;
 			if (argMap.containsKey("-loadFactor")) {
 				loadFactor = Double.valueOf(argMap.get("-loadFactor"));
 				System.out.println("load factor " + loadFactor);
@@ -149,8 +150,11 @@ public class LanguageModelTester2 {
 				discountFactor = Double.valueOf(argMap.get("-discountFactor"));
 				System.out.println("discount factor " + discountFactor);
 			}
+			if (argMap.containsKey("-quadraticProbing")) {
+				isLinearProbing = false;
+			}
 			languageModel = ((LmFactory) languageModelFactory).newLanguageModel(trainingSentenceCollection, sent,
-					loadFactor, discountFactor);
+					loadFactor, discountFactor, isLinearProbing);
 
 			long endTime = System.nanoTime();
 			System.out.println(

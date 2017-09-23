@@ -15,11 +15,19 @@ public class longIntOpenHashMap {
 	private int size = 0; // how many values have been put into the hashtable
 	private final double MAX_LOAD_FACTOR;
 	int EMPTY_KEY_PLACEHOLDER = -1;
-	
-	int num_access=0;
-	int num_collision=0;
-	
-	
+
+	int num_access = 0;
+	int num_collision = 0;
+
+	private boolean isLinearProbing;
+
+	public void setLinearProbing(boolean value) {
+		isLinearProbing = value;
+	}
+
+	public boolean getLinearProbing() {
+		return isLinearProbing;
+	}
 
 	public long[] getKeys() {
 		return keys;
@@ -49,8 +57,9 @@ public class longIntOpenHashMap {
 	public longIntOpenHashMap() {
 		this(10);
 	}
+
 	public longIntOpenHashMap(double loadFactor) {
-		this(10,loadFactor);
+		this(10, loadFactor);
 	}
 
 	public longIntOpenHashMap(int initialCapacity_) {
@@ -63,6 +72,7 @@ public class longIntOpenHashMap {
 		values = new int[cap];
 		keys = new long[cap];
 		Arrays.fill(keys, EMPTY_KEY_PLACEHOLDER);
+		setLinearProbing(true);
 	}
 
 	public void rehash() {
@@ -120,11 +130,22 @@ public class longIntOpenHashMap {
 		// TODO Auto-generated method stub
 		long curr = thisKeyArray[initialPos];
 		int finalPos = initialPos;
+		int i = 1;
+//		if (curr == EMPTY_KEY_PLACEHOLDER | curr == k) {
+//			System.out.println("no collision here");
+//		}
 		while (curr != EMPTY_KEY_PLACEHOLDER && curr != k) {
-			finalPos++; // linear probing
+			if (isLinearProbing) {
+				finalPos++; // linear probing
+			} else {
+//				System.out.println("within quadratic probing");
+				int shift = i * i + 2 * i;
+				finalPos += shift;
+				i++;
+			}
 			num_collision++;
-			if (finalPos == thisKeyArray.length)
-				finalPos = 0;
+			if (finalPos >= thisKeyArray.length)
+				finalPos = finalPos%thisKeyArray.length;
 			curr = thisKeyArray[finalPos];
 		}
 		return finalPos;
@@ -183,12 +204,14 @@ public class longIntOpenHashMap {
 	}
 
 	public void printStatus() {
-		System.out.println(this.getClass() + " current hashmap size " + keys.length + " current ocupied size " + size+" current actual load factor " + (size * 1.0 / (double) keys.length));
-		System.out.println(this.getClass()+" num_collision "+num_collision+" num_access "+num_access+" ratio "+1.0*num_collision/num_access);
+		System.out.println(this.getClass() + " current hashmap size " + keys.length + " current ocupied size " + size
+				+ " current actual load factor " + (size * 1.0 / (double) keys.length));
+		System.out.println(this.getClass() + " num_collision " + num_collision + " num_access " + num_access + " ratio "
+				+ 1.0 * num_collision / num_access);
 
-//		System.out.println("this is " + this.getClass());
-//		for (int i = 0; i < keys.length; i++)
-//			System.out.println(i + "\t" + keys[i] + " " + values[i]);
+		// System.out.println("this is " + this.getClass());
+		// for (int i = 0; i < keys.length; i++)
+		// System.out.println(i + "\t" + keys[i] + " " + values[i]);
 
 	}
 

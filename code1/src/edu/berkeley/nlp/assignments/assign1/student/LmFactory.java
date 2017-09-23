@@ -20,8 +20,8 @@ public class LmFactory implements LanguageModelFactory {
 	}
 
 	public NgramLanguageModel newLanguageModel(Iterable<List<String>> trainingData, int maxSent, double loadFactor,
-			double discountFactor) {
+			double discountFactor, boolean isLinearProbing) {
 		System.out.println("reading limited sent");
-		return new KneserNeyLanguageModel(trainingData, maxSent, loadFactor, discountFactor);
+		return new KneserNeyLanguageModel(trainingData, maxSent, loadFactor, discountFactor, isLinearProbing);
 	}
 }
