@@ -46,16 +46,11 @@ public class longIntOpenHashMap {
 		this.size = size;
 	}
 
-	// public boolean put(long k, int v) {
-	// if (size / (double) keys.length > MAX_LOAD_FACTOR) {
-	// rehash();
-	// }
-	// return putHelp(k, v, keys, values);
-	//
-	// }
-
 	public longIntOpenHashMap() {
 		this(10);
+	}
+	public longIntOpenHashMap(double loadFactor) {
+		this(10,loadFactor);
 	}
 
 	public longIntOpenHashMap(int initialCapacity_) {
@@ -157,11 +152,6 @@ public class longIntOpenHashMap {
 		int pos = hash % keyArray.length;
 		if (pos < 0)
 			pos += keyArray.length;
-		// N.B. Doing it this old way causes Integer.MIN_VALUE to be
-		// handled incorrect since -Integer.MIN_VALUE is still
-		// Integer.MIN_VALUE
-		// if (hash < 0) hash = -hash;
-		// int pos = hash % keyArray.length;
 		num_access++;
 		return pos;
 	}
@@ -188,22 +178,13 @@ public class longIntOpenHashMap {
 		return getFinalPos(k, keys, initialPos);
 	}
 
-	// public void increment(long k, int c) {
-	// int pos = find(k);
-	// long currKey = keys[pos];
-	// if (currKey == 0) { // no key in this slot so far
-	// put(k, c);
-	// } else
-	// values[pos]++;
-	// }
-
 	public int size() {
 		return size;
 	}
 
 	public void printStatus() {
-		System.out.println(this.getClass() + " current hashmap size " + keys.length + " current ocuupied size " + size);
-		System.out.println("current load factor " + (size * 1.0 / (double) keys.length));
+		System.out.println(this.getClass() + " current hashmap size " + keys.length + " current ocupied size " + size+" current actual load factor " + (size * 1.0 / (double) keys.length));
+		System.out.println(this.getClass()+" num_collision "+num_collision+" num_access "+num_access+" ratio "+1.0*num_collision/num_access);
 
 //		System.out.println("this is " + this.getClass());
 //		for (int i = 0; i < keys.length; i++)

@@ -26,8 +26,8 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 
 	// longIndexer bigramIndexer = new longIndexer();
 	// longIndexer trigramIndexer = new longIndexer();
-	longIntOpenHashMapBigram bigramIndexer = new longIntOpenHashMapBigram();
-	longIntOpenHashMap trigramIndexer = new longIntOpenHashMap();
+	longIntOpenHashMapBigram bigramIndexer;
+	longIntOpenHashMap trigramIndexer;
 
 	long total = 0;
 
@@ -42,7 +42,24 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 		return totalSent;
 	}
 
-	public KneserNeyLanguageModel(Iterable<List<String>> sentenceCollection, int maxSent) {
+	public KneserNeyLanguageModel(Iterable<List<String>> sentenceCollection) {
+		this(sentenceCollection, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
+
+	}
+
+	public KneserNeyLanguageModel(Iterable<List<String>> sentenceCollection, int maxSent, double loadFactor,
+			double discountFactor) {
+		if (discountFactor <= 1) {
+			d = discountFactor;
+		}
+		if (loadFactor <= 1) {
+			bigramIndexer = new longIntOpenHashMapBigram(loadFactor);
+			trigramIndexer = new longIntOpenHashMap(loadFactor);
+		} else {
+			bigramIndexer = new longIntOpenHashMapBigram();
+			trigramIndexer = new longIntOpenHashMap();
+		}
+
 		this.maxSent = maxSent;
 		System.out.println("Building KneserNeyLanguageModel . . . isPrint " + isPrint);
 		long startTime = System.nanoTime();
@@ -52,7 +69,8 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 			sent++;
 			if (sent % 1000000 == 0)
 				System.out.println("On sentence " + sent);
-			if (sent > maxSent)
+			if (sent > maxSent) // if we are reading the complete sentenceCollection, then maxSent can be set as
+								// Integer.MAX_INT
 				break;
 			List<String> stoppedSentence = new ArrayList<String>(sentence);
 			stoppedSentence.add(0, NgramLanguageModel.START);
@@ -150,7 +168,6 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 		trigramIndexer.printStatus();
 		if (isPrint) {
 			System.out.println("bookkeeping after training finished");
-			
 			System.out.println(EnglishWordIndexer.getIndexer().size());
 			System.out.println("unigram wordCounter table " + String.join(" ", Arrays.toString(wordCounter)));
 			System.out.println("unigram Xunigram table " + String.join(" ", Arrays.toString(Xunigram)));
@@ -159,10 +176,6 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 		}
 
 		System.gc();
-	}
-
-	public KneserNeyLanguageModel(Iterable<List<String>> sentenceCollection) {
-		this(sentenceCollection, Integer.MAX_VALUE);
 
 	}
 
@@ -180,10 +193,11 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 	}
 
 	public double getNgramLogProbability(int[] ngram, int from, int to) {
-		
-//		StringIndexer indexer = EnglishWordIndexer.getIndexer();
-//		String[] words = Arrays.stream(ngram).mapToObj(i -> indexer.get(i)).toArray(String[]::new);
-//		System.out.println(String.join(" ", words));
+
+		// StringIndexer indexer = EnglishWordIndexer.getIndexer();
+		// String[] words = Arrays.stream(ngram).mapToObj(i ->
+		// indexer.get(i)).toArray(String[]::new);
+		// System.out.println(String.join(" ", words));
 
 		int w3_index = ngram[to - 1];
 		// System.out.println("sanity check if w3 is unseen " + wordCounter.length + " "
@@ -198,7 +212,8 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 			int w2_index = ngram[to - 2];
 			// System.out.println("w2_index is " + w2_index);
 			if (w2_index >= wordCounter.length | w2_index >= XunigramX.length) {
-//				System.out.println("w2 does not exist/invalid, backoff to P(w3) " + Math.log(prob_w3));
+				// System.out.println("w2 does not exist/invalid, backoff to P(w3) " +
+				// Math.log(prob_w3));
 				return Math.log(prob_w3); // backoff to unigram prob
 			}
 			double denominator = XunigramX[w2_index];
@@ -217,7 +232,7 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 				int w1_index = ngram[from];
 
 				if (w1_index >= wordCounter.length) {
-//					System.out.println("w1 not exist backoff to bigram ");
+					// System.out.println("w1 not exist backoff to bigram ");
 					return Math.log(prob_w3_given_w2);
 				}
 				long trigram_key = (((long) (w1_index) & twentyBitMask) << 40)

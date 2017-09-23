@@ -123,29 +123,48 @@ public class LanguageModelTester2 {
 				.readSentenceCollection(trainingSentencesFile.getPath());
 		LanguageModelFactory languageModelFactory = lmType.getFactory();
 		NgramLanguageModel languageModel;
+		System.out.println(argMap);
 
 		if (argMap.containsKey("-calculatePerplexity")) {
 			int sent = Integer.valueOf(argMap.get("-calculatePerplexity"));
 
-			languageModel = ((LmFactory) languageModelFactory).newLanguageModel(trainingSentenceCollection, sent);
+			languageModel = ((LmFactory) languageModelFactory).newLanguageModel(trainingSentenceCollection, sent,
+					Double.MAX_VALUE, Double.MAX_VALUE);
 			final String englishData = (testEnglish).getPath();
 			Iterable<List<String>> englishSentences = SentenceCollection.Reader.readSentenceCollection(englishData);
 			perplexity(languageModel, englishSentences);
 			sent = (int) (((KneserNeyLanguageModel) languageModel).getTotalSent() * 0.9);
-
 		} else {
-			// Build the language model
-			languageModel = languageModelFactory.newLanguageModel(trainingSentenceCollection);
+			// Build the language model‘
 
-			if (lmType == LmType.TRIGRAM) {
-				spotCheckLanguageModel(languageModel, sanityCheck);
+			long startTime = System.nanoTime();
+			double loadFactor = Double.MAX_VALUE;
+			double discountFactor = Double.MAX_VALUE;
+			int sent = Integer.MAX_VALUE;
+			if (argMap.containsKey("-loadFactor")) {
+				loadFactor = Double.valueOf(argMap.get("-loadFactor"));
+				System.out.println("load factor " + loadFactor);
 			}
+			if (argMap.containsKey("-discountFactor")) {
+				discountFactor = Double.valueOf(argMap.get("-discountFactor"));
+				System.out.println("discount factor " + discountFactor);
+			}
+			languageModel = ((LmFactory) languageModelFactory).newLanguageModel(trainingSentenceCollection, sent,
+					loadFactor, discountFactor);
 
-			MemoryUsageUtils.printMemoryUsage();
-
-			evaluateLanguageModel(phraseTableFile, testFrench, testEnglish, weightsFile, languageModel, maxNumTest,
-					printTranslations);
+			long endTime = System.nanoTime();
+			System.out.println(
+					"Building language model took " + BleuScore.formatDouble((endTime - startTime) / 1e9) + "s");
 		}
+
+		if (lmType == LmType.TRIGRAM) {
+			spotCheckLanguageModel(languageModel, sanityCheck);
+		}
+
+		MemoryUsageUtils.printMemoryUsage();
+
+		evaluateLanguageModel(phraseTableFile, testFrench, testEnglish, weightsFile, languageModel, maxNumTest,
+				printTranslations);
 	}
 
 	private static int perplexity(NgramLanguageModel languageModel, Iterable<List<String>> englishSentences) {
@@ -174,10 +193,11 @@ public class LanguageModelTester2 {
 					sumLogP += this_prob;
 					wordTotal++;
 				}
-//				else {
-//					System.out.println(
-//							this_prob + " comes from context " + context[0] + " " + context[1] + " " + context[2]);
-//				}
+				// else {
+				// System.out.println(
+				// this_prob + " comes from context " + context[0] + " " + context[1] + " " +
+				// context[2]);
+				// }
 			}
 		}
 		double perplexity = Math.exp(-1.0 * sumLogP / wordTotal);

@@ -18,6 +18,10 @@ public class longIntOpenHashMapBigram extends longIntOpenHashMap {
 		this(10);
 	}
 
+	public longIntOpenHashMapBigram(double loadFactor) {
+		this(10, loadFactor);
+	}
+
 	public longIntOpenHashMapBigram(int initialCapacity_) {
 		this(initialCapacity_, 0.8);
 	}
@@ -93,10 +97,11 @@ public class longIntOpenHashMapBigram extends longIntOpenHashMap {
 		if (isPrintFertilityTable) {
 			long[] this_key = this.getKeys();
 			int[] this_value = this.getValues();
-			System.out.println("this is "+this.getClass());
-//			for (int i = 0; i < this_key.length; i++)
-//				System.out.println(i + "\t" + this_key[i] + " " + this_value[i] + " " + bigramX_fertility[i] + " "
-//						+ Xbigram_fertility[i]);
+			System.out.println("this is " + this.getClass());
+			// for (int i = 0; i < this_key.length; i++)
+			// System.out.println(i + "\t" + this_key[i] + " " + this_value[i] + " " +
+			// bigramX_fertility[i] + " "
+			// + Xbigram_fertility[i]);
 		}
 	}
 

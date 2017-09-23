@@ -1,0 +1,9 @@
+/Users/xin/Desktop/11711/assign1_data/
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-discountFactor=0.1, -lmType=TRIGRAM, -noprint=null, -path=/Users/xin/Desktop/11711/assign1_data/}
+discount factor 0.1
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000

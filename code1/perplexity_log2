@@ -1,0 +1,2028 @@
+Buildfile: /Users/xin/Desktop/11711/code1/build_assign1.xml
+
+build:
+    [mkdir] Created dir: /Users/xin/Desktop/11711/code1/build_assign1
+     [copy] Copying 5 files to /Users/xin/Desktop/11711/code1/build_assign1
+    [javac] /Users/xin/Desktop/11711/code1/build_assign1.xml:13: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 5 source files
+      [jar] Building jar: /Users/xin/Desktop/11711/code1/assign1-submit.jar
+   [delete] Deleting directory /Users/xin/Desktop/11711/code1/build_assign1
+
+BUILD SUCCESSFUL
+Total time: 1 second
+/Users/xin/Desktop/11711/assign1_data/
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=7189, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 0.315s
+index of shell 125
+unigram table size13083 word count length 13083 however total is 234614
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 88258 current ocupied size 68485 current actual load factor 0.7759636520202134
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 984907 num_access 482655 ratio 2.040602500751054
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 198580 current ocupied size 114016 current actual load factor 0.5741565112297311
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 1020265 num_access 537967 ratio 1.8965196749986524
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 7189 297.50669196060096
+Performing spot checks...
+ERROR: Count does not match expected count 12215 != 19880264 for [the]
+ERROR: Count does not match expected count 4 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 0 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999907
+Spot checks completed
+Memory usage is 7.2M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 106M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 189.197s
+BLEU score on test data was BLEU(18.750)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=8986, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 0.437s
+index of shell 125
+unigram table size15378 word count length 15378 however total is 291825
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 132387 current ocupied size 86561 current actual load factor 0.6538481875108583
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 1209699 num_access 643316 ratio 1.880411803841347
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 198580 current ocupied size 148656 current actual load factor 0.7485950246751939
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 1201468 num_access 591584 ratio 2.0309338994969437
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 8986 261.03516326897875
+Performing spot checks...
+ERROR: Count does not match expected count 15616 != 19880264 for [the]
+ERROR: Count does not match expected count 10 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 0 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 1.0000000000000042
+Spot checks completed
+Memory usage is 9.5M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [8s]
+Memory usage is 107M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 227.207s
+BLEU score on test data was BLEU(19.976)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=9073252, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+On sentence 2000000
+On sentence 3000000
+On sentence 4000000
+On sentence 5000000
+On sentence 6000000
+On sentence 7000000
+On sentence 8000000
+On sentence 9000000
+Building took 148.077s
+index of shell 125
+unigram table size495172 word count length 495172 however total is 281199874
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 11451105 current ocupied size 8374230 current actual load factor 0.7313032235753667
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 266264368 num_access 332076077 ratio 0.8018173739145925
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 57971215 current ocupied size 41627672 current actual load factor 0.7180748583585836
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 436381260 num_access 355807335 ratio 1.226453805400049
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 9073252 68.99880781467482
+Performing spot checks...
+Count matches expected count 19880264 = 19880264 for [the]
+Count matches expected count 31257 = 31257 for [in, terms, of]
+Count matches expected count 30 = 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9996805858108977
+Spot checks completed
+Memory usage is 944M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 1.0G
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 290.820s
+BLEU score on test data was BLEU(24.954)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=7258601, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+On sentence 2000000
+On sentence 3000000
+On sentence 4000000
+On sentence 5000000
+On sentence 6000000
+On sentence 7000000
+Building took 114.483s
+index of shell 125
+unigram table size450897 word count length 450897 however total is 224400131
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 11451105 current ocupied size 7331913 current actual load factor 0.6402799555152101
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 224317244 num_access 270440841 ratio 0.8294503269940652
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 57971215 current ocupied size 34977528 current actual load factor 0.6033602711276622
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 375183553 num_access 302636894 ratio 1.2397151848908414
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 7258601 71.73558330036197
+Performing spot checks...
+ERROR: Count does not match expected count 15838520 != 19880264 for [the]
+ERROR: Count does not match expected count 24078 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 14 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9995617095895681
+Spot checks completed
+Memory usage is 937M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 1021M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 273.151s
+BLEU score on test data was BLEU(24.991)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=5806881, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+On sentence 2000000
+On sentence 3000000
+On sentence 4000000
+On sentence 5000000
+Building took 88.842s
+index of shell 125
+unigram table size405860 word count length 405860 however total is 178279920
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 11451105 current ocupied size 6426303 current actual load factor 0.5611950113111355
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 196192480 num_access 220320150 ratio 0.8904881373764497
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 38647477 current ocupied size 29525328 current actual load factor 0.7639652130461194
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 303678756 num_access 228502141 ratio 1.3289974206412358
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 5806881 73.13536370539138
+Performing spot checks...
+ERROR: Count does not match expected count 11651695 != 19880264 for [the]
+ERROR: Count does not match expected count 19596 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 14 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9995195728724846
+Spot checks completed
+Memory usage is 705M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 794M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 295.247s
+BLEU score on test data was BLEU(24.899)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=4645505, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+On sentence 2000000
+On sentence 3000000
+On sentence 4000000
+Building took 75.006s
+index of shell 125
+unigram table size361680 word count length 361680 however total is 144139796
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 7634070 current ocupied size 5693967 current actual load factor 0.7458625608620304
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 161717151 num_access 177198489 ratio 0.9126327877434666
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 38647477 current ocupied size 25489672 current actual load factor 0.6595429761171732
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 255569256 num_access 196684769 ratio 1.299385088633884
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 4645505 74.20030672374467
+Performing spot checks...
+ERROR: Count does not match expected count 9334411 != 19880264 for [the]
+ERROR: Count does not match expected count 16592 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 4 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999787
+Spot checks completed
+Memory usage is 632M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 720M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 313.921s
+BLEU score on test data was BLEU(24.908)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=3716404, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+On sentence 2000000
+On sentence 3000000
+Building took 98.215s
+index of shell 125
+unigram table size324148 word count length 324148 however total is 115396921
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 7634070 current ocupied size 4985976 current actual load factor 0.6531215983086348
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 135805142 num_access 145427828 ratio 0.9338318798242659
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 38647477 current ocupied size 21532785 current actual load factor 0.5571588799962285
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 227613452 num_access 169800096 ratio 1.340478935889412
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 3716404 78.79055568988913
+Performing spot checks...
+ERROR: Count does not match expected count 7508371 != 19880264 for [the]
+ERROR: Count does not match expected count 13424 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 3 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999996
+Spot checks completed
+Memory usage is 631M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [7s]
+Memory usage is 716M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 287.998s
+BLEU score on test data was BLEU(24.817)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=2973123, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+On sentence 2000000
+Building took 40.022s
+index of shell 125
+unigram table size289348 word count length 289348 however total is 88981538
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 7634070 current ocupied size 4218533 current actual load factor 0.5525929157055148
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 115561030 num_access 115540552 ratio 1.0001772364736494
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 25764985 current ocupied size 17317611 current actual load factor 0.6721374376891739
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 168492827 num_access 124259286 ratio 1.3559777496226721
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 2973123 83.68322153804644
+Performing spot checks...
+ERROR: Count does not match expected count 5629352 != 19880264 for [the]
+ERROR: Count does not match expected count 7905 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 3 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 1.0000000000000009
+Spot checks completed
+Memory usage is 481M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 565M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 260.399s
+BLEU score on test data was BLEU(24.567)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=2378498, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+On sentence 2000000
+Building took 32.477s
+index of shell 125
+unigram table size263909 word count length 263909 however total is 71355274
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 5089380 current ocupied size 3642124 current actual load factor 0.7156321595164833
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 93690870 num_access 91341007 ratio 1.0257262655315371
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 25764985 current ocupied size 14221210 current actual load factor 0.5519587921359163
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 149939670 num_access 107822272 ratio 1.390618721148818
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 2378498 92.03504288214593
+Performing spot checks...
+ERROR: Count does not match expected count 4470137 != 19880264 for [the]
+ERROR: Count does not match expected count 5485 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 3 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999002
+Spot checks completed
+Memory usage is 429M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 515M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 269.705s
+BLEU score on test data was BLEU(24.551)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=1902798, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+Building took 25.823s
+index of shell 125
+unigram table size236272 word count length 236272 however total is 57934407
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 5089380 current ocupied size 3156597 current actual load factor 0.6202321304363203
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 80891119 num_access 76092899 ratio 1.0630573951453735
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 17176657 current ocupied size 11918269 current actual load factor 0.6938642950138668
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 115540964 num_access 81611479 ratio 1.4157440278713733
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 1902798 95.70711193318188
+Performing spot checks...
+ERROR: Count does not match expected count 3626793 != 19880264 for [the]
+ERROR: Count does not match expected count 4132 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999922
+Spot checks completed
+Memory usage is 334M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [5s]
+Memory usage is 412M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 262.121s
+BLEU score on test data was BLEU(24.397)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=1522239, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+Building took 28.695s
+index of shell 125
+unigram table size216023 word count length 216023 however total is 47566919
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 5089380 current ocupied size 2793037 current actual load factor 0.5487971029870043
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 73081776 num_access 64450383 ratio 1.1339230676100094
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 17176657 current ocupied size 10262682 current actual load factor 0.5974784266810474
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 102408568 num_access 72005109 ratio 1.422240302420763
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 1522239 99.78803659551238
+Performing spot checks...
+ERROR: Count does not match expected count 2957218 != 19880264 for [the]
+ERROR: Count does not match expected count 3258 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999882
+Spot checks completed
+Memory usage is 326M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 412M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 255.268s
+BLEU score on test data was BLEU(24.379)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=1217791, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+On sentence 1000000
+Building took 18.459s
+index of shell 125
+unigram table size187612 word count length 187612 however total is 36732913
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 3392920 current ocupied size 2336748 current actual load factor 0.6887129670018745
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 54887981 num_access 49167442 ratio 1.1163481110121614
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 11451105 current ocupied size 8223636 current actual load factor 0.718152178326895
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 79642562 num_access 52619114 ratio 1.5135671421605466
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 1217791 108.9855113177217
+Performing spot checks...
+ERROR: Count does not match expected count 2140099 != 19880264 for [the]
+ERROR: Count does not match expected count 2324 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999777
+Spot checks completed
+Memory usage is 229M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 313M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 274.796s
+BLEU score on test data was BLEU(24.169)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=974233, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 14.700s
+index of shell 125
+unigram table size168369 word count length 168369 however total is 28957205
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 3392920 current ocupied size 1931278 current actual load factor 0.5692082336158825
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 44856575 num_access 39866749 ratio 1.125162601043792
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 11451105 current ocupied size 6455093 current actual load factor 0.5637091791578193
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 69152757 num_access 45330522 ratio 1.525523068099679
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 974233 121.54485727162432
+Performing spot checks...
+ERROR: Count does not match expected count 1629775 != 19880264 for [the]
+ERROR: Count does not match expected count 1522 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 1.0000000000000258
+Spot checks completed
+Memory usage is 226M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 312M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 249.275s
+BLEU score on test data was BLEU(23.987)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=779386, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 12.228s
+index of shell 125
+unigram table size153917 word count length 153917 however total is 23059460
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 2261947 current ocupied size 1671295 current actual load factor 0.7388745182800481
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 35681428 num_access 31283802 ratio 1.1405719803494474
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 7634070 current ocupied size 5384602 current actual load factor 0.705338305779224
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 53674111 num_access 33715214 ratio 1.5919848825518355
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 779386 134.2235694989144
+Performing spot checks...
+ERROR: Count does not match expected count 1305514 != 19880264 for [the]
+ERROR: Count does not match expected count 1148 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999508
+Spot checks completed
+Memory usage is 159M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 244M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 279.280s
+BLEU score on test data was BLEU(23.845)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=623509, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 10.520s
+index of shell 125
+unigram table size133537 word count length 133537 however total is 18654074
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 2261947 current ocupied size 1331240 current actual load factor 0.5885372203681165
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 29251870 num_access 25747799 ratio 1.1360920597523696
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 7634070 current ocupied size 4098108 current actual load factor 0.5368182371919565
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 47256528 num_access 29621582 ratio 1.595341126615047
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 623509 151.43556434697706
+Performing spot checks...
+ERROR: Count does not match expected count 1052366 != 19880264 for [the]
+ERROR: Count does not match expected count 796 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999819
+Spot checks completed
+Memory usage is 157M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [8s]
+Memory usage is 243M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 259.673s
+BLEU score on test data was BLEU(23.477)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=498807, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 6.778s
+index of shell 125
+unigram table size110495 word count length 110495 however total is 14389183
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 1507965 current ocupied size 1127639 current actual load factor 0.747788575994801
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 23298758 num_access 19711782 ratio 1.1819711683093899
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 5089380 current ocupied size 3408653 current actual load factor 0.6697580058867681
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 33828333 num_access 21534590 ratio 1.5708835413165516
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 498807 151.60137040941004
+Performing spot checks...
+ERROR: Count does not match expected count 834345 != 19880264 for [the]
+ERROR: Count does not match expected count 689 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 1.0000000000000184
+Spot checks completed
+Memory usage is 113M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 198M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 246.886s
+BLEU score on test data was BLEU(23.456)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=399045, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 8.631s
+index of shell 125
+unigram table size84088 word count length 84088 however total is 11750257
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 1507965 current ocupied size 915858 current actual load factor 0.6073469874963942
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 19160520 num_access 16516422 ratio 1.1600890313894863
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 5089380 current ocupied size 2752457 current actual load factor 0.5408236366708715
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 30393990 num_access 19095188 ratio 1.5917093877263737
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 399045 152.24405992042537
+Performing spot checks...
+ERROR: Count does not match expected count 681970 != 19880264 for [the]
+ERROR: Count does not match expected count 592 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 1.0000000000000149
+Spot checks completed
+Memory usage is 117M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [9s]
+Memory usage is 195M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 297.290s
+BLEU score on test data was BLEU(23.505)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=319236, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 5.894s
+index of shell 125
+unigram table size67860 word count length 67860 however total is 9611371
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 1005310 current ocupied size 771657 current actual load factor 0.7675811441246978
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 15527355 num_access 13190290 ratio 1.177180713994916
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 3392920 current ocupied size 2289651 current actual load factor 0.6748320031123634
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 22075805 num_access 14401583 ratio 1.53287350425297
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 319236 166.42770172152035
+Performing spot checks...
+ERROR: Count does not match expected count 572631 != 19880264 for [the]
+ERROR: Count does not match expected count 509 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 1.0000000000000464
+Spot checks completed
+Memory usage is 74M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [8s]
+Memory usage is 165M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 336.337s
+BLEU score on test data was BLEU(23.322)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=255389, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 5.051s
+index of shell 125
+unigram table size59706 word count length 59706 however total is 7850066
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 1005310 current ocupied size 672803 current actual load factor 0.6692492862898012
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 12843936 num_access 11145915 ratio 1.1523446931005665
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 3392920 current ocupied size 1942734 current actual load factor 0.5725846763259965
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 19686062 num_access 12767972 ratio 1.5418315453699303
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 255389 183.119079217241
+Performing spot checks...
+ERROR: Count does not match expected count 472383 != 19880264 for [the]
+ERROR: Count does not match expected count 422 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999678
+Spot checks completed
+Memory usage is 74M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [10s]
+Memory usage is 164M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 305.034s
+BLEU score on test data was BLEU(22.923)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=204311, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 3.795s
+index of shell 125
+unigram table size53227 word count length 53227 however total is 6239587
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 1005310 current ocupied size 573467 current actual load factor 0.5704379743561687
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 11156441 num_access 9239386 ratio 1.207487272422648
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 2261947 current ocupied size 1595606 current actual load factor 0.7054126378734781
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 15147509 num_access 9450091 ratio 1.6028955700003311
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 204311 240.91592853694812
+Performing spot checks...
+ERROR: Count does not match expected count 377870 != 19880264 for [the]
+ERROR: Count does not match expected count 327 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 1.0000000000000038
+Spot checks completed
+Memory usage is 60M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [8s]
+Memory usage is 151M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 290.342s
+BLEU score on test data was BLEU(22.081)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=163449, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 3.628s
+index of shell 125
+unigram table size48516 word count length 48516 however total is 4980906
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 670207 current ocupied size 499057 current actual load factor 0.7446311363504111
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 9082451 num_access 7225239 ratio 1.2570450610699522
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 2261947 current ocupied size 1335444 current actual load factor 0.5903957961879743
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 13323652 num_access 8273134 ratio 1.6104721620609554
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 163449 251.36589188277148
+Performing spot checks...
+ERROR: Count does not match expected count 298615 != 19880264 for [the]
+ERROR: Count does not match expected count 259 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999911
+Spot checks completed
+Memory usage is 49M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [8s]
+Memory usage is 144M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 262.643s
+BLEU score on test data was BLEU(21.930)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=130759, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 2.407s
+index of shell 125
+unigram table size43595 word count length 43595 however total is 3974597
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 670207 current ocupied size 434717 current actual load factor 0.648630945364641
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 7689883 num_access 6036464 ratio 1.273905220009595
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 1507965 current ocupied size 1120288 current actual load factor 0.7429137944183055
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 10675008 num_access 6125832 ratio 1.7426217369330403
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 130759 256.19887455250665
+Performing spot checks...
+ERROR: Count does not match expected count 244462 != 19880264 for [the]
+ERROR: Count does not match expected count 206 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.999999999999988
+Spot checks completed
+Memory usage is 39M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [7s]
+Memory usage is 134M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 258.269s
+BLEU score on test data was BLEU(21.710)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=104607, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 1.778s
+index of shell 125
+unigram table size40203 word count length 40203 however total is 3175127
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 670207 current ocupied size 382613 current actual load factor 0.570887800336314
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 6901762 num_access 5093285 ratio 1.3550708432769814
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 1507965 current ocupied size 950427 current actual load factor 0.6302712596114631
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 9198397 num_access 5378666 ratio 1.7101632635303996
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 104607 254.64394609512593
+Performing spot checks...
+ERROR: Count does not match expected count 190284 != 19880264 for [the]
+ERROR: Count does not match expected count 159 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 1.0000000000000098
+Spot checks completed
+Memory usage is 39M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [5s]
+Memory usage is 134M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 238.567s
+BLEU score on test data was BLEU(21.658)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=83685, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 1.689s
+index of shell 125
+unigram table size37124 word count length 37124 however total is 2549014
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 446805 current ocupied size 335504 current actual load factor 0.7508958046575128
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 5738733 num_access 3980683 ratio 1.441645315640557
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 1005310 current ocupied size 800461 current actual load factor 0.796233002755369
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 7956209 num_access 3990148 ratio 1.9939633818093965
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 83685 253.81000182942034
+Performing spot checks...
+ERROR: Count does not match expected count 156436 != 19880264 for [the]
+ERROR: Count does not match expected count 120 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999994
+Spot checks completed
+Memory usage is 29M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [7s]
+Memory usage is 124M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 271.423s
+BLEU score on test data was BLEU(21.653)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=66948, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 1.401s
+index of shell 125
+unigram table size33742 word count length 33742 however total is 2069360
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 446805 current ocupied size 300724 current actual load factor 0.6730542406642719
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 4955462 num_access 3417008 ratio 1.4502342400134856
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 1005310 current ocupied size 699703 current actual load factor 0.6960072017586615
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 6211985 num_access 3543968 ratio 1.7528332648601794
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 66948 275.58461768162203
+Performing spot checks...
+ERROR: Count does not match expected count 129072 != 19880264 for [the]
+ERROR: Count does not match expected count 101 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 1.000000000000015
+Spot checks completed
+Memory usage is 28M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 124M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 233.980s
+BLEU score on test data was BLEU(21.041)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=53559, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 1.506s
+index of shell 125
+unigram table size31153 word count length 31153 however total is 1642458
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 446805 current ocupied size 264803 current actual load factor 0.5926589899396829
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 4436062 num_access 2896662 ratio 1.5314392911565105
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 1005310 current ocupied size 592870 current actual load factor 0.5897384886253991
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 5476300 num_access 3143844 ratio 1.741912130500114
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 53559 274.9876876828065
+Performing spot checks...
+ERROR: Count does not match expected count 96273 != 19880264 for [the]
+ERROR: Count does not match expected count 85 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 1.0000000000000049
+Spot checks completed
+Memory usage is 26M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [8s]
+Memory usage is 124M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 237.805s
+BLEU score on test data was BLEU(20.874)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=42847, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 1.192s
+index of shell 125
+unigram table size28875 word count length 28875 however total is 1349021
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 297870 current ocupied size 237258 current actual load factor 0.7965152583341726
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 3992316 num_access 2298664 ratio 1.7367984185596503
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 670207 current ocupied size 515894 current actual load factor 0.7697532254960034
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 4565839 num_access 2335665 ratio 1.9548347044631829
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 42847 270.5385212203336
+Performing spot checks...
+ERROR: Count does not match expected count 78826 != 19880264 for [the]
+ERROR: Count does not match expected count 76 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 1.0000000000000078
+Spot checks completed
+Memory usage is 19M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 117M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 252.019s
+BLEU score on test data was BLEU(20.897)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=34277, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 0.838s
+index of shell 125
+unigram table size26766 word count length 26766 however total is 1098883
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 297870 current ocupied size 209822 current actual load factor 0.7044079632054252
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 3263834 num_access 1984322 ratio 1.6448106708487835
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 670207 current ocupied size 443120 current actual load factor 0.6611688627543431
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 3790045 num_access 2102667 ratio 1.80249416574284
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 34277 267.56682592139066
+Performing spot checks...
+ERROR: Count does not match expected count 64392 != 19880264 for [the]
+ERROR: Count does not match expected count 57 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999978
+Spot checks completed
+Memory usage is 19M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 116M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 229.087s
+BLEU score on test data was BLEU(20.859)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=27422, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 0.894s
+index of shell 125
+unigram table size24823 word count length 24823 however total is 904317
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 297870 current ocupied size 184723 current actual load factor 0.6201463725786417
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 2903294 num_access 1731936 ratio 1.676328686510356
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 670207 current ocupied size 378445 current actual load factor 0.564668826198473
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 3436227 num_access 1921811 ratio 1.7880150545501092
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 27422 266.57824339087705
+Performing spot checks...
+ERROR: Count does not match expected count 53975 != 19880264 for [the]
+ERROR: Count does not match expected count 51 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.999999999999994
+Spot checks completed
+Memory usage is 18M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 116M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 220.268s
+BLEU score on test data was BLEU(20.806)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=21937, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 0.785s
+index of shell 125
+unigram table size22408 word count length 22408 however total is 727615
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 297870 current ocupied size 158895 current actual load factor 0.5334374055796153
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 2672721 num_access 1499029 ratio 1.7829681747317763
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 446805 current ocupied size 316755 current actual load factor 0.7089334273340719
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 2611752 num_access 1398634 ratio 1.8673591518581703
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 21937 266.34635233005434
+Performing spot checks...
+ERROR: Count does not match expected count 43833 != 19880264 for [the]
+ERROR: Count does not match expected count 45 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999918
+Spot checks completed
+Memory usage is 14M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 114M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 202.233s
+BLEU score on test data was BLEU(20.659)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=17550, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 0.523s
+index of shell 125
+unigram table size20570 word count length 20570 however total is 566729
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 198580 current ocupied size 137057 current actual load factor 0.6901853157417666
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 2056540 num_access 1127986 ratio 1.8231963871892027
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 446805 current ocupied size 261076 current actual load factor 0.5843175434473652
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 2284258 num_access 1246522 ratio 1.832505162363761
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 17550 265.4543020499732
+Performing spot checks...
+ERROR: Count does not match expected count 32865 != 19880264 for [the]
+ERROR: Count does not match expected count 36 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999687
+Spot checks completed
+Memory usage is 14M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [5s]
+Memory usage is 111M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 194.512s
+BLEU score on test data was BLEU(20.453)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=14040, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 0.412s
+index of shell 125
+unigram table size18782 word count length 18782 however total is 460260
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 198580 current ocupied size 119076 current actual load factor 0.5996374257226307
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 1839180 num_access 983797 ratio 1.8694710392489506
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 297870 current ocupied size 219846 current actual load factor 0.7380602276160741
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 1786649 num_access 908776 ratio 1.9659949206405098
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 14040 265.1718578406214
+Performing spot checks...
+ERROR: Count does not match expected count 26275 != 19880264 for [the]
+ERROR: Count does not match expected count 27 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999986
+Spot checks completed
+Memory usage is 10M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [5s]
+Memory usage is 110M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 192.511s
+BLEU score on test data was BLEU(20.219)
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -calculatePerplexity=11232, -path=/Users/xin/Desktop/11711/assign1_data/}
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false
+Building took 0.432s
+index of shell 125
+unigram table size16926 word count length 16926 however total is 371687
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 132387 current ocupied size 102466 current actual load factor 0.7739883825451139
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 1523484 num_access 756099 ratio 2.014926616752568
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 297870 current ocupied size 183823 current actual load factor 0.6171249202672306
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 1511919 num_access 825819 ratio 1.830811594308196
+Calculating perplexity on sentence 1000
+Calculating perplexity on sentence 2000
+perplexity for training size 11232 261.2062941441661
+Performing spot checks...
+ERROR: Count does not match expected count 21011 != 19880264 for [the]
+ERROR: Count does not match expected count 21 != 31257 for [in, terms, of]
+ERROR: Count does not match expected count 2 != 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9999999999999976
+Spot checks completed
+Memory usage is 10M
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [5s]
+Memory usage is 108M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 197.636s
+BLEU score on test data was BLEU(20.171)
