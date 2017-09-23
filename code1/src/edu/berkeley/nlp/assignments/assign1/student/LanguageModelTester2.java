@@ -331,6 +331,8 @@ public class LanguageModelTester2 {
 		doDecoding(decoder, frenchSentences, englishSentences, scores, maxNumTest, printTranslations);
 		String bleuString = new BleuScore(scores).toString();
 		System.out.println("BLEU score on " + ("test") + " data was " + bleuString);
+		System.out.print("After decoding ");
+		MemoryUsageUtils.printMemoryUsage();
 
 	}
 
