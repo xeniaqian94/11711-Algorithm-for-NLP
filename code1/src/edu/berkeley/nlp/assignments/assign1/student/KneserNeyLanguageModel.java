@@ -23,7 +23,7 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 	Scanner scanner = new Scanner(System.in);
 	String line;
 	boolean isPrint = false;
-	double d = 0.8d;
+	double d = 0.9d;
 	int totalSent = 0;
 	int maxSent = Integer.MAX_VALUE;
 	// intIndexer unigramIndexer=new intIndexer();
@@ -237,18 +237,15 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 
 				long trigram_key = (((long) (w1_index) & twentyBitMask) << 40)
 						| (((long) (w2_index)) & twentyBitMask) << 20 | (w3_index) & twentyBitMask;
-				double value = lruCache.get(trigram_key);
-				if (value > 0) {
-					// System.out.println("caching is playing a role on returning value early !");
+				double value=lruCache.getOrDefault(trigram_key,-1d);
+				if (value>0) {
+//					 System.out.println("caching is playing a role on returning value early !");
 					return Math.log(value);
 				}
 			}
 		}
 
 		int w3_index = ngram[to - 1];
-		// System.out.println("sanity check if w3 is unseen " + wordCounter.length + " "
-		// + w3_index + " "
-		// + (w3_index >= wordCounter.length));
 		if (w3_index < 0 | (w3_index >= wordCounter.length)) { // if w3 is unseen in the context{
 			return Math.log(1e-100);
 		}
@@ -289,11 +286,6 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 				if (count_w1w2 <= 0)
 					return Math.log(prob_w3_given_w2); // backoff to bigram prob
 				double alpha_w1w2 = d * bigramIndexer.getbigramX_Value(bigram_key_w1w2_Pos) / count_w1w2;
-				// System.out.println("alpha_w1w2 " + alpha_w1w2);
-				// System.out.println(w1_index + " " + w2_index + " " + w3_index + " " +
-				// trigram_key + " "
-				// + trigramIndexer.fromKeyGetValue(trigram_key) + " "
-				// + Math.max(trigramIndexer.fromKeyGetValue(trigram_key) - d, 0));
 				double prob_w3_given_w1w2 = Math.max(trigramIndexer.fromKeyGetValue(trigram_key) - d, 0) * 1.0
 						/ count_w1w2 + alpha_w1w2 * prob_w3_given_w2;
 				if (useCaching)

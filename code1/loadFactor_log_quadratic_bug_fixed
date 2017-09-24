@@ -434,3 +434,75 @@ On sentence 2000
 Decoding took 312.990s
 BLEU score on test data was BLEU(24.954)
 After decoding Memory usage is 1.1G
+/Users/xin/Desktop/11711/assign1_data/
+Using base path: /Users/xin/Desktop/11711/assign1_data/
+Using lmType: TRIGRAM
+Decoding all sentences.
+{-lmType=TRIGRAM, -noprint=null, -quadraticProbing=null, -loadFactor=0.9, -path=/Users/xin/Desktop/11711/assign1_data/}
+load factor 0.9
+isLinearProbing???????? false
+reading limited sent
+Building KneserNeyLanguageModel . . . isPrint false isLinearProbing false false
+On sentence 1000000
+On sentence 2000000
+On sentence 3000000
+On sentence 4000000
+On sentence 5000000
+On sentence 6000000
+On sentence 7000000
+On sentence 8000000
+On sentence 9000000
+Building took 165.991s
+index of shell 125
+unigram table size495172 word count length 495172 however total is 281199874
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram current hashmap size 10236253 current ocupied size 8374230 current actual load factor 0.8180952541911577
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMapBigram num_collision 264837279 num_access 332179564 ratio 0.7972714390100168
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap current hashmap size 51821028 current ocupied size 41627672 current actual load factor 0.8032969164563852
+class edu.berkeley.nlp.assignments.assign1.student.longIntOpenHashMap num_collision 378150696 num_access 356331239 ratio 1.0612336349213547
+Building language model took 166.294s
+Performing spot checks...
+Count matches expected count 19880264 = 19880264 for [the]
+Count matches expected count 31257 = 31257 for [in, terms, of]
+Count matches expected count 30 = 30 for [romanian, independent, society]
+Count matches expected count 0 = 0 for [XXXtotally, XXXunseen, XXXtrigram]
+Distribution for context [romanian, independent] normalizes correctly, sums to 0.9996656157245017
+Spot checks completed
+Memory usage is 901M
+current caching capacity 0
+Reading phrase table from file /Users/xin/Desktop/11711/assign1_data/phrasetable.txt.gz {
+Line 100000
+Line 200000
+Line 300000
+Line 400000
+Line 500000
+Line 600000
+Line 700000
+Line 800000
+Line 900000
+Line 1000000
+} [6s]
+Memory usage is 986M
+Decoding all test sentences
+On sentence 100
+On sentence 200
+On sentence 300
+On sentence 400
+On sentence 500
+On sentence 600
+On sentence 700
+On sentence 800
+On sentence 900
+On sentence 1000
+On sentence 1100
+On sentence 1200
+On sentence 1300
+On sentence 1400
+On sentence 1500
+On sentence 1600
+On sentence 1700
+On sentence 1800
+On sentence 1900
+On sentence 2000
+Decoding took 372.755s
+BLEU score on test data was BLEU(25.001)
+After decoding Memory usage is 986M

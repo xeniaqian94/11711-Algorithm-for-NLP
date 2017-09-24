@@ -108,11 +108,12 @@ public class longIntOpenHashMap {
 
 	public int insertOrAdd(long k) { // externally modify the hashtable, if k is not in the hashmap, insert it,
 										// otherwise add it. Return value is whether the key exists or not
-		if (size / (double) keys.length > MAX_LOAD_FACTOR) {
+		if (size / (double) keys.length >= MAX_LOAD_FACTOR) {
 			rehash();
 			// System.out.println("rehashed after this:");
 			// this.printStatus();
 		}
+//		System.out.println(size / (double) keys.length+" "+(double) keys.length+" "+MAX_LOAD_FACTOR);
 		int initialPos = getInitialPos(k, keys); // given a key get an position?
 		int pos = getFinalPos(k, keys, initialPos);
 		long curr = keys[pos];
@@ -131,21 +132,23 @@ public class longIntOpenHashMap {
 		long curr = thisKeyArray[initialPos];
 		int finalPos = initialPos;
 		int i = 1;
-//		if (curr == EMPTY_KEY_PLACEHOLDER | curr == k) {
-//			System.out.println("no collision here");
-//		}
+		// if (curr == EMPTY_KEY_PLACEHOLDER | curr == k) {
+		// System.out.println("no collision here");
+		// }
 		while (curr != EMPTY_KEY_PLACEHOLDER && curr != k) {
 			if (isLinearProbing) {
 				finalPos++; // linear probing
 			} else {
-//				System.out.println("within quadratic probing");
-				int shift = i * i + 2 * i;
-				finalPos += shift;
+				// System.out.println("within quadratic probing");
+				int shift = i * i;
+//				System.out.println(finalPos+" "+i+" "+shift);
+				finalPos += shift % thisKeyArray.length;
+//				System.out.println(finalPos+" "+size+" "+thisKeyArray.length);
 				i++;
 			}
 			num_collision++;
 			if (finalPos >= thisKeyArray.length)
-				finalPos = finalPos%thisKeyArray.length;
+				finalPos = finalPos % thisKeyArray.length;
 			curr = thisKeyArray[finalPos];
 		}
 		return finalPos;

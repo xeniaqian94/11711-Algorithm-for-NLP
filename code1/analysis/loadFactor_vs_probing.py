@@ -3,7 +3,7 @@ import re
 import matplotlib.pyplot as plt
 
 
-# python loadFactor_vs_probing.py ../loadFactor_log ../loadFactor_log_quadratic ../plot/loadFactor_vs_collision_test_speed_probing
+# python loadFactor_vs_probing.py ../loadFactor_log ../loadFactor_log_quadratic_bug_fixed ../plot/loadFactor_vs_collision_test_speed_probing2
 
 f=open(sys.argv[1],"r")
 f_quadratic=open(sys.argv[2],"r")
