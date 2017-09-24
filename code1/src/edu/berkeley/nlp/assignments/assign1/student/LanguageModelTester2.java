@@ -1,6 +1,7 @@
 package edu.berkeley.nlp.assignments.assign1.student;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -131,7 +132,7 @@ public class LanguageModelTester2 {
 			int sent = Integer.valueOf(argMap.get("-calculatePerplexity"));
 
 			languageModel = ((LmFactory) languageModelFactory).newLanguageModel(trainingSentenceCollection, sent,
-					Double.MAX_VALUE, Double.MAX_VALUE, true);
+					Double.MAX_VALUE, Double.MAX_VALUE, true,false,0);
 			final String englishData = (testEnglish).getPath();
 			Iterable<List<String>> englishSentences = SentenceCollection.Reader.readSentenceCollection(englishData);
 			perplexity(languageModel, englishSentences);
@@ -155,12 +156,15 @@ public class LanguageModelTester2 {
 			if (argMap.containsKey("-quadraticProbing")) {
 				isLinearProbing = false;
 			}
-
+			boolean useCaching=false;
 			if (argMap.containsKey("-capacity")) {
+				useCaching=true;
 				LRUcapacity = Integer.valueOf(argMap.get("-capacity"));
 			}
+			
+			System.out.println("isLinearProbing???????? "+isLinearProbing);
 			languageModel = ((LmFactory) languageModelFactory).newLanguageModel(trainingSentenceCollection, sent,
-					loadFactor, discountFactor, isLinearProbing);
+					loadFactor, discountFactor, isLinearProbing,useCaching,LRUcapacity);
 
 			long endTime = System.nanoTime();
 			System.out.println(
@@ -173,8 +177,27 @@ public class LanguageModelTester2 {
 
 		MemoryUsageUtils.printMemoryUsage();
 
+		System.out.println("current caching capacity "+LRUcapacity);
 		evaluateLanguageModel(phraseTableFile, testFrench, testEnglish, weightsFile, languageModel, maxNumTest,
 				printTranslations);
+		
+		if (argMap.containsKey("-testCaching")) {
+			for (int LRUcapacity=200;LRUcapacity<=12000; LRUcapacity=(int) (LRUcapacity*1.5)) {
+				((KneserNeyLanguageModel)languageModel).reset_caching_size(LRUcapacity);
+				System.out.println("current caching capacity "+LRUcapacity);
+				evaluateLanguageModel(phraseTableFile, testFrench, testEnglish, weightsFile, languageModel, maxNumTest,
+						printTranslations);
+				
+			}
+		}
+		
+		if (argMap.containsKey("-printTrigramTableCountValue"))
+			try {
+				((KneserNeyLanguageModel)languageModel).printTrigram("trigram_count_for_python");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 	private static int perplexity(NgramLanguageModel languageModel, Iterable<List<String>> englishSentences) {
@@ -318,6 +341,8 @@ public class LanguageModelTester2 {
 	 */
 	private static void evaluateLanguageModel(File phraseTableFile, File testFrench, File testEnglish, File weightsFile,
 			NgramLanguageModel languageModel, int maxNumTest, boolean printTranslations) {
+		
+		
 		PhraseTable phraseTable = new PhraseTable(5, 30); // int maxPhraseSize, int maxNumTranslations
 		phraseTable.readFromFile(phraseTableFile.getPath(), Weights.readWeightsFile(weightsFile));
 

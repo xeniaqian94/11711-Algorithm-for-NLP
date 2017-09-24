@@ -1,5 +1,9 @@
 package edu.berkeley.nlp.assignments.assign1.student;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +32,8 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 	// longIndexer trigramIndexer = new longIndexer();
 	longIntOpenHashMapBigram bigramIndexer;
 	longIntOpenHashMap trigramIndexer;
-	LRUCache lruCache = null;
+	boolean useCaching = false;
+	LRUCache<Long,Double> lruCache = null;
 	int capacity = 100;
 
 	long total = 0;
@@ -40,23 +45,38 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 
 	int twentyBitMask = 0xFFFFF;
 
+	public void printTrigram(String fname) throws IOException {
+		FileWriter fw = new FileWriter(fname);
+		BufferedWriter bw = new BufferedWriter(fw);
+		for (int value: trigramIndexer.getValues())
+			bw.write(value+" ");
+		
+		bw.close();fw.close();
+	}
+
 	public int getTotalSent() {
 		return totalSent;
 	}
 
+	public void reset_caching_size(int LRUcapacity) {
+		this.capacity = LRUcapacity;
+		lruCache = null;
+		System.gc();
+	}
+
 	public KneserNeyLanguageModel(Iterable<List<String>> sentenceCollection, int maxSent, double loadFactor,
 			double discountFactor) {
-		this(sentenceCollection, maxSent, loadFactor, discountFactor, true);
+		this(sentenceCollection, maxSent, loadFactor, discountFactor, true, false, 0);
 
 	}
 
 	public KneserNeyLanguageModel(Iterable<List<String>> sentenceCollection) {
-		this(sentenceCollection, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, true);
+		this(sentenceCollection, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, true, false, 0);
 
 	}
 
 	public KneserNeyLanguageModel(Iterable<List<String>> sentenceCollection, int maxSent, double loadFactor,
-			double discountFactor, boolean isLinearProbing) {
+			double discountFactor, boolean isLinearProbing, boolean useCaching, int LRUcapacity) {
 		if (discountFactor <= 1) {
 			d = discountFactor;
 		}
@@ -68,10 +88,10 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 			trigramIndexer = new longIntOpenHashMap();
 		}
 
-		if (isLinearProbing) {
-			bigramIndexer.setLinearProbing(false);
-			trigramIndexer.setLinearProbing(false);
-		}
+		bigramIndexer.setLinearProbing(isLinearProbing);
+		trigramIndexer.setLinearProbing(isLinearProbing);
+		this.useCaching = useCaching;
+		this.capacity = LRUcapacity;
 
 		this.maxSent = maxSent;
 		System.out.println("Building KneserNeyLanguageModel . . . isPrint " + isPrint + " isLinearProbing "
@@ -207,10 +227,9 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 	}
 
 	public double getNgramLogProbability(int[] ngram, int from, int to) {
-
-		if (lruCache == null)
-			lruCache = new LRUCache(capacity);
-		else {
+		if (useCaching) {
+			if (lruCache == null)
+				lruCache = new LRUCache<Long,Double>(capacity);
 			if ((to - from) == 3) {
 				int w3_index = ngram[to - 1];
 				int w2_index = ngram[to - 2];
@@ -219,10 +238,11 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 				long trigram_key = (((long) (w1_index) & twentyBitMask) << 40)
 						| (((long) (w2_index)) & twentyBitMask) << 20 | (w3_index) & twentyBitMask;
 				double value = lruCache.get(trigram_key);
-				if (value > 0)
+				if (value > 0) {
+					// System.out.println("caching is playing a role on returning value early !");
 					return Math.log(value);
+				}
 			}
-
 		}
 
 		int w3_index = ngram[to - 1];
@@ -276,7 +296,8 @@ public class KneserNeyLanguageModel implements NgramLanguageModel {
 				// + Math.max(trigramIndexer.fromKeyGetValue(trigram_key) - d, 0));
 				double prob_w3_given_w1w2 = Math.max(trigramIndexer.fromKeyGetValue(trigram_key) - d, 0) * 1.0
 						/ count_w1w2 + alpha_w1w2 * prob_w3_given_w2;
-				lruCache.set(trigram_key, prob_w3_given_w2);
+				if (useCaching)
+					lruCache.put(trigram_key, prob_w3_given_w1w2);
 				return Math.log(prob_w3_given_w1w2);
 			} else if (to - from == 2) {
 				return Math.log(prob_w3_given_w2);
