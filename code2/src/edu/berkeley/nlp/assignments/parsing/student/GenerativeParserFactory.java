@@ -15,7 +15,7 @@ import edu.berkeley.nlp.ling.Trees;
 import edu.berkeley.nlp.util.CounterMap;
 
 public class GenerativeParserFactory implements ParserFactory {
-	int h = 2;
+	int h = Integer.MAX_VALUE;
 	int v = 1;
 
 	public GenerativeParserFactory(int h, int v) {
@@ -30,4 +30,7 @@ public class GenerativeParserFactory implements ParserFactory {
 		return new GenerativeParser(trainTrees, h, v, 41);
 	}
 
+//	public Parser getParser(List<Tree<String>> trainTrees, boolean sanity) {
+//		return new GenerativeParser(trainTrees, h, v, 41, sanity);
+//	}
 }

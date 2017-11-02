@@ -1,0 +1,26 @@
+Maximum length for training sentences: 1000
+Maximum length for test sentences: 15
+Loading training trees (sections 2-21) ... done. (39832 trees)
+Loading validation trees (section 22) ... done. (421 trees)
+
+Maximum length for training sentences: 1000
+Maximum length for test sentences: 40
+Loading training trees (sections 2-21) ... done. (39832 trees)
+Loading validation trees (section 22) ... done. (1578 trees)
+
+
+
+v=1 h=inf 1000 40 
+ [Current]  P: 68.75 R: 68.75 F1: 68.75 EX: 0.0
+ [Average]  P: 75.42 R: 70.22 F1: 72.73 EX: 11.21
+Decoding took 3057469 millis
+
+
+
+
+
+
+
+
+
+

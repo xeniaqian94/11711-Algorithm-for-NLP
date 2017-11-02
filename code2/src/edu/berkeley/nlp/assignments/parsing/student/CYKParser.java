@@ -11,6 +11,7 @@ import edu.berkeley.nlp.assignments.parsing.SimpleLexicon;
 import edu.berkeley.nlp.assignments.parsing.UnaryClosure;
 import edu.berkeley.nlp.assignments.parsing.UnaryRule;
 import edu.berkeley.nlp.ling.Tree;
+import edu.berkeley.nlp.ling.Trees;
 import edu.berkeley.nlp.util.Indexer;
 
 public class CYKParser {
@@ -30,7 +31,7 @@ public class CYKParser {
 
 		scoreUnary = new double[maxLength][maxLength + 1][numStates];
 		scoreBinary = new double[maxLength][maxLength + 1][numStates];
-		score = new double[maxLength][maxLength + 1][numStates];
+		// score = new double[maxLength][maxLength + 1][numStates];
 
 		backUnary = new int[maxLength][maxLength + 1][numStates];
 		backBinarySplit = new int[maxLength][maxLength + 1][numStates];
@@ -49,8 +50,12 @@ public class CYKParser {
 		return Double.NEGATIVE_INFINITY;
 	}
 
-	public Tree<String> parse(Grammar grammar, SimpleLexicon lexicon, List<String> sentence) {
-		// TODO Auto-generated method stub
+	public Tree<String> parse(Grammar grammar, SimpleLexicon lexicon, List<String> sentence, boolean isPrint)
+			throws Exception {
+
+		if (!isPrint) {
+			isPrint = false;// TODO Auto-generated method stub
+		}
 
 		int numWords = sentence.size();
 
@@ -68,27 +73,30 @@ public class CYKParser {
 		for (int i = 0; i < numWords; i++) {
 			for (int j = 0; j < numStates; j++) { // labelIndexer has all non-term states
 				double emissionScore = getScoreTag(sentence.get(i), labelIndexer.get(j), lexicon);
-//				System.out.println(i + " " + sentence.get(i) + " " + labelIndexer.get(j) + " " + emissionScore);
+				// System.out.println(i + " " + sentence.get(i) + " " + labelIndexer.get(j) + "
+				// " + emissionScore);
 
-				if (!(emissionScore == Double.NaN || emissionScore == Double.NEGATIVE_INFINITY))
+				if (!(emissionScore == Double.NaN) && !(emissionScore == Double.NEGATIVE_INFINITY))
 					scoreBinary[i][i + 1][j] = emissionScore;
 				else
 					scoreBinary[i][i + 1][j] = Double.NEGATIVE_INFINITY;
 			}
 		}
-//		printScores(sentence);
+		// if (sentence.get(0).equals("Now"))
+		// printScores(sentence);
 
 		for (int i = 0; i < numWords; i++) { // looping over rules of sate[i]->state[j]
-//			System.out.println("\n\nposition i " + i);
-			for (int a = 0; a < numStates; a++) {
-//				System.out.println(a + " " + labelIndexer.get(a));
-				for (UnaryRule ur : unaryClosure.getClosedUnaryRulesByParent(a)) {
-					int b = ur.getChild();
-//					System.out.println(ur.toString());
-					if (scoreBinary[i][i + 1][b] != Double.NEGATIVE_INFINITY) {
+			// System.out.println("\n\nposition i " + i);
+			for (int b = 0; b < numStates; b++) {
+				// System.out.println(a + " " + labelIndexer.get(a));
+				// System.out.println(ur.toString());
+				if (scoreBinary[i][i + 1][b] != Double.NEGATIVE_INFINITY) {
+					for (UnaryRule ur : unaryClosure.getClosedUnaryRulesByChild(b)) {
+						int a = ur.getParent();
 						double prob = ur.getScore() + scoreBinary[i][i + 1][b];
-//						System.out.println(i + " " + a + " " + b + " " + ur.getScore() + " " + scoreBinary[i][i + 1][b]
-//								+ " " + prob);
+						// System.out.println(i + " " + a + " " + b + " " + ur.getScore() + " " +
+						// scoreBinary[i][i + 1][b]
+						// + " " + prob);
 						if (scoreUnary[i][i + 1][a] < prob) {
 
 							scoreUnary[i][i + 1][a] = prob;
@@ -98,16 +106,17 @@ public class CYKParser {
 				}
 			}
 		}
-//		printScores(sentence);
+		// if (sentence.get(0).equals("Now"))
+		// printScores(sentence);
 
 		for (int diff = 2; diff <= numWords; diff++) { // alternating layers
 
 			for (int i = 0; i <= (numWords - diff); i++) {
 				for (int split = i + 1; split < i + diff; split++) {
 					for (int b = 0; b < numStates; b++) {
+						if (scoreUnary[i][split][b] != Double.NEGATIVE_INFINITY) {
 
-						for (BinaryRule br : grammar.getBinaryRulesByLeftChild(b)) {
-							if (scoreUnary[i][split][b] != Double.NEGATIVE_INFINITY) {
+							for (BinaryRule br : grammar.getBinaryRulesByLeftChild(b)) {
 
 								int rc = br.getRightChild();
 								int lc = br.getLeftChild();
@@ -116,9 +125,9 @@ public class CYKParser {
 								if (scoreUnary[split][i + diff][rc] != Double.NEGATIVE_INFINITY) {
 									double prob = br.getScore() + scoreUnary[i][split][lc]
 											+ scoreUnary[split][i + diff][rc];
-//									System.out.println(
-//											br.toString() + " " + br.getScore() + " " + scoreUnary[split][i + diff][rc]
-//													+ " " + scoreUnary[i][split][b] + " " + prob);
+									// System.out.println(
+									// br.toString() + " " + br.getScore() + " " + scoreUnary[split][i + diff][rc]
+									// + " " + scoreUnary[i][split][b] + " " + prob);
 									if (prob > scoreBinary[i][i + diff][p]) {
 										scoreBinary[i][i + diff][p] = prob;
 										backBinarySplit[i][i + diff][p] = split;
@@ -132,14 +141,35 @@ public class CYKParser {
 				}
 			}
 
-//			printScores(sentence);
+			// printScores(sentence);
 
+//			for (int i = 0; i <= (numWords - diff); i++) {
+//				for (int a = 0; a < numStates; a++) {
+//					for (UnaryRule ur : unaryClosure.getClosedUnaryRulesByParent(a)) { // a->b
+//						// System.out.println(ur.toString());
+//						int b = ur.getChild();
+//						if (scoreBinary[i][i + diff][b] != Double.NEGATIVE_INFINITY) {
+//
+//							double prob = ur.getScore() + scoreBinary[i][i + diff][b];
+//							if (scoreUnary[i][i + diff][a] < prob) {
+//								scoreUnary[i][i + diff][a] = prob;
+//								backUnary[i][i + diff][a] = b;
+//							}
+//						}
+//					}
+//				}
+//
+//			}
+			
+			
+			
 			for (int i = 0; i <= (numWords - diff); i++) {
-				for (int a = 0; a < numStates; a++) {
-					for (UnaryRule ur : unaryClosure.getClosedUnaryRulesByParent(a)) { // a->b
-//						System.out.println(ur.toString());
-						int b = ur.getChild();
-						if (scoreBinary[i][i + diff][b] != Double.NEGATIVE_INFINITY) {
+				for (int b = 0; b < numStates; b++) {
+					if (scoreBinary[i][i + diff][b] != Double.NEGATIVE_INFINITY) {
+						for (UnaryRule ur : unaryClosure.getClosedUnaryRulesByChild(b)) { // a->b
+						// System.out.println(ur.toString());
+							int a = ur.getParent();
+						
 
 							double prob = ur.getScore() + scoreBinary[i][i + diff][b];
 							if (scoreUnary[i][i + diff][a] < prob) {
@@ -151,10 +181,12 @@ public class CYKParser {
 				}
 
 			}
+				
+				
 
 		}
 
-//		printScores(sentence);
+		// printScores(sentence);
 
 		if (scoreUnary[0][numWords][0] == Double.NEGATIVE_INFINITY)
 			return new Tree<String>("ROOT", Collections.singletonList(new Tree<String>("JUNK")));
@@ -190,43 +222,57 @@ public class CYKParser {
 
 	}
 
-	private Tree<String> backtrackUnary(int i, int j, int a, List<String> sentence) {
+	private Tree<String> backtrackUnary(int i, int j, int a, List<String> sentence) throws Exception {
 		// TODO Auto-generated method stub
 
-//		System.out.println("Currently backtracking i j a " + i + " " + j + " " + a + " " + labelIndexer.get(a));
+		// System.out.println("Currently backtracking unary i j a " + i + " " + j + " "
+		// + a + " " + labelIndexer.get(a)
+		// + " back track to a->b where b is " + backUnary[i][j][a] + " " +
+		// labelIndexer.get(backUnary[i][j][a]));
 
 		int b = backUnary[i][j][a];
 		Tree<String> treeAsB = backtrackBinary(i, j, b, sentence);
 		List<Tree<String>> treesUnderA = new ArrayList<Tree<String>>();
 
 		List<Integer> pathBetweenAB = unaryClosure.getPath(new UnaryRule(a, labelIndexer.indexOf(treeAsB.getLabel())));
-
+		// System.out.println("path between AB here " + pathBetweenAB + " where A is " +
+		// labelIndexer.get(a) + " B is "
+		// + labelIndexer.get(b));
+		// System.out.print("full path here");
+		// for (int node : pathBetweenAB)
+		// System.out.print(" " + labelIndexer.get(node));
+		// System.out.println();
 		if (pathBetweenAB.size() == 1) {
 			treesUnderA.addAll(treeAsB.getChildren());
 		} else if (pathBetweenAB.size() == 2) {
 			treesUnderA.add(treeAsB);
-
 		} else if (pathBetweenAB.size() > 2) {
-			List<Tree<String>> treesUnderIntermediate = new ArrayList<Tree<String>>();
+
 			Tree<String> treeAsPrevIntermediate = treeAsB;
 
 			for (int ind = pathBetweenAB.size() - 2; ind >= 1; ind--) {
 				int intermediate = pathBetweenAB.get(ind);
+				List<Tree<String>> treesUnderIntermediate = new ArrayList<Tree<String>>();
 				treesUnderIntermediate.add(treeAsPrevIntermediate);
 				treeAsPrevIntermediate = new Tree<String>(labelIndexer.get(intermediate), treesUnderIntermediate);
 			}
 			treesUnderA.add(treeAsPrevIntermediate);
 		}
-		return new Tree<String>(labelIndexer.get(a), treesUnderA);
+
+		Tree<String> finalTree = new Tree<String>(labelIndexer.get(a), treesUnderA);
+		// System.out.println(Trees.PennTreeRenderer.render(finalTree) + "\n");
+		return finalTree;
 	}
 
-	private Tree<String> backtrackBinary(int i, int j, int a, List<String> sentence) {
+	private Tree<String> backtrackBinary(int i, int j, int a, List<String> sentence) throws Exception {
 		// TODO Auto-generated method stub
-//		System.out.println("Currently backtracking i j a " + i + " " + j + " " + a + " " + labelIndexer.get(a));
+		// System.out.println("Currently backtracking binary i j a " + i + " " + j + " "
+		// + a + " " + labelIndexer.get(a));
 
 		if (j == (i + 1)) {
 			List<Tree<String>> treesUnderA = new ArrayList<Tree<String>>();
 			treesUnderA.add(new Tree<String>(sentence.get(i)));
+			// System.out.println("leaf node here " + i + " " + j + " " + sentence.get(i));
 			return new Tree<String>(labelIndexer.get(a), treesUnderA);
 		}
 
@@ -239,7 +285,9 @@ public class CYKParser {
 		treesUnderA.add(treeAsLC);
 		treesUnderA.add(treeAsRC);
 
-		return new Tree<String>(labelIndexer.get(a), treesUnderA);
+		Tree<String> finalTree = new Tree<String>(labelIndexer.get(a), treesUnderA);
+		// System.out.println(Trees.PennTreeRenderer.render(finalTree) + "\n");
+		return finalTree;
 	}
 
 }

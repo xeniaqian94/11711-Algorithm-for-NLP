@@ -19,6 +19,7 @@ public class GenerativeParser implements Parser {
 	int h = 0;
 	int v = 0;
 	int maxLength = 0;
+	boolean sanity = false;
 
 	CounterMap<List<String>, Tree<String>> knownParses;
 
@@ -31,8 +32,10 @@ public class GenerativeParser implements Parser {
 	CYKParser cykParser;
 
 	public GenerativeParser(List<Tree<String>> trainTrees, int h, int v, int maxLength) {
+
 		this.h = h;
 		this.v = v;
+		// this.sanity = sanity;
 
 		System.out.print("Annotating / binarizing training trees ... ");
 		List<Tree<String>> annotatedTrainTrees = annotateTrees(trainTrees);
@@ -41,12 +44,12 @@ public class GenerativeParser implements Parser {
 		grammar = Grammar.generativeGrammarFromTrees(annotatedTrainTrees);
 		System.out.println("done. (" + grammar.getLabelIndexer().size() + " states)");
 
-		printIndexer();
+		// printIndexer();
 
 		System.out.println(h + " " + v);
 
-		Scanner s = new Scanner(System.in);
-		s.nextLine();
+		// Scanner s = new Scanner(System.in);
+		// s.nextLine();
 
 		int numStates = grammar.getLabelIndexer().size();
 
@@ -62,34 +65,50 @@ public class GenerativeParser implements Parser {
 		// instance of your own
 		// of LexiconFeaturizer here.
 		lexicon = new SimpleLexicon(annotatedTrainTrees);
-
-		// knownParses = new CounterMap<List<String>, Tree<String>>();
-		// spanToCategories = new CounterMap<Integer, String>();
-		// for (Tree<String> trainTree : annotatedTrainTrees) {
-		// List<String> tags = trainTree.getPreTerminalYield();
-		// knownParses.incrementCount(tags, trainTree, 1.0);
-		// tallySpans(trainTree, 0);
-		// }
-		// System.out.println("done.");
 	}
+
+	// public GenerativeParser(List<Tree<String>> trainTrees, int h, int v, int
+	// maxLength) {
+	// this(trainTrees, h, v, maxLength, false);
+	//
+	// // knownParses = new CounterMap<List<String>, Tree<String>>();
+	// // spanToCategories = new CounterMap<Integer, String>();
+	// // for (Tree<String> trainTree : annotatedTrainTrees) {
+	// // List<String> tags = trainTree.getPreTerminalYield();
+	// // knownParses.incrementCount(tags, trainTree, 1.0);
+	// // tallySpans(trainTree, 0);
+	// // }
+	// // System.out.println("done.");
+	// }
 
 	@Override
 	public Tree<String> getBestParse(List<String> sentence) {
-		System.out.println("\nCurrently parsing sentence " + sentence + " with h, v value as " + h + " " + v);
-		List<String> tags = getBaselineTagging(sentence);
-		Tree<String> annotatedBestParse = cykParser.parse(grammar, lexicon, sentence);
+		try {
+			System.out.println("\nCurrently parsing sentence " + sentence + " with h, v value as " + h + " " + v);
+			List<String> tags = getBaselineTagging(sentence);
+			Tree<String> annotatedBestParse = cykParser.parse(grammar, lexicon, sentence, true);
+			System.out.println("Parse okay here wait to be unannotated");
+			System.out.println(Trees.PennTreeRenderer.render(annotatedBestParse));
 
-		// if (knownParses.keySet().contains(tags)) {
-		// annotatedBestParse = getBestKnownParse(tags);
-		// } else {
-		// annotatedBestParse = buildRightBranchParse(sentence, tags);
-		// }
+			// if (knownParses.keySet().contains(tags)) {
+			// annotatedBestParse = getBestKnownParse(tags);
+			// } else {
+			// annotatedBestParse = buildRightBranchParse(sentence, tags);
+			// }
 
-		System.out.println();
+			// System.out.println(annotatedBestParse.toString());
 
-		if (v == 1 && h == Integer.MAX_VALUE)
-			return TreeAnnotations.unAnnotateTree(annotatedBestParse);
-		return TreeMarkovAnnotations.unAnnotateTree(annotatedBestParse);
+			if (v == 1 && h == Integer.MAX_VALUE) {
+				// System.out.println("unannotatedBestParse");
+				// System.out.println(TreeAnnotations.unAnnotateTree(annotatedBestParse));
+				return TreeAnnotations.unAnnotateTree(annotatedBestParse);
+
+			}
+			return TreeMarkovAnnotations.unAnnotateTree(annotatedBestParse);
+		} catch (Exception e) {
+			System.out.println(e.getMessage().substring(0, 1000));
+		}
+		return new Tree<String>("ROOT", Collections.singletonList(new Tree<String>("JUNK")));
 	}
 
 	private Tree<String> buildRightBranchParse(List<String> words, List<String> tags) {
@@ -152,10 +171,12 @@ public class GenerativeParser implements Parser {
 
 	private List<Tree<String>> annotateTrees(List<Tree<String>> trees) {
 		List<Tree<String>> annotatedTrees = new ArrayList<Tree<String>>();
+		int i = 0;
 		for (Tree<String> tree : trees) {
+			i++;
 
-			// System.out.println("Unannotated tree \n" + new
-			// Trees.PennTreeRenderer().render(tree));
+			if (i < 5)
+				System.out.println("Unannotated tree \n" + new Trees.PennTreeRenderer().render(tree));
 			Tree<String> annotatedTree;
 			if (v == 1 && h == Integer.MAX_VALUE) {
 				// System.out.println("Generic annotations");
@@ -163,8 +184,8 @@ public class GenerativeParser implements Parser {
 			} else
 				annotatedTree = TreeMarkovAnnotations.annotateTreeLosslessBinarization(tree);
 			annotatedTrees.add(annotatedTree);
-			// System.out.println("Annotated tree \n" + new
-			// Trees.PennTreeRenderer().render(annotatedTree));
+			if (i < 5)
+				System.out.println("Annotated tree \n" + new Trees.PennTreeRenderer().render(annotatedTree));
 		}
 		return annotatedTrees;
 	}

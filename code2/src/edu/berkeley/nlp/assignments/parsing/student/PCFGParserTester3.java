@@ -7,29 +7,28 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
-//import PCFGParserTester.ParserType;
 import edu.berkeley.nlp.assignments.parsing.BaselineParser;
 import edu.berkeley.nlp.assignments.parsing.Parser;
 import edu.berkeley.nlp.assignments.parsing.ParserFactory;
+import edu.berkeley.nlp.assignments.parsing.student.CoarseToFineParserFactory;
+import edu.berkeley.nlp.assignments.parsing.student.GenerativeParserFactory;
 import edu.berkeley.nlp.io.PennTreebankReader;
 import edu.berkeley.nlp.ling.Tree;
 import edu.berkeley.nlp.ling.Trees;
 import edu.berkeley.nlp.parser.EnglishPennTreebankParseEvaluator;
 import edu.berkeley.nlp.util.CommandLineUtils;
+import edu.berkeley.nlp.util.Indexer;
 
-public class PCFGParserTester2 {
-	static int h = 2;
-	static int v = 2;
+/**
+ * Harness for PCFG Parser project.
+ * 
+ * @author Dan Klein
+ */
+public class PCFGParserTester3 {
 
 	public enum ParserType {
 		BASELINE {
-			public ParserFactory getParserFactory(int h, int v) {
-				return getParserFactory();
-
-			}
-
 			@Override
 			public ParserFactory getParserFactory() {
 				return new BaselineParser.BaselineParserFactory();
@@ -38,7 +37,7 @@ public class PCFGParserTester2 {
 		GENERATIVE {
 			@Override
 			public ParserFactory getParserFactory() {
-				return new GenerativeParserFactory(h, v);
+				return new GenerativeParserFactory();
 			}
 		},
 		COARSE_TO_FINE {
@@ -79,16 +78,7 @@ public class PCFGParserTester2 {
 			System.out.println("Testing on validation data.");
 		}
 		if (argMap.containsKey("-maxTrainLength")) {
-
-			if (argMap.get("-maxTrainLength").equals("INF"))
-				maxTrainLength = Integer.MAX_VALUE;
-			else
-
-				maxTrainLength = Integer.parseInt(argMap.get("-maxTrainLength"));
-			System.out.println(maxTrainLength);
-			// Scanner s = new Scanner(System.in);
-			// s.nextLine();
-
+			maxTrainLength = Integer.parseInt(argMap.get("-maxTrainLength"));
 		}
 		System.out.println("Maximum length for training sentences: " + maxTrainLength);
 		if (argMap.containsKey("-maxTestLength")) {
@@ -107,45 +97,12 @@ public class PCFGParserTester2 {
 			parserType = ParserType.valueOf(argMap.get("-parserType"));
 		}
 
-		if (argMap.containsKey("-h")) {
-			// System.out.println(argMap.get("-h")+"|");
-
-			if (argMap.get("-h").equals("INF"))
-				h = Integer.MAX_VALUE;
-			else
-				h = Integer.parseInt(argMap.get("-h"));
-			// System.out.println(h);
-			// Scanner s = new Scanner(System.in);
-			// s.nextLine();
-		}
-
-		if (argMap.containsKey("-v")) {
-			v = Integer.parseInt(argMap.get("-v"));
-		}
-
 		int trainTreesEnd = 2199;
-		// if (sanity) {
-		// maxTrainLength = 3;
-		// maxTestLength = 3;
-		// trainTreesEnd = 299;
-		// }
-		//
-
-		// if (sanity) {
-		// maxTrainLength = 3;
-		// maxTestLength = 3;
-		// trainTreesEnd = 299;
-		// }
-
-		// maxTrainLength = 3;
-		// maxTestLength = 3;
-		// trainTreesEnd = 210;
-		//
-		// int trainTreesStart = 2300;
-		//// int trainTreesStart = 200;
-		//
-		// trainTreesEnd = 2330;
-
+		if (sanity) {
+			maxTrainLength = 3;
+			maxTestLength = 3;
+			trainTreesEnd = 299;
+		}
 		System.out.print("Loading training trees (sections 2-21) ... ");
 		List<Tree<String>> trainTrees = readTrees(basePath, 200, trainTreesEnd, maxTrainLength);
 		System.out.println("done. (" + trainTrees.size() + " trees)");
@@ -155,9 +112,7 @@ public class PCFGParserTester2 {
 			testTrees = readTrees(basePath, 2200, 2299, maxTestLength);
 		} else {
 			System.out.print("Loading test trees (section 23) ... ");
-			// testTrees = readTrees(basePath, 2300, 2399, maxTestLength);
-			testTrees = readTrees(basePath, 2300, 2330, maxTestLength);
-
+			testTrees = readTrees(basePath, 2300, 2399, maxTestLength);
 		}
 		System.out.println("done. (" + testTrees.size() + " trees)");
 
@@ -172,36 +127,29 @@ public class PCFGParserTester2 {
 		EnglishPennTreebankParseEvaluator.LabeledConstituentEval<String> eval = new EnglishPennTreebankParseEvaluator.LabeledConstituentEval<String>(
 				Collections.singleton("ROOT"),
 				new HashSet<String>(Arrays.asList(new String[] { "''", "``", ".", ":", "," })));
+
 		int i = 0;
 		long startTime = System.currentTimeMillis();
 		System.out.println("Testing starts ");
-		
-		
+
 		for (Tree<String> testTree : testTrees) {
+
 			i++;
 			long stopTime = System.currentTimeMillis();
-
-			
-			System.out.println("Currently testParser progress " + i * 1.0 / testTrees.size()+" Elapsed time was " + (stopTime - startTime)*1.0/1000 + " miliseconds Raw estimate of total will be "+(stopTime - startTime)*1.0/1000/i*testTrees.size());
+			System.out.println("Currently testParser progress " + i * 1.0 / testTrees.size() + " Elapsed time was "
+					+ (stopTime - startTime) * 1.0 / 1000 + " miliseconds Raw estimate of total will be "
+					+ (stopTime - startTime) * 1.0 / 1000 / i * testTrees.size());
 
 			List<String> testSentence = testTree.getYield();
-			
-			Tree<String> guessedTree = null;
-			try {
-				guessedTree = parser.getBestParse(testSentence);
-			} catch (Exception e) {
-				System.out.println("here");
-				// System.out.println(e.getMessage().substring(0, 1000));
-
-			}
+			Tree<String> guessedTree = parser.getBestParse(testSentence);
 			if (verbose) {
-				System.out.println("Gold:\n" + Trees.PennTreeRenderer.render(testTree));
-				System.out.println("Yields: " + String.join(" ", testSentence));
 				System.out.println("Guess:\n" + Trees.PennTreeRenderer.render(guessedTree));
-
+				System.out.println("Gold:\n" + Trees.PennTreeRenderer.render(testTree));
 			}
 			eval.evaluate(guessedTree, testTree);
-			// break;
+			// if (i%20==0)
+			// eval.display(true);
+
 		}
 		eval.display(true);
 		System.out.println("Decoding took " + (System.nanoTime() - nanos) / 1000000 + " millis");
@@ -214,15 +162,11 @@ public class PCFGParserTester2 {
 		List<Tree<String>> normalizedTreeList = new ArrayList<Tree<String>>();
 		for (Tree<String> tree : trees) {
 			Tree<String> normalizedTree = treeTransformer.transformTree(tree);
-			if (normalizedTree.getYield().size() > maxLength) {
-				// System.out.println("This tree is not read");
+			if (normalizedTree.getYield().size() > maxLength)
 				continue;
-			}
-			// System.out.println("This is a long tree
-			// eliminated!\n"+Trees.PennTreeRenderer.render(normalizedTree));
+			// System.out.println(Trees.PennTreeRenderer.render(normalizedTree));
 			normalizedTreeList.add(normalizedTree);
 		}
 		return normalizedTreeList;
-
 	}
 }
