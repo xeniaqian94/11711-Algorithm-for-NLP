@@ -19,6 +19,7 @@ public class TreeMarkovAnnotations {
 	 */
 	static int h = GenerativeParserFactory.h;
 	static int v = GenerativeParserFactory.v;
+	static boolean tagPA = GenerativeParserFactory.tagPA;
 
 	public static Tree<String> annotateBinarization(Tree<String> unAnnotatedTree) {
 
@@ -48,8 +49,12 @@ public class TreeMarkovAnnotations {
 		if (tree.isLeaf())
 			return new Tree<String>(label);
 		if (tree.getChildren().size() == 1) {
+			String actualLabel = labelWithParents;
 
-			return new Tree<String>(labelWithParents,
+			if (!tagPA && tree.isPreTerminal())
+				actualLabel = label;
+
+			return new Tree<String>(actualLabel,
 					Collections.singletonList(binarizeTree(tree.getChildren().get(0), parentsChild)));
 		}
 		// otherwise, it's a binary-or-more local tree, so decompose it into a sequence
@@ -96,10 +101,11 @@ public class TreeMarkovAnnotations {
 		return unAnnotatedTree;
 	}
 
-	public static void setHV(int hh, int vv) {
+	public static void setHV(int hh, int vv, boolean tagPAA) {
 		// TODO Auto-generated method stub
 		h = hh;
 		v = vv;
+		tagPA = tagPAA;
 
 	}
 }

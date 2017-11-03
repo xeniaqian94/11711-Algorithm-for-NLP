@@ -115,6 +115,10 @@ public class PCFGParserTester3 {
 			v = Integer.parseInt(argMap.get("-v"));
 		}
 
+		if (argMap.containsKey("-noTagPA")) {
+			GenerativeParserFactory.tagPA = false;
+		}
+
 		ParserType parserType = ParserType.BASELINE;
 
 		if (argMap.containsKey("-parserType")) {

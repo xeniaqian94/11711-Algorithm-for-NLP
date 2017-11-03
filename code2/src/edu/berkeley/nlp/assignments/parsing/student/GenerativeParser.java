@@ -18,6 +18,7 @@ import edu.berkeley.nlp.util.CounterMap;
 public class GenerativeParser implements Parser {
 	int h = GenerativeParserFactory.h;
 	int v = GenerativeParserFactory.v;
+	boolean tagPA = GenerativeParserFactory.tagPA;
 	int maxLength = GenerativeParserFactory.maxLength;
 	boolean sanity = false;
 
@@ -172,7 +173,7 @@ public class GenerativeParser implements Parser {
 	private List<Tree<String>> annotateTrees(List<Tree<String>> trees) {
 		List<Tree<String>> annotatedTrees = new ArrayList<Tree<String>>();
 		// if (!(v == 1 && h == Integer.MAX_VALUE)) {
-		TreeMarkovAnnotations.setHV(h, v);
+		TreeMarkovAnnotations.setHV(h, v, tagPA);
 		// }
 		int i = 0;
 		for (Tree<String> tree : trees) {
