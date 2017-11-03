@@ -16,9 +16,9 @@ import java.util.Scanner;
 import edu.berkeley.nlp.util.CounterMap;
 
 public class GenerativeParser implements Parser {
-	int h = 0;
-	int v = 0;
-	int maxLength = 0;
+	int h = GenerativeParserFactory.h;
+	int v = GenerativeParserFactory.v;
+	int maxLength = GenerativeParserFactory.maxLength;
 	boolean sanity = false;
 
 	CounterMap<List<String>, Tree<String>> knownParses;
@@ -31,10 +31,8 @@ public class GenerativeParser implements Parser {
 
 	CYKParser cykParser;
 
-	public GenerativeParser(List<Tree<String>> trainTrees, int h, int v, int maxLength) {
+	public GenerativeParser(List<Tree<String>> trainTrees, int maxLength) {
 
-		this.h = h;
-		this.v = v;
 		// this.sanity = sanity;
 
 		System.out.print("Annotating / binarizing training trees ... ");
@@ -42,7 +40,9 @@ public class GenerativeParser implements Parser {
 		System.out.println("done.");
 		System.out.print("Building grammar ... ");
 		grammar = Grammar.generativeGrammarFromTrees(annotatedTrainTrees);
-		System.out.println("done. (" + grammar.getLabelIndexer().size() + " states)");
+		System.out.println("done Number of symbols " + grammar.getLabelIndexer().size() + " states");
+		System.out.println("done Number of binary rules " + grammar.getBinaryRules().size() + " rules");
+		System.out.println("done Number of unary rules " + grammar.getUnaryRules().size() + " rules");
 
 		// printIndexer();
 
@@ -98,13 +98,13 @@ public class GenerativeParser implements Parser {
 
 			// System.out.println(annotatedBestParse.toString());
 
-			if (v == 1 && h == Integer.MAX_VALUE) {
-				// System.out.println("unannotatedBestParse");
-				// System.out.println(TreeAnnotations.unAnnotateTree(annotatedBestParse));
-				return TreeAnnotations.unAnnotateTree(annotatedBestParse);
+			// if (v == 1 && h == Integer.MAX_VALUE) {
+			// System.out.println("unannotatedBestParse");
+			// System.out.println(TreeAnnotations.unAnnotateTree(annotatedBestParse));
+			return TreeAnnotations.unAnnotateTree(annotatedBestParse);
 
-			}
-			return TreeMarkovAnnotations.unAnnotateTree(annotatedBestParse);
+			// }
+			// return TreeMarkovAnnotations.unAnnotateTree(annotatedBestParse);
 		} catch (Exception e) {
 			System.out.println(e.getMessage().substring(0, 1000));
 		}
@@ -171,6 +171,9 @@ public class GenerativeParser implements Parser {
 
 	private List<Tree<String>> annotateTrees(List<Tree<String>> trees) {
 		List<Tree<String>> annotatedTrees = new ArrayList<Tree<String>>();
+		// if (!(v == 1 && h == Integer.MAX_VALUE)) {
+		TreeMarkovAnnotations.setHV(h, v);
+		// }
 		int i = 0;
 		for (Tree<String> tree : trees) {
 			i++;
@@ -178,14 +181,31 @@ public class GenerativeParser implements Parser {
 			if (i < 5)
 				System.out.println("Unannotated tree \n" + new Trees.PennTreeRenderer().render(tree));
 			Tree<String> annotatedTree;
-			if (v == 1 && h == Integer.MAX_VALUE) {
-				// System.out.println("Generic annotations");
-				annotatedTree = TreeAnnotations.annotateTreeLosslessBinarization(tree);
-			} else
-				annotatedTree = TreeMarkovAnnotations.annotateTreeLosslessBinarization(tree);
+			// if (v == 1 && h == Integer.MAX_VALUE) {
+			// // System.out.println("Generic annotations");
+			// annotatedTree = TreeAnnotations.annotateTreeLosslessBinarization(tree);
+			// } else {
+			annotatedTree = TreeMarkovAnnotations.annotateBinarization(tree);
+			// annotatedTree = FineAnnotator.annotateTree(tree);
+
+			// }
 			annotatedTrees.add(annotatedTree);
-			if (i < 5)
-				System.out.println("Annotated tree \n" + new Trees.PennTreeRenderer().render(annotatedTree));
+			if (i < 5) {
+				System.out.println("1 INF Annotated tree \n"
+						+ new Trees.PennTreeRenderer().render(TreeAnnotations.annotateTreeLosslessBinarization(tree)));
+
+				// System.out.println(" Annotated tree \n" + new
+				// Trees.PennTreeRenderer().render(annotatedTree));
+				System.out.println("Our own annotated tree by our annotator\n"
+						+ new Trees.PennTreeRenderer().render(TreeMarkovAnnotations.annotateBinarization(tree)));
+
+			}
+			if (i == 5) {
+				// String[] a = new String[0];
+				// System.out.println("a length" + a.length);
+				// Scanner s = new Scanner(System.in);
+				// s.nextLine();
+			}
 		}
 		return annotatedTrees;
 	}

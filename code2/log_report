@@ -16,7 +16,24 @@ v=1 h=inf 1000 40
 Decoding took 3057469 millis
 
 
+v=3 h=2 1000 40  with context tag
 
+ [Current]  P: 88.23 R: 93.75 F1: 90.9 EX: 0.0
+ [Average]  P: 82.66 R: 80.45 F1: 81.54 EX: 20.21
+Decoding took 603508 millis
+
+
+v=3 h=2 1000 40 without context tag
+ [Current]  P: 88.23 R: 93.75 F1: 90.9 EX: 0.0
+ [Average]  P: 81.8 R: 79.51 F1: 80.64 EX: 20.02
+Decoding took 643522 millis
+
+v=2 h=2 15 15 without context 
+83.11
+
+v=2 h=2 1000 14 without context 
+80.64
+783085 millis
 
 
 

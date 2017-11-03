@@ -17,39 +17,68 @@ public class TreeMarkovAnnotations {
 	 * @param unAnnotatedTree
 	 * @return
 	 */
-	
-	
-	
-	public static Tree<String> annotateTreeLosslessBinarization(Tree<String> unAnnotatedTree) {
+	static int h = GenerativeParserFactory.h;
+	static int v = GenerativeParserFactory.v;
 
-		return binarizeTree(unAnnotatedTree);
+	public static Tree<String> annotateBinarization(Tree<String> unAnnotatedTree) {
+
+		// List<String> parentLabel = new ArrayList<String>(v - 1);
+
+		// Tree<String> va = verticalAnnotate(unAnnotatedTree);
+
+		String[] parents = new String[v - 1];
+		for (int i = 0; i < v - 1; i++)
+			parents[i] = "";
+
+		return binarizeTree(unAnnotatedTree, parents);
 	}
 
-	private static Tree<String> binarizeTree(Tree<String> tree) {
+	private static Tree<String> binarizeTree(Tree<String> tree, String[] parents) {
 		String label = tree.getLabel();
+		String labelWithParents = label;
+		for (int counter = 0; counter < parents.length; counter++) {
+			if (parents[counter].length() > 0)
+				labelWithParents += "^" + parents[counter];
+		}
+		String[] parentsChild = new String[v - 1];
+		if (v > 2)
+			System.arraycopy(parents, 0, parentsChild, 1, v - 2);
+		if (v > 1)
+			parentsChild[0] = label;
 		if (tree.isLeaf())
 			return new Tree<String>(label);
 		if (tree.getChildren().size() == 1) {
-			return new Tree<String>(label, Collections.singletonList(binarizeTree(tree.getChildren().get(0))));
+
+			return new Tree<String>(labelWithParents,
+					Collections.singletonList(binarizeTree(tree.getChildren().get(0), parentsChild)));
 		}
 		// otherwise, it's a binary-or-more local tree, so decompose it into a sequence
 		// of binary and unary trees.
 		String intermediateLabel = "@" + label + "->";
-		Tree<String> intermediateTree = binarizeTreeHelper(tree, 0, intermediateLabel);
-		return new Tree<String>(label, intermediateTree.getChildren());
+		Tree<String> intermediateTree = binarizeTreeHelper(tree, 0, intermediateLabel, parentsChild);
+		return new Tree<String>(labelWithParents, intermediateTree.getChildren());
 	}
 
 	private static Tree<String> binarizeTreeHelper(Tree<String> tree, int numChildrenGenerated,
-			String intermediateLabel) {
+			String intermediateLabel, String[] parentsChild) {
 		Tree<String> leftTree = tree.getChildren().get(numChildrenGenerated);
 		List<Tree<String>> children = new ArrayList<Tree<String>>();
-		children.add(binarizeTree(leftTree));
+
+		// TODO!!!!!!!!!
+
+		children.add(binarizeTree(leftTree, parentsChild));
+		String hisLabel = intermediateLabel;
 		if (numChildrenGenerated < tree.getChildren().size() - 1) {
-			Tree<String> rightTree = binarizeTreeHelper(tree, numChildrenGenerated + 1,
-					intermediateLabel + "_" + leftTree.getLabel());
+
+			Tree<String> rightTree = binarizeTreeHelper(tree, numChildrenGenerated + 1, intermediateLabel,
+					parentsChild);
 			children.add(rightTree);
 		}
-		return new Tree<String>(intermediateLabel, children);
+		for (int i = Math.max(0, numChildrenGenerated - h); i < numChildrenGenerated; i++) {
+
+			hisLabel += "_" + tree.getChildren().get(i).getLabel();
+		}
+		return new Tree<String>(hisLabel, children);
 	}
 
 	public static Tree<String> unAnnotateTree(Tree<String> annotatedTree) {
@@ -65,5 +94,12 @@ public class TreeMarkovAnnotations {
 		});
 		Tree<String> unAnnotatedTree = (new Trees.LabelNormalizer()).transformTree(debinarizedTree);
 		return unAnnotatedTree;
+	}
+
+	public static void setHV(int hh, int vv) {
+		// TODO Auto-generated method stub
+		h = hh;
+		v = vv;
+
 	}
 }

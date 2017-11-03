@@ -26,9 +26,16 @@ import edu.berkeley.nlp.util.Indexer;
  * @author Dan Klein
  */
 public class PCFGParserTester3 {
+	static int h = 2;
+	static int v = 2;
 
 	public enum ParserType {
 		BASELINE {
+			public ParserFactory getParserFactory(int h, int v) {
+				return getParserFactory();
+
+			}
+
 			@Override
 			public ParserFactory getParserFactory() {
 				return new BaselineParser.BaselineParserFactory();
@@ -37,7 +44,7 @@ public class PCFGParserTester3 {
 		GENERATIVE {
 			@Override
 			public ParserFactory getParserFactory() {
-				return new GenerativeParserFactory();
+				return new GenerativeParserFactory(h, v);
 			}
 		},
 		COARSE_TO_FINE {
@@ -91,6 +98,23 @@ public class PCFGParserTester3 {
 		if (argMap.containsKey("-quiet")) {
 			verbose = false;
 		}
+
+		if (argMap.containsKey("-h")) {
+			// System.out.println(argMap.get("-h")+"|");
+
+			if (argMap.get("-h").equals("INF"))
+				h = Integer.MAX_VALUE;
+			else
+				h = Integer.parseInt(argMap.get("-h"));
+			// System.out.println(h);
+			// Scanner s = new Scanner(System.in);
+			// s.nextLine();
+		}
+
+		if (argMap.containsKey("-v")) {
+			v = Integer.parseInt(argMap.get("-v"));
+		}
+
 		ParserType parserType = ParserType.BASELINE;
 
 		if (argMap.containsKey("-parserType")) {
