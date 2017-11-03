@@ -3,4 +3,4 @@ export DATA_PATH="/Users/xin/Desktop/11711/assign2_data/"
 echo "data path is "$DATA_PATH
 export PARSER_TESTER_PATH="edu.berkeley.nlp.assignments.parsing.student.PCFGParserTester3"
 
-for i in 15,15 1000,40; do IFS=',' read train test <<< "${i}"; for v in 1 2 3; do for h in 1 2 "INF"; do nohup java -cp assign_parsing.jar:assign_parsing-submit.jar -server -mx2000m $PARSER_TESTER_PATH  -path $DATA_PATH -parserType GENERATIVE  -maxTrainLength $train -maxTestLength $test -v $v -h $h > log/log_${train}_${test}_${v}_${h}  & ; done done done
+for i in 15,15 1000,40; do IFS=',' read train test <<< "${i}"; for v in 1 2 3; do for h in 1 2 "INF"; do nohup java -cp assign_parsing.jar:assign_parsing-submit.jar -server -mx2000m $PARSER_TESTER_PATH  -path $DATA_PATH -parserType GENERATIVE  -maxTrainLength $train -maxTestLength $test -v $v -h $h > log/log_${train}_${test}_${v}_${h}  & done done done
