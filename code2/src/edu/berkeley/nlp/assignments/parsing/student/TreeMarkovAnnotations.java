@@ -1,7 +1,9 @@
 package edu.berkeley.nlp.assignments.parsing.student;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 import edu.berkeley.nlp.ling.Tree;
@@ -20,6 +22,34 @@ public class TreeMarkovAnnotations {
 	static int h = GenerativeParserFactory.h;
 	static int v = GenerativeParserFactory.v;
 	static boolean tagPA = GenerativeParserFactory.tagPA;
+	static boolean tagSplitting = GenerativeParserFactory.tagSplitting;
+
+	static HashSet<String> prepositions = new HashSet<String>(
+			Arrays.asList(new String("atop amongst toward beyond after aboard over toward among astride "
+					+ "along underneath alongside throughout under behind amid near outside upon en "
+					+ "across during below above between beneath post besides into nearest around beside "
+					+ "inside down within ago out up through fiscal via save v. vs. versus towards de on past")
+							.split(" ")));
+	static HashSet<String> subordinatingConjuctions = new HashSet<String>(Arrays
+			.asList(new String("than that though after although as because before in order that once since so that "
+					+ "unless until when whenever where whereas wherever whether while").split(" ")));
+	static HashSet<String> except = new HashSet<String>(
+			Arrays.asList(new String("but pending lest except minus without albeit despite unlike plus").split(" ")));
+	static HashSet<String> complementizer = new HashSet<String>(
+			Arrays.asList(new String("if whether because unless since").split(" ")));
+
+	static String splitINTag(String word) {
+		word = word.toLowerCase();
+		if (prepositions.contains(word))
+			return "INPREP";
+		else if (subordinatingConjuctions.contains(word))
+			return "INSUBCON";
+		else if (except.contains(word))
+			return "INEXCEPT";
+		else if (complementizer.contains(word))
+			return "INCOMP";
+		return "";
+	}
 
 	public static Tree<String> annotateBinarization(Tree<String> unAnnotatedTree) {
 
@@ -54,9 +84,28 @@ public class TreeMarkovAnnotations {
 			if (!tagPA && tree.isPreTerminal())
 				actualLabel = label;
 
+			if (GenerativeParserFactory.tagSplitting) {
+
+				if (!tree.isPreTerminal() && !label.equals("ROOT")) { // UNARY-INTERNAL
+					actualLabel = actualLabel + "-U";
+				}
+				Tree<String> child = tree.getChildren().get(0);
+				if (child.getLabel().equals("DT") || child.getLabel().equals("RB")) { // Two examples of UNARY-EXTERNAL
+					parentsChild[0] = parentsChild[0] + "^U";
+				}
+
+				if (child.isLeaf() && label.equals("IN")) {
+					String inTag = splitINTag(child.getLabel());
+					if (inTag.length() > 0)
+
+						actualLabel = actualLabel + "^" + inTag;
+				}
+			}
+
 			return new Tree<String>(actualLabel,
 					Collections.singletonList(binarizeTree(tree.getChildren().get(0), parentsChild)));
 		}
+
 		// otherwise, it's a binary-or-more local tree, so decompose it into a sequence
 		// of binary and unary trees.
 		String intermediateLabel = "@" + label + "->";

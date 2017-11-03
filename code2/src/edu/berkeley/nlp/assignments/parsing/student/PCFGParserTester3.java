@@ -118,6 +118,9 @@ public class PCFGParserTester3 {
 		if (argMap.containsKey("-noTagPA")) {
 			GenerativeParserFactory.tagPA = false;
 		}
+		if (argMap.containsKey("-tagSplitting")) {
+			GenerativeParserFactory.tagSplitting=true;
+		}
 
 		ParserType parserType = ParserType.BASELINE;
 
