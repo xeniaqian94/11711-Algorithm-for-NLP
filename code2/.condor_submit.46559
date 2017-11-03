@@ -1,0 +1,9 @@
+universe = vanilla
+executable = .condor_run.46559
+initialdir = /bos/usr0/xinq/11711-Algorithm-for-NLP/code2
+notification = NEVER
+log = .condor_log.46559
+output = .condor_out.46559
+error = .condor_error.46559
+getenv = True
+queue

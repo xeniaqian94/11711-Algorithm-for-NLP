@@ -1,0 +1,2 @@
+#!/bin/bash
+java -cp assign_parsing.jar:assign_parsing-submit.jar -server -mx2000m edu.berkeley.nlp.assignments.parsing.student.PCFGParserTester3  -path ../assign2_data/ -parserType GENERATIVE  -maxTrainLength 1000 -maxTestLength 40 -v 2 -h INF > log2/log_1000_40_2_INF 

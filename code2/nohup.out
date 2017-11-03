@@ -1,0 +1,5 @@
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at edu.berkeley.nlp.assignments.parsing.student.CYKParser.<init>(CYKParser.java:39)
+	at edu.berkeley.nlp.assignments.parsing.student.GenerativeParser.<init>(GenerativeParser.java:56)
+	at edu.berkeley.nlp.assignments.parsing.student.GenerativeParserFactory.getParser(GenerativeParserFactory.java:31)
+	at edu.berkeley.nlp.assignments.parsing.student.PCFGParserTester3.main(PCFGParserTester3.java:144)

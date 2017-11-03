@@ -1,0 +1,402 @@
+Using base path: ../assign2_data/
+Testing on validation data.
+Maximum length for training sentences: 1000
+Maximum length for test sentences: 40
+Loading training trees (sections 2-21) ... done. (39832 trees)
+Loading validation trees (section 22) ... done. (1578 trees)
+Annotating / binarizing training trees ... Unannotated tree 
+(ROOT
+  (S
+    (PP (IN In)
+      (NP
+        (NP (DT an) (NNP Oct.) (CD 19) (NN review))
+        (PP (IN of)
+          (NP (`` ``)
+            (NP (DT The) (NN Misanthrope))
+            ('' '')
+            (PP (IN at)
+              (NP
+                (NP (NNP Chicago) (POS 's))
+                (NNP Goodman) (NNP Theatre)))))
+        (PRN (-LRB- -LRB-) (`` ``)
+          (S
+            (NP (VBN Revitalized) (NNS Classics))
+            (VP (VBP Take)
+              (NP (DT the) (NN Stage))
+              (PP (IN in)
+                (NP (NNP Windy) (NNP City)))))
+          (, ,) ('' '')
+          (NP (NN Leisure)
+            (CC &)
+            (NNS Arts))
+          (-RRB- -RRB-))))
+    (, ,)
+    (NP
+      (NP
+        (NP (DT the) (NN role))
+        (PP (IN of)
+          (NP (NNP Celimene))))
+      (, ,)
+      (VP (VBN played)
+        (PP (IN by)
+          (NP (NNP Kim) (NNP Cattrall))))
+      (, ,))
+    (VP (VBD was)
+      (VP
+        (ADVP (RB mistakenly))
+        (VBN attributed)
+        (PP (TO to)
+          (NP (NNP Christina) (NNP Haag)))))
+    (. .)))
+
+1 INF Annotated tree 
+(ROOT
+  (S
+    (PP (IN In)
+      (@PP->_IN
+        (NP
+          (NP (DT an)
+            (@NP->_DT (NNP Oct.)
+              (@NP->_DT_NNP (CD 19)
+                (@NP->_DT_NNP_CD (NN review)))))
+          (@NP->_NP
+            (PP (IN of)
+              (@PP->_IN
+                (NP (`` ``)
+                  (@NP->_``
+                    (NP (DT The)
+                      (@NP->_DT (NN Misanthrope)))
+                    (@NP->_``_NP ('' '')
+                      (@NP->_``_NP_''
+                        (PP (IN at)
+                          (@PP->_IN
+                            (NP
+                              (NP (NNP Chicago)
+                                (@NP->_NNP (POS 's)))
+                              (@NP->_NP (NNP Goodman)
+                                (@NP->_NP_NNP (NNP Theatre))))))))))))
+            (@NP->_NP_PP
+              (PRN (-LRB- -LRB-)
+                (@PRN->_-LRB- (`` ``)
+                  (@PRN->_-LRB-_``
+                    (S
+                      (NP (VBN Revitalized)
+                        (@NP->_VBN (NNS Classics)))
+                      (@S->_NP
+                        (VP (VBP Take)
+                          (@VP->_VBP
+                            (NP (DT the)
+                              (@NP->_DT (NN Stage)))
+                            (@VP->_VBP_NP
+                              (PP (IN in)
+                                (@PP->_IN
+                                  (NP (NNP Windy)
+                                    (@NP->_NNP (NNP City))))))))))
+                    (@PRN->_-LRB-_``_S (, ,)
+                      (@PRN->_-LRB-_``_S_, ('' '')
+                        (@PRN->_-LRB-_``_S_,_''
+                          (NP (NN Leisure)
+                            (@NP->_NN (CC &)
+                              (@NP->_NN_CC (NNS Arts))))
+                          (@PRN->_-LRB-_``_S_,_''_NP (-RRB- -RRB-)))))))))))))
+    (@S->_PP (, ,)
+      (@S->_PP_,
+        (NP
+          (NP
+            (NP (DT the)
+              (@NP->_DT (NN role)))
+            (@NP->_NP
+              (PP (IN of)
+                (@PP->_IN
+                  (NP (NNP Celimene))))))
+          (@NP->_NP (, ,)
+            (@NP->_NP_,
+              (VP (VBN played)
+                (@VP->_VBN
+                  (PP (IN by)
+                    (@PP->_IN
+                      (NP (NNP Kim)
+                        (@NP->_NNP (NNP Cattrall)))))))
+              (@NP->_NP_,_VP (, ,)))))
+        (@S->_PP_,_NP
+          (VP (VBD was)
+            (@VP->_VBD
+              (VP
+                (ADVP (RB mistakenly))
+                (@VP->_ADVP (VBN attributed)
+                  (@VP->_ADVP_VBN
+                    (PP (TO to)
+                      (@PP->_TO
+                        (NP (NNP Christina)
+                          (@NP->_NNP (NNP Haag))))))))))
+          (@S->_PP_,_NP_VP (. .)))))))
+
+Our own annotated tree by our annotator
+(ROOT
+  (S^ROOT
+    (PP^S^ROOT (IN^PP^S In)
+      (@PP->_IN
+        (NP^PP^S
+          (NP^NP^PP (DT^NP^NP an)
+            (@NP->_DT (NNP^NP^NP Oct.)
+              (@NP->_DT_NNP (CD^NP^NP 19)
+                (@NP->_DT_NNP_CD (NN^NP^NP review)))))
+          (@NP->_NP
+            (PP^NP^PP (IN^PP^NP of)
+              (@PP->_IN
+                (NP^PP^NP (``^NP^PP ``)
+                  (@NP->_``
+                    (NP^NP^PP (DT^NP^NP The)
+                      (@NP->_DT (NN^NP^NP Misanthrope)))
+                    (@NP->_``_NP (''^NP^PP '')
+                      (@NP->_``_NP_''
+                        (PP^NP^PP (IN^PP^NP at)
+                          (@PP->_IN
+                            (NP^PP^NP
+                              (NP^NP^PP (NNP^NP^NP Chicago)
+                                (@NP->_NNP (POS^NP^NP 's)))
+                              (@NP->_NP (NNP^NP^PP Goodman)
+                                (@NP->_NP_NNP (NNP^NP^PP Theatre))))))))))))
+            (@NP->_NP_PP
+              (PRN^NP^PP (-LRB-^PRN^NP -LRB-)
+                (@PRN->_-LRB- (``^PRN^NP ``)
+                  (@PRN->_-LRB-_``
+                    (S^PRN^NP
+                      (NP^S^PRN (VBN^NP^S Revitalized)
+                        (@NP->_VBN (NNS^NP^S Classics)))
+                      (@S->_NP
+                        (VP^S^PRN (VBP^VP^S Take)
+                          (@VP->_VBP
+                            (NP^VP^S (DT^NP^VP the)
+                              (@NP->_DT (NN^NP^VP Stage)))
+                            (@VP->_VBP_NP
+                              (PP^VP^S (IN^PP^VP in)
+                                (@PP->_IN
+                                  (NP^PP^VP (NNP^NP^PP Windy)
+                                    (@NP->_NNP (NNP^NP^PP City))))))))))
+                    (@PRN->_-LRB-_``_S (,^PRN^NP ,)
+                      (@PRN->_-LRB-_``_S_, (''^PRN^NP '')
+                        (@PRN->_-LRB-_``_S_,_''
+                          (NP^PRN^NP (NN^NP^PRN Leisure)
+                            (@NP->_NN (CC^NP^PRN &)
+                              (@NP->_NN_CC (NNS^NP^PRN Arts))))
+                          (@PRN->_-LRB-_``_S_,_''_NP (-RRB-^PRN^NP -RRB-)))))))))))))
+    (@S->_PP (,^S^ROOT ,)
+      (@S->_PP_,
+        (NP^S^ROOT
+          (NP^NP^S
+            (NP^NP^NP (DT^NP^NP the)
+              (@NP->_DT (NN^NP^NP role)))
+            (@NP->_NP
+              (PP^NP^NP (IN^PP^NP of)
+                (@PP->_IN
+                  (NP^PP^NP (NNP^NP^PP Celimene))))))
+          (@NP->_NP (,^NP^S ,)
+            (@NP->_NP_,
+              (VP^NP^S (VBN^VP^NP played)
+                (@VP->_VBN
+                  (PP^VP^NP (IN^PP^VP by)
+                    (@PP->_IN
+                      (NP^PP^VP (NNP^NP^PP Kim)
+                        (@NP->_NNP (NNP^NP^PP Cattrall)))))))
+              (@NP->_NP_,_VP (,^NP^S ,)))))
+        (@S->_PP_,_NP
+          (VP^S^ROOT (VBD^VP^S was)
+            (@VP->_VBD
+              (VP^VP^S
+                (ADVP^VP^VP (RB^ADVP^VP mistakenly))
+                (@VP->_ADVP (VBN^VP^VP attributed)
+                  (@VP->_ADVP_VBN
+                    (PP^VP^VP (TO^PP^VP to)
+                      (@PP->_TO
+                        (NP^PP^VP (NNP^NP^PP Christina)
+                          (@NP->_NNP (NNP^NP^PP Haag))))))))))
+          (@S->_PP_,_NP_VP (.^S^ROOT .)))))))
+
+Unannotated tree 
+(ROOT
+  (S
+    (NP (NNP Ms.) (NNP Haag))
+    (VP (VBZ plays)
+      (NP (NNP Elianti)))
+    (. .)))
+
+1 INF Annotated tree 
+(ROOT
+  (S
+    (NP (NNP Ms.)
+      (@NP->_NNP (NNP Haag)))
+    (@S->_NP
+      (VP (VBZ plays)
+        (@VP->_VBZ
+          (NP (NNP Elianti))))
+      (@S->_NP_VP (. .)))))
+
+Our own annotated tree by our annotator
+(ROOT
+  (S^ROOT
+    (NP^S^ROOT (NNP^NP^S Ms.)
+      (@NP->_NNP (NNP^NP^S Haag)))
+    (@S->_NP
+      (VP^S^ROOT (VBZ^VP^S plays)
+        (@VP->_VBZ
+          (NP^VP^S (NNP^NP^VP Elianti))))
+      (@S->_NP_VP (.^S^ROOT .)))))
+
+Unannotated tree 
+(ROOT
+  (S
+    (NP (NNP Rolls-Royce) (NNP Motor) (NNPS Cars) (NNP Inc.))
+    (VP (VBD said)
+      (SBAR
+        (S
+          (NP (PRP it))
+          (VP (VBZ expects)
+            (S
+              (NP (PRP$ its) (NNP U.S.) (NNS sales))
+              (VP (TO to)
+                (VP (VB remain)
+                  (ADJP (JJ steady))
+                  (PP (IN at)
+                    (NP
+                      (QP (IN about) (CD 1,200))
+                      (NNS cars)))
+                  (PP (IN in)
+                    (NP (CD 1990))))))))))
+    (. .)))
+
+1 INF Annotated tree 
+(ROOT
+  (S
+    (NP (NNP Rolls-Royce)
+      (@NP->_NNP (NNP Motor)
+        (@NP->_NNP_NNP (NNPS Cars)
+          (@NP->_NNP_NNP_NNPS (NNP Inc.)))))
+    (@S->_NP
+      (VP (VBD said)
+        (@VP->_VBD
+          (SBAR
+            (S
+              (NP (PRP it))
+              (@S->_NP
+                (VP (VBZ expects)
+                  (@VP->_VBZ
+                    (S
+                      (NP (PRP$ its)
+                        (@NP->_PRP$ (NNP U.S.)
+                          (@NP->_PRP$_NNP (NNS sales))))
+                      (@S->_NP
+                        (VP (TO to)
+                          (@VP->_TO
+                            (VP (VB remain)
+                              (@VP->_VB
+                                (ADJP (JJ steady))
+                                (@VP->_VB_ADJP
+                                  (PP (IN at)
+                                    (@PP->_IN
+                                      (NP
+                                        (QP (IN about)
+                                          (@QP->_IN (CD 1,200)))
+                                        (@NP->_QP (NNS cars)))))
+                                  (@VP->_VB_ADJP_PP
+                                    (PP (IN in)
+                                      (@PP->_IN
+                                        (NP (CD 1990)))))))))))))))))))
+      (@S->_NP_VP (. .)))))
+
+Our own annotated tree by our annotator
+(ROOT
+  (S^ROOT
+    (NP^S^ROOT (NNP^NP^S Rolls-Royce)
+      (@NP->_NNP (NNP^NP^S Motor)
+        (@NP->_NNP_NNP (NNPS^NP^S Cars)
+          (@NP->_NNP_NNP_NNPS (NNP^NP^S Inc.)))))
+    (@S->_NP
+      (VP^S^ROOT (VBD^VP^S said)
+        (@VP->_VBD
+          (SBAR^VP^S
+            (S^SBAR^VP
+              (NP^S^SBAR (PRP^NP^S it))
+              (@S->_NP
+                (VP^S^SBAR (VBZ^VP^S expects)
+                  (@VP->_VBZ
+                    (S^VP^S
+                      (NP^S^VP (PRP$^NP^S its)
+                        (@NP->_PRP$ (NNP^NP^S U.S.)
+                          (@NP->_PRP$_NNP (NNS^NP^S sales))))
+                      (@S->_NP
+                        (VP^S^VP (TO^VP^S to)
+                          (@VP->_TO
+                            (VP^VP^S (VB^VP^VP remain)
+                              (@VP->_VB
+                                (ADJP^VP^VP (JJ^ADJP^VP steady))
+                                (@VP->_VB_ADJP
+                                  (PP^VP^VP (IN^PP^VP at)
+                                    (@PP->_IN
+                                      (NP^PP^VP
+                                        (QP^NP^PP (IN^QP^NP about)
+                                          (@QP->_IN (CD^QP^NP 1,200)))
+                                        (@NP->_QP (NNS^NP^PP cars)))))
+                                  (@VP->_VB_ADJP_PP
+                                    (PP^VP^VP (IN^PP^VP in)
+                                      (@PP->_IN
+                                        (NP^PP^VP (CD^NP^PP 1990)))))))))))))))))))
+      (@S->_NP_VP (.^S^ROOT .)))))
+
+Unannotated tree 
+(ROOT
+  (S
+    (NP (DT The) (NN luxury) (NN auto) (NN maker))
+    (NP (JJ last) (NN year))
+    (VP (VBD sold)
+      (NP (CD 1,214) (NNS cars))
+      (PP (IN in)
+        (NP (DT the) (NNP U.S.))))))
+
+1 INF Annotated tree 
+(ROOT
+  (S
+    (NP (DT The)
+      (@NP->_DT (NN luxury)
+        (@NP->_DT_NN (NN auto)
+          (@NP->_DT_NN_NN (NN maker)))))
+    (@S->_NP
+      (NP (JJ last)
+        (@NP->_JJ (NN year)))
+      (@S->_NP_NP
+        (VP (VBD sold)
+          (@VP->_VBD
+            (NP (CD 1,214)
+              (@NP->_CD (NNS cars)))
+            (@VP->_VBD_NP
+              (PP (IN in)
+                (@PP->_IN
+                  (NP (DT the)
+                    (@NP->_DT (NNP U.S.))))))))))))
+
+Our own annotated tree by our annotator
+(ROOT
+  (S^ROOT
+    (NP^S^ROOT (DT^NP^S The)
+      (@NP->_DT (NN^NP^S luxury)
+        (@NP->_DT_NN (NN^NP^S auto)
+          (@NP->_DT_NN_NN (NN^NP^S maker)))))
+    (@S->_NP
+      (NP^S^ROOT (JJ^NP^S last)
+        (@NP->_JJ (NN^NP^S year)))
+      (@S->_NP_NP
+        (VP^S^ROOT (VBD^VP^S sold)
+          (@VP->_VBD
+            (NP^VP^S (CD^NP^VP 1,214)
+              (@NP->_CD (NNS^NP^VP cars)))
+            (@VP->_VBD_NP
+              (PP^VP^S (IN^PP^VP in)
+                (@PP->_IN
+                  (NP^PP^VP (DT^NP^PP the)
+                    (@NP->_DT (NNP^NP^PP U.S.))))))))))))
+
+done.
+Building grammar ... done Number of symbols 18242 states
+done Number of binary rules 25768 rules
+done Number of unary rules 23874 rules
+2147483647 3
