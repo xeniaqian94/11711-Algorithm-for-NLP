@@ -51,6 +51,15 @@ public class TreeMarkovAnnotations {
 		return "";
 	}
 
+	static String splitAUXTag(String word) {
+		word = word.toLowerCase();
+		if (word.equals("be"))
+			return "AUXBE";
+		else if (word.equals("more"))
+			return "INMORE";
+		return "";
+	}
+
 	public static Tree<String> annotateBinarization(Tree<String> unAnnotatedTree) {
 
 		// List<String> parentLabel = new ArrayList<String>(v - 1);
@@ -100,6 +109,14 @@ public class TreeMarkovAnnotations {
 
 						actualLabel = actualLabel + "^" + inTag;
 				}
+
+				if (child.isLeaf() && label.equals("AUX")) {
+					String inTag = splitAUXTag(child.getLabel());
+					if (inTag.length() > 0)
+
+						actualLabel = actualLabel + "^" + inTag;
+				}
+
 			}
 
 			return new Tree<String>(actualLabel,
