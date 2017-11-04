@@ -100,7 +100,8 @@ public class TreeMarkovAnnotations {
 				}
 				Tree<String> child = tree.getChildren().get(0);
 				if (child.getLabel().equals("DT") || child.getLabel().equals("RB")) { // Two examples of UNARY-EXTERNAL
-					parentsChild[0] = parentsChild[0] + "^U";
+					if (v>1)
+						parentsChild[0] = parentsChild[0] + "^U";
 				}
 
 				if (child.isLeaf() && label.equals("IN")) {

@@ -43,7 +43,7 @@ public class CYKParser {
 
 	}
 
-	public double getScoreTag(String word, String tag, SimpleLexicon lexicon) {
+	public static double getScoreTag(String word, String tag, SimpleLexicon lexicon) {
 		if (lexicon.getAllTags().contains(tag)) {
 			return lexicon.scoreTagging(word, tag);
 		}
@@ -141,35 +141,12 @@ public class CYKParser {
 				}
 			}
 
-			// printScores(sentence);
-
-//			for (int i = 0; i <= (numWords - diff); i++) {
-//				for (int a = 0; a < numStates; a++) {
-//					for (UnaryRule ur : unaryClosure.getClosedUnaryRulesByParent(a)) { // a->b
-//						// System.out.println(ur.toString());
-//						int b = ur.getChild();
-//						if (scoreBinary[i][i + diff][b] != Double.NEGATIVE_INFINITY) {
-//
-//							double prob = ur.getScore() + scoreBinary[i][i + diff][b];
-//							if (scoreUnary[i][i + diff][a] < prob) {
-//								scoreUnary[i][i + diff][a] = prob;
-//								backUnary[i][i + diff][a] = b;
-//							}
-//						}
-//					}
-//				}
-//
-//			}
-			
-			
-			
 			for (int i = 0; i <= (numWords - diff); i++) {
 				for (int b = 0; b < numStates; b++) {
 					if (scoreBinary[i][i + diff][b] != Double.NEGATIVE_INFINITY) {
 						for (UnaryRule ur : unaryClosure.getClosedUnaryRulesByChild(b)) { // a->b
-						// System.out.println(ur.toString());
+							// System.out.println(ur.toString());
 							int a = ur.getParent();
-						
 
 							double prob = ur.getScore() + scoreBinary[i][i + diff][b];
 							if (scoreUnary[i][i + diff][a] < prob) {
@@ -181,8 +158,6 @@ public class CYKParser {
 				}
 
 			}
-				
-				
 
 		}
 
@@ -222,7 +197,7 @@ public class CYKParser {
 
 	}
 
-	private Tree<String> backtrackUnary(int i, int j, int a, List<String> sentence) throws Exception {
+	public Tree<String> backtrackUnary(int i, int j, int a, List<String> sentence) throws Exception {
 		// TODO Auto-generated method stub
 
 		// System.out.println("Currently backtracking unary i j a " + i + " " + j + " "

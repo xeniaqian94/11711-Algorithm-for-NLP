@@ -119,7 +119,12 @@ public class PCFGParserTester3 {
 			GenerativeParserFactory.tagPA = false;
 		}
 		if (argMap.containsKey("-tagSplitting")) {
-			GenerativeParserFactory.tagSplitting=true;
+			GenerativeParserFactory.tagSplitting = true;
+		}
+
+		if (argMap.containsKey("-threshold")) {
+			System.out.println(argMap.get("-threshold"));
+			CoarseToFineParserFactory.threshold = -1.0 * Double.parseDouble(argMap.get("-threshold"));
 		}
 
 		ParserType parserType = ParserType.BASELINE;
@@ -132,7 +137,7 @@ public class PCFGParserTester3 {
 		if (sanity) {
 			maxTrainLength = 3;
 			maxTestLength = 3;
-			trainTreesEnd = 299;
+			trainTreesEnd = 250;
 		}
 		System.out.print("Loading training trees (sections 2-21) ... ");
 		List<Tree<String>> trainTrees = readTrees(basePath, 200, trainTreesEnd, maxTrainLength);
@@ -140,7 +145,7 @@ public class PCFGParserTester3 {
 		List<Tree<String>> testTrees = null;
 		if (testMode.equalsIgnoreCase("validate")) {
 			System.out.print("Loading validation trees (section 22) ... ");
-			testTrees = readTrees(basePath, 2200, 2299, maxTestLength);
+			testTrees = readTrees(basePath, 200, 250, maxTestLength);
 		} else {
 			System.out.print("Loading test trees (section 23) ... ");
 			testTrees = readTrees(basePath, 2300, 2399, maxTestLength);
@@ -171,11 +176,14 @@ public class PCFGParserTester3 {
 					+ (stopTime - startTime) * 1.0 / 1000 + " miliseconds Raw estimate of total will be "
 					+ (stopTime - startTime) * 1.0 / 1000 / i * testTrees.size());
 
+			if (verbose) {
+				System.out.println("Gold:\n" + Trees.PennTreeRenderer.render(testTree));
+			}
 			List<String> testSentence = testTree.getYield();
 			Tree<String> guessedTree = parser.getBestParse(testSentence);
 			if (verbose) {
 				System.out.println("Guess:\n" + Trees.PennTreeRenderer.render(guessedTree));
-				System.out.println("Gold:\n" + Trees.PennTreeRenderer.render(testTree));
+
 			}
 			eval.evaluate(guessedTree, testTree);
 			// if (i%20==0)

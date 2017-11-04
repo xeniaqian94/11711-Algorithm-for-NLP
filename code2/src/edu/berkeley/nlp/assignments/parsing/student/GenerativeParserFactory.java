@@ -19,7 +19,7 @@ public class GenerativeParserFactory implements ParserFactory {
 	static int v = 2;
 	static int maxLength = 41;
 	static boolean tagPA = true;
-	public static boolean tagSplitting = false;
+	public static boolean tagSplitting = true;
 
 	public GenerativeParserFactory(int h, int v) {
 		this.h = h;
