@@ -139,8 +139,11 @@ class CoarseToFineParser implements Parser {
 				// System.out.println(i + " " + sentence.get(i) + " " + labelIndexer.get(j) + "
 				// " + emissionScore);
 
-				if (!(emissionScore == Double.NaN) && !(emissionScore == Double.NEGATIVE_INFINITY))
-					coarseBinaryAlpha[i][i + 1][j] = emissionScore + coarseBinaryAlpha[i][i + 1][j];
+				if (!(emissionScore == Double.NaN) && !(emissionScore == Double.NEGATIVE_INFINITY)) {
+					coarseBinaryAlpha[i][i + 1][j] = emissionScore;
+					// System.out.println("coarseBinaryAlpha updated here !" + coarseUnaryAlpha[i][i
+					// + 1][j]);
+				}
 				// else
 				// coarseBinaryAlpha[i][i + 1][j] = Double.NEGATIVE_INFINITY;
 			}
@@ -161,7 +164,9 @@ class CoarseToFineParser implements Parser {
 						// if (coarseUnaryAlpha[i][i + 1][a] < prob) {
 						// coarseUnaryAlpha[i][i + 1][a] = prob;
 						// }
-						coarseUnaryAlpha[i][i + 1][a] = SloppyMath.logAdd(prob, coarseUnaryAlpha[i][i + 1][a]);
+						coarseUnaryAlpha[i][i + 1][a] = prob;
+						// System.out.println("coarseUnaryAlpha updated here !" + coarseUnaryAlpha[i][i
+						// + 1][a]);
 					}
 				}
 			}
@@ -289,10 +294,10 @@ class CoarseToFineParser implements Parser {
 		System.out.println("Finished outside pass");
 		// s.nextLine();
 
-	    double denominator = -coarseUnaryAlpha[0][numWords][0];
+		double denominator = -coarseUnaryAlpha[0][numWords][0];
 		// printScores(sentence);
 		System.out.println("Finished outside pass " + denominator);
-		s.nextLine();
+		// s.nextLine();
 
 		for (int i = 0; i <= numWords; i++) {
 			for (int j = i; j <= numWords; j++) {
@@ -377,8 +382,9 @@ class CoarseToFineParser implements Parser {
 							scoreFineUnary[i][i + 1][a] = Double.NEGATIVE_INFINITY;
 							continue;
 						}
-						System.out.println("a valid coarseScore is " + coarseScore + " " + denominator + " "
-								+ coarseUnaryBeta[i][i + 1][aa] + " " + coarseUnaryAlpha[i][i + 1][aa]);
+						// System.out.println("a valid coarseScore is " + coarseScore + " " +
+						// denominator + " "
+						// + coarseUnaryBeta[i][i + 1][aa] + " " + coarseUnaryAlpha[i][i + 1][aa]);
 
 						double prob = ur.getScore() + scoreFineBinary[i][i + 1][b];
 						// System.out.println(i + " " + a + " " + b + " " + ur.getScore() + " " +
@@ -585,10 +591,14 @@ class CoarseToFineParser implements Parser {
 				for (int j = i; j <= numWords; j++) { // upper triangle
 					System.out.println("i = " + i + " j = " + j);
 					for (int a = 0; a < numCoarseStates; a++) {
-						System.out.print(a + ": (coarseBinaryAlpha)" + coarseBinaryAlpha[i][j][a] + "\t");
-						System.out.print(a + ": (coarseUnaryAlpha)" + coarseUnaryAlpha[i][j][a] + "\t");
-						System.out.print(a + ": (coarseBinaryBeta)" + coarseBinaryBeta[i][j][a] + "\t");
-						System.out.print(a + ": (coarseUnaryBeta)" + coarseUnaryBeta[i][j][a] + "\t");
+						// System.out.print(a + ": (coarseBinaryAlpha)" + coarseBinaryAlpha[i][j][a] +
+						// "\t");
+						if (coarseUnaryAlpha[i][j][a] != Double.NEGATIVE_INFINITY)
+							System.out.print(a + ": (coarseUnaryAlpha)" + coarseUnaryAlpha[i][j][a] + "\t");
+						// System.out.print(a + ": (coarseBinaryBeta)" + coarseBinaryBeta[i][j][a] +
+						// "\t");
+						// System.out.print(a + ": (coarseUnaryBeta)" + coarseUnaryBeta[i][j][a] +
+						// "\t");
 						// System.out.print(a + ": (unary) " + scoreUnary[i][j][a] + "\t");
 						// System.out.print(a + ": (unary) " + backUnary[i][j][a] + "\t");
 						System.out.println();
