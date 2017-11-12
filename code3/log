@@ -1,0 +1,95 @@
+
+Baseline on test gives 83.66, so 85.16.
+
+1. lambda 0.001
+print # of features 1978978
+Training took 199968 millis
+1-best baseline
+ [Average]  P: 84.13 R: 83.19 F1: 83.66 EX: 22.31
+Decoding took 98 millis
+==========================================
+Your system
+ [Average]  P: 85.74 R: 84.81 F1: 85.27 EX: 27.03
+Decoding took 3514 millis
+
+
+
+
+1. add bin/unbinned rule length feature
+
+MaxEnt 
+
+print # of features 46807
+Training took 68665 millis
+1-best baseline
+ [Average]  P: 84.6 R: 83.65 F1: 84.12 EX: 22.94
+Decoding took 60 millis
+==========================================
+Your system
+ [Average]  P: 84.71 R: 83.73 F1: 84.22 EX: 23.7
+
+SVM
+
+Training took 109409 millis
+1-best baseline
+ [Average]  P: 84.6 R: 83.65 F1: 84.12 EX: 22.94
+Decoding took 57 millis
+==========================================
+Your system
+ [Average]  P: 84.64 R: 83.68 F1: 84.16 EX: 23.44
+
+2. add all features from Shen
+
+MaxEnt
+
+print # of features 2096471
+Training took 166474 millis
+1-best baseline
+ [Average]  P: 84.6 R: 83.65 F1: 84.12 EX: 22.94
+Decoding took 76 millis
+==========================================
+Your system
+ [Average]  P: 85.27 R: 84.47 F1: 84.87 EX: 26.17
+Decoding took 2572 millis
+
+SVM
+print # of features 2096471
+Training took 330613 millis
+1-best baseline
+ [Average]  P: 84.6 R: 83.65 F1: 84.12 EX: 22.94
+Decoding took 70 millis
+==========================================
+Your system
+ [Average]  P: 85.06 R: 84.1 F1: 84.58 EX: 25.15
+Decoding took 1874 millis
+
+
+3. Shen's in and out with bigram
+
+
+MaxEnt
+
+print # of features 2245945
+Training took 152197 millis
+1-best baseline
+ [Average]  P: 84.6 R: 83.65 F1: 84.12 EX: 22.94
+Decoding took 61 millis
+==========================================
+Your system
+ [Average]  P: 85.26 R: 84.31 F1: 84.79 EX: 25.72
+Decoding took 2621 millis
+
+4. +first word +end word 
+MaxEnt 
+
+print # of features 928345
+Training took 82195 millis
+1-best baseline
+ [Average]  P: 84.6 R: 83.65 F1: 84.12 EX: 22.94
+Decoding took 81 millis
+==========================================
+Your system
+ [Average]  P: 84.84 R: 83.85 F1: 84.34 EX: 24.2
+Decoding took 1847 millis
+
+

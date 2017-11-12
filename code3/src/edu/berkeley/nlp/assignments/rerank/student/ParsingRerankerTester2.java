@@ -93,6 +93,25 @@ public class ParsingRerankerTester2 {
 		if (argMap.containsKey("-tolerence")) {
 			UnifiedParsingReranker.TOLERENCE = Double.parseDouble(argMap.get("-tolerence"));
 		}
+
+		if (argMap.containsKey("-C")) {
+			UnifiedParsingReranker.C = Double.parseDouble(argMap.get("-C"));
+		}
+
+		if (argMap.containsKey("-step")) {
+			UnifiedParsingReranker.STEP_SIZE = Double.parseDouble(argMap.get("-step"));
+		}
+
+		if (argMap.containsKey("-notUseOneMinusF1")) {
+			UnifiedParsingReranker.useOneMinusF1 = false;
+
+		}
+
+		System.out.println("We have this many arguments. ");
+		
+		
+		System.out.println(argMap.toString());
+
 		System.out.println("Maximum length for test sentences: " + maxTestLength + ", " + maxTestTrees + " max trees");
 
 		RerankerType rerankerType = RerankerType.BASIC;

@@ -3,6 +3,7 @@ package edu.berkeley.nlp.assignments.rerank.student;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 
 import edu.berkeley.nlp.assignments.rerank.KbestList;
 import edu.berkeley.nlp.assignments.rerank.ParsingReranker;
@@ -13,18 +14,33 @@ import edu.berkeley.nlp.util.Indexer;
 
 public class UnifiedParsingReranker implements ParsingReranker {
 
-	static double TOLERENCE = 1e-4;
-	static double LAMBDA = 0.01d;
+	static double TOLERENCE = 1e-6;
+	static double LAMBDA = 0.001d;
+	EnglishPennTreebankParseEvaluator.LabeledConstituentEval<String> eptpe = new EnglishPennTreebankParseEvaluator.LabeledConstituentEval<String>(
+			new HashSet<String>(Arrays.asList("ROOT")), new HashSet<String>());
+	
+	static double STEP_SIZE = 0.1;
+	static double C = 0.01;
+	static boolean useOneMinusF1 = true;
+	
+	//best of all 
+//	static double TOLERENCE = 1e-6;
+//	static double LAMBDA = 0.001d;
+	
+	
 	static int MAX_ITER = 30;
+	static double INITIALIZATION_SCALE = 1e-4;
 	double[] weights = null;
 	static Indexer<String> featureIndexer = new Indexer<String>();
-	SimpleFeatureExtractor featureExtractor = new SimpleFeatureExtractor();
+	// SimpleFeatureExtractor featureExtractor = new SimpleFeatureExtractor();
+	AdvancedFeatureExtractor featureExtractor = new AdvancedFeatureExtractor();
+	Random rand = new Random();
 
 	@Override
 	public Tree<String> getBestParse(List<String> sentence, KbestList kbestList) {
 		// TODO Auto-generated method stub
-		countNonZeroWeights(weights);
-		printWeights(weights);
+		// countNonZeroWeights(weights);
+		// printWeights(weights);
 		Tree<String> bestTree = null;
 		int bestIndex = 0;
 		double bestScore = -1.0 * Double.MAX_VALUE;
@@ -41,12 +57,28 @@ public class UnifiedParsingReranker implements ParsingReranker {
 				bestScore = score;
 				bestTree = kbestList.getKbestTrees().get(index);
 				bestIndex = index;
-				System.out.println("bestScore gets beated ");
+				// System.out.println("bestScore gets beated ");
 			}
 		}
-		System.out.println("This testing selected bestIndex as " + bestIndex);
+		// System.out.println("This testing selected bestIndex as " + bestIndex);
 
 		return bestTree;
+	}
+
+	void printLog() {
+		System.out.println("print # of features " + featureIndexer.size());
+
+	}
+
+	double[] initializeWeights(int size) {
+		double[] weights = new double[size];
+
+		// Arrays.fill(weights, 0);
+
+		for (int index = 0; index < size; index++)
+			weights[index] = rand.nextDouble() * INITIALIZATION_SCALE;
+
+		return weights;
 	}
 
 	static void printWeights(double[] weights) {
@@ -79,8 +111,6 @@ public class UnifiedParsingReranker implements ParsingReranker {
 		// Tree<String> bestTree = null;
 		double bestF1 = Double.MIN_VALUE;
 		int bestTreeIndex = 0;
-		EnglishPennTreebankParseEvaluator.LabeledConstituentEval<String> eptpe = new EnglishPennTreebankParseEvaluator.LabeledConstituentEval<String>(
-				new HashSet<String>(Arrays.asList("ROOT")), new HashSet<String>());
 
 		for (int index = 0; index < kbest.getKbestTrees().size(); index++) {
 			// Tree<String> tree : kbest.getKbestTrees()) {

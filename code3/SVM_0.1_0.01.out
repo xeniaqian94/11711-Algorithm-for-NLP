@@ -1,0 +1,62 @@
+Using base path: ../assign3_data/
+Testing on validation data.
+Maximum length for training sentences: 40, -1 max trees
+We have this many arguments. 
+{-C=0.1, -rerankerType=BASIC, -verbose=null, -step=0.01, -path=../assign3_data/}
+Maximum length for test sentences: 40, -1 max trees
+Loading training trees (sections 2-21) ... done. (36765 trees)
+Loading validation trees (section 22) ... 100 sentences loaded
+200 sentences loaded
+300 sentences loaded
+400 sentences loaded
+500 sentences loaded
+600 sentences loaded
+700 sentences loaded
+800 sentences loaded
+900 sentences loaded
+1000 sentences loaded
+1100 sentences loaded
+1200 sentences loaded
+1300 sentences loaded
+1400 sentences loaded
+1500 sentences loaded
+done. (1578 trees)
+[AdaGradMinimizer.minimize] Epoch 0 ended with value 18092.293347
+[AdaGradMinimizer.minimize] Epoch 1 ended with value 17114.975552
+[AdaGradMinimizer.minimize] Epoch 2 ended with value 16954.775105
+[AdaGradMinimizer.minimize] Epoch 3 ended with value 16971.945529
+[AdaGradMinimizer.minimize] Epoch 4 ended with value 16857.512988
+[AdaGradMinimizer.minimize] Epoch 5 ended with value 16848.927987
+[AdaGradMinimizer.minimize] Epoch 6 ended with value 16772.976284
+[AdaGradMinimizer.minimize] Epoch 7 ended with value 16831.450943
+[AdaGradMinimizer.minimize] Epoch 8 ended with value 16765.444115
+[AdaGradMinimizer.minimize] Epoch 9 ended with value 16784.696703
+[AdaGradMinimizer.minimize] Epoch 10 ended with value 16720.116836
+[AdaGradMinimizer.minimize] Epoch 11 ended with value 16722.964986
+[AdaGradMinimizer.minimize] Epoch 12 ended with value 16752.537456
+[AdaGradMinimizer.minimize] Epoch 13 ended with value 16705.249373
+[AdaGradMinimizer.minimize] Epoch 14 ended with value 16737.424749
+[AdaGradMinimizer.minimize] Epoch 15 ended with value 16692.524528
+[AdaGradMinimizer.minimize] Epoch 16 ended with value 16667.396356
+[AdaGradMinimizer.minimize] Epoch 17 ended with value 16614.203705
+[AdaGradMinimizer.minimize] Epoch 18 ended with value 16657.201847
+[AdaGradMinimizer.minimize] Epoch 19 ended with value 16638.918103
+[AdaGradMinimizer.minimize] Epoch 20 ended with value 16700.272253
+[AdaGradMinimizer.minimize] Epoch 21 ended with value 16647.859540
+[AdaGradMinimizer.minimize] Epoch 22 ended with value 16649.116894
+[AdaGradMinimizer.minimize] Epoch 23 ended with value 16597.449053
+[AdaGradMinimizer.minimize] Epoch 24 ended with value 16619.974931
+[AdaGradMinimizer.minimize] Epoch 25 ended with value 16583.931802
+[AdaGradMinimizer.minimize] Epoch 26 ended with value 16610.716648
+[AdaGradMinimizer.minimize] Epoch 27 ended with value 16615.355269
+[AdaGradMinimizer.minimize] Epoch 28 ended with value 16627.542980
+[AdaGradMinimizer.minimize] Epoch 29 ended with value 16608.557367
+print # of features 2119075
+Training took 324279 millis
+1-best baseline
+ [Average]  P: 84.6 R: 83.65 F1: 84.12 EX: 22.94
+Decoding took 57 millis
+==========================================
+Your system
+ [Average]  P: 84.65 R: 83.69 F1: 84.17 EX: 23.63
+Decoding took 3947 millis

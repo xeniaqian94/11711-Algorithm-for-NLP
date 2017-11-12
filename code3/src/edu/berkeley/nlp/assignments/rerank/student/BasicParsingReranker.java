@@ -22,27 +22,30 @@ import edu.berkeley.nlp.util.Pair;
 //public class AwesomeParsingReranker implements ParsingReranker {
 
 public class BasicParsingReranker extends UnifiedParsingReranker {
+	
 
 	class Datum {
 		int goldIndex;
 		ArrayList<IntCounter> features;
+		ArrayList<Double> oneMinusF1;
 
 		public Datum(int goldIndex) {
-//			System.out.println("gold index is " + goldIndex);
 			this.goldIndex = goldIndex;
 			this.features = new ArrayList<IntCounter>();
+			this.oneMinusF1 = new ArrayList<Double>();
 		}
 
 		public void insertFeature(IntCounter feats) {
 			this.features.add(feats);
 		}
 
-		public void insertFeature(int[] feats) {
+		public void insertFeature(int[] feats, double thisOneMinusF1) {
 			IntCounter featsIC = new IntCounter();
 			for (int i = 0; i < feats.length; i++) {
 				featsIC.incrementCount(feats[i], 1);
 			}
 			this.features.add(featsIC);
+			this.oneMinusF1.add(thisOneMinusF1);
 
 		}
 
@@ -59,6 +62,7 @@ public class BasicParsingReranker extends UnifiedParsingReranker {
 		}
 
 		@Override
+
 		public UpdateBundle getLossAugmentedUpdateBundle(Object datumObject, IntCounter weights) {
 			// TODO Auto-generated method stub
 			Datum datum = (Datum) datumObject;
@@ -72,8 +76,10 @@ public class BasicParsingReranker extends UnifiedParsingReranker {
 				if (i != goldIndex) {
 					double thisScore = score(weights, datum.features.get(i));
 					// if (thisScore > maxScore) {
+					double thisOneMinusF1Loss = datum.oneMinusF1.get(i);
 
-					if (thisScore + 1 > maxScore) {
+					if ((!useOneMinusF1 && thisScore + 1 > maxScore)
+							| (useOneMinusF1 && thisScore + thisOneMinusF1Loss > maxScore)) {
 						maxIndex = i;
 						maxScore = thisScore;
 					}
@@ -98,50 +104,32 @@ public class BasicParsingReranker extends UnifiedParsingReranker {
 
 			for (int index = 0; index < kbest.getKbestTrees().size(); index++) {
 				int[] feats = featureExtractor.extractFeatures(kbest, index, featureIndexer, true);
+				double thisOneMinusF1 = 1.0d - eptpe.evaluateF1(kbest.getKbestTrees().get(index),
+						kbest.getKbestTrees().get(pseudoGoldIndex));
 
-				fagf.insertFeature(feats);
+				fagf.insertFeature(feats, thisOneMinusF1);
 			}
 
 			trainingData.add(fagf);
-
-			// for (int index = 0; index < kbest.getKbestTrees().size(); index++) {
-			// int[] feats = featureExtractor.extractFeatures(kbest, index, featureIndexer,
-			// true);
-			// fagf.features.add(feats);
-			// if (index == pseudoGoldIndex)
-			// fagf.goldFeatures = feats;
-			// }
-
 		}
 
-		weights = new double[featureIndexer.size()];
-		Arrays.fill(weights, 0);
+		weights = initializeWeights(featureIndexer.size());
 
 		IntCounter weightIC = new IntCounter();
 		for (int i = 0; i < weights.length; i++) {
 			weightIC.incrementCount(i, 0);
 		}
 
-		System.out.println("Before optimization ");
-
-		PrimalSubgradientSVMLearner pssl = new PrimalSubgradientSVMLearner(1e-3, 1e-2, featureIndexer.size());
-		printWeights(weightIC);
+		PrimalSubgradientSVMLearner pssl = new PrimalSubgradientSVMLearner(STEP_SIZE, C, featureIndexer.size());
+		// printWeights(weightIC);
 		weightIC = pssl.train(weightIC, new SVMModel(), trainingData, MAX_ITER);
-		System.out.println("After optimization ");
-		printWeights(weightIC);
+		// System.out.println("After optimization ");
+		// printWeights(weightIC);
 		weights = weightIC.toArray(weightIC.size());
 
-		printWeights(weights);
-		countNonZeroWeights(weights);
-	}
-
-	void printWeights(IntCounter ic) {
-		for (Entry<Integer, Double> weight : ic.entries()) {
-			if (weight.getValue() != 0d)
-				System.out.print(weight.getKey() + ": " + weight.getValue());
-
-		}
-		System.out.println();
+		// printWeights(weights);
+		// countNonZeroWeights(weights);
+		printLog();
 	}
 
 }

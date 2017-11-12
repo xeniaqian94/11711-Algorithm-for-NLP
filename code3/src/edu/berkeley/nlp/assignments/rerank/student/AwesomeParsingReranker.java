@@ -22,6 +22,7 @@ public class AwesomeParsingReranker extends UnifiedParsingReranker {
 		List<int[]> features = new ArrayList<int[]>();
 
 	}
+
 	public AwesomeParsingReranker(Iterable<Pair<KbestList, Tree<String>>> kbestListsAndGoldTrees) {
 
 		List<FeaturesAndGoldFeatures> trainingData = new ArrayList<FeaturesAndGoldFeatures>();
@@ -29,7 +30,9 @@ public class AwesomeParsingReranker extends UnifiedParsingReranker {
 			FeaturesAndGoldFeatures fagf = new FeaturesAndGoldFeatures();
 			KbestList kbest = pair.getFirst();
 			int pseudoGoldIndex = pseudoGoldInKbestList(kbest, pair.getSecond());
-
+			
+			
+		
 			for (int index = 0; index < kbest.getKbestTrees().size(); index++) {
 				int[] feats = featureExtractor.extractFeatures(kbest, index, featureIndexer, true);
 				fagf.features.add(feats);
@@ -40,46 +43,47 @@ public class AwesomeParsingReranker extends UnifiedParsingReranker {
 
 		}
 
-		weights = new double[featureIndexer.size()];
-		Arrays.fill(weights, 0);
+		weights = initializeWeights(featureIndexer.size());
 
 		// this is where training on the fly goes
 
 		LBFGSMinimizer lbfgsMinimizer = new LBFGSMinimizer();
 		MaxEntLoss maxEntLoss = new MaxEntLoss(trainingData);
-		System.out.println("Before optimization ");
-		printWeights(weights);
+		// System.out.println("Before optimization ");
+		// printWeights(weights);
 		weights = lbfgsMinimizer.minimize(maxEntLoss, weights, TOLERENCE);
-		System.out.println("After optimization ");
-		printWeights(weights);
+		// System.out.println("After optimization ");
+		// printWeights(weights);
+		printLog();
+		
 	}
 
-//	private int pseudoGoldInKbestList(KbestList kbest, Tree<String> gold) {
-//		// TODO Auto-generated method stub
-//		// Tree<String> bestTree = null;
-//		double bestF1 = Double.MIN_VALUE;
-//		int bestTreeIndex = 0;
-//		EnglishPennTreebankParseEvaluator.LabeledConstituentEval<String> eptpe = new EnglishPennTreebankParseEvaluator.LabeledConstituentEval<String>(
-//				new HashSet<String>(Arrays.asList("ROOT")), new HashSet<String>());
-//
-//		for (int index = 0; index < kbest.getKbestTrees().size(); index++) {
-//			// Tree<String> tree : kbest.getKbestTrees()) {
-//			Tree<String> tree = kbest.getKbestTrees().get(index);
-//			if (gold.hashCode() == tree.hashCode())
-//				return index;
-//			else {
-//				double thisF1 = eptpe.evaluateF1(tree, gold);
-//				if (bestF1 < thisF1) {
-//					bestF1 = thisF1;
-//					bestTreeIndex = index;
-//				}
-//
-//			}
-//
-//		}
-//		return bestTreeIndex;
-//	}
-//
-	
+	// private int pseudoGoldInKbestList(KbestList kbest, Tree<String> gold) {
+	// // TODO Auto-generated method stub
+	// // Tree<String> bestTree = null;
+	// double bestF1 = Double.MIN_VALUE;
+	// int bestTreeIndex = 0;
+	// EnglishPennTreebankParseEvaluator.LabeledConstituentEval<String> eptpe = new
+	// EnglishPennTreebankParseEvaluator.LabeledConstituentEval<String>(
+	// new HashSet<String>(Arrays.asList("ROOT")), new HashSet<String>());
+	//
+	// for (int index = 0; index < kbest.getKbestTrees().size(); index++) {
+	// // Tree<String> tree : kbest.getKbestTrees()) {
+	// Tree<String> tree = kbest.getKbestTrees().get(index);
+	// if (gold.hashCode() == tree.hashCode())
+	// return index;
+	// else {
+	// double thisF1 = eptpe.evaluateF1(tree, gold);
+	// if (bestF1 < thisF1) {
+	// bestF1 = thisF1;
+	// bestTreeIndex = index;
+	// }
+	//
+	// }
+	//
+	// }
+	// return bestTreeIndex;
+	// }
+	//
 
 }
