@@ -91,7 +91,7 @@ public class ParsingRerankerTester2 {
 		}
 
 		if (argMap.containsKey("-tolerence")) {
-			AwesomeParsingReranker.TOLERENCE = Double.parseDouble(argMap.get("-tolerence"));
+			UnifiedParsingReranker.TOLERENCE = Double.parseDouble(argMap.get("-tolerence"));
 		}
 		System.out.println("Maximum length for test sentences: " + maxTestLength + ", " + maxTestTrees + " max trees");
 

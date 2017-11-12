@@ -13,3 +13,14 @@
 /AwesomeParsingReranker$featuresGoldFeature.class
 /AwesomeParsingReranker$FeaturesAndGoldFeatures.class
 /UnifiedParsingReranker.class
+/SVMModel.class
+/SVM.class
+/SVMModel$Datum.class
+/SVMModel2$Datum.class
+/SVMModel2.class
+/BasicParsingReranker$FeaturesAndGoldFeatures.class
+/BasicParsingReranker.class
+/BasicParsingReranker$1Datum.class
+/BasicParsingReranker$Datum.class
+/BasicParsingReranker$SVMModel2.class
+/BasicParsingReranker$SVMModel.class

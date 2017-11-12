@@ -11,16 +11,7 @@ import edu.berkeley.nlp.util.Pair;
 public class BasicParsingRerankerFactory implements ParsingRerankerFactory {
 
 	public ParsingReranker trainParserReranker(Iterable<Pair<KbestList, Tree<String>>> kbestListsAndGoldTrees) {
-		return new Baseline();
-
+		return new BasicParsingReranker(kbestListsAndGoldTrees);
 	}
 
-	class Baseline implements ParsingReranker {
-		public Baseline() {
-		}
-
-		public Tree<String> getBestParse(List<String> sentence, KbestList kbestList) {
-			return kbestList.getKbestTrees().get(0); // returns the first tree
-		}
-	}
 }

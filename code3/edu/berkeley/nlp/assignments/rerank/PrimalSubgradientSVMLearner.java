@@ -41,6 +41,8 @@ public class PrimalSubgradientSVMLearner<D> {
     for (int b = 0; b < numBatches; ++b) {
       final List<D> batch = data.subList(b * batchSize, Math.min(data.size(), (b + 1) * batchSize));
       objs.add(new DifferentiableFunction() {
+    	  
+    	  
         public Pair<Double,IntCounter> calculate(IntCounter weights) {
           List<UpdateBundle> ubBatch = new ArrayList<UpdateBundle>();
           for (D datum : batch) {
@@ -66,6 +68,8 @@ public class PrimalSubgradientSVMLearner<D> {
           }
           return Pair.makePair(valBatch, deltaBatch);
         }
+        
+        
       });
     }
 
